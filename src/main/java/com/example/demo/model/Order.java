@@ -2,6 +2,7 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 import java.util.Date;
+
 @Entity(name = "order1")
 public class Order {
     @Id
@@ -10,6 +11,45 @@ public class Order {
     private Date bookingDate;
     private Date startDate;
     private Date endDate;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+    @ManyToOne
+    @JoinColumn(name = "home_id")
+    private Home home;
+
+    public Order(Long id, Date bookingDate, Date startDate, Date endDate, User user, Home home) {
+        this.id = id;
+        this.bookingDate = bookingDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.user = user;
+        this.home = home;
+    }
+
+    public Home getHome() {
+        return home;
+    }
+
+    public void setHome(Home home) {
+        this.home = home;
+    }
+
+    public Order(Long id, Date bookingDate, Date startDate, Date endDate, User user) {
+        this.id = id;
+        this.bookingDate = bookingDate;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Order() {
     }
