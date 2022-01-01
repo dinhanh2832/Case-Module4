@@ -1,6 +1,7 @@
 package com.example.demo.model;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 @Entity
 public class Comment {
@@ -8,20 +9,12 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String content;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
-    private Date createAt;
-    @ManyToOne
-    @JoinColumn(name = "home_id")
-    private Home home;
+    private LocalDateTime time;
 
-    public Comment(Long id, String content, User user, Date createAt, Home home) {
+    public Comment(Long id, String content, LocalDateTime time) {
         this.id = id;
         this.content = content;
-        this.user = user;
-        this.createAt = createAt;
-        this.home = home;
+        this.time = time;
     }
 
     public Comment() {
@@ -43,27 +36,11 @@ public class Comment {
         this.content = content;
     }
 
-    public User getUser() {
-        return user;
+    public LocalDateTime getTime() {
+        return time;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public Date getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(Date createAt) {
-        this.createAt = createAt;
-    }
-
-    public Home getHome() {
-        return home;
-    }
-
-    public void setHome(Home home) {
-        this.home = home;
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 }
