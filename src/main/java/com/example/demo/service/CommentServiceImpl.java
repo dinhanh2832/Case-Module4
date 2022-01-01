@@ -5,6 +5,7 @@ import com.example.demo.repository.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,5 +31,10 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public void remove(Long id) {
         commentRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Comment> findAllByContentContaining(String content) {
+        return commentRepository.findAllByContentContaining(content);
     }
 }

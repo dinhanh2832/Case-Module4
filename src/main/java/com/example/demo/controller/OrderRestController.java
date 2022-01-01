@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Comment;
 import com.example.demo.model.Order;
 import com.example.demo.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;

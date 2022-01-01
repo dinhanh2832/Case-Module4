@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -20,6 +21,16 @@ public class CommentRestController {
     @GetMapping("")
     public ResponseEntity<Iterable<Comment>> findAllComment() {
         Iterable<Comment> comments = commentService.findAll();
+        return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
+    @GetMapping("/search/{content}")
+    public ResponseEntity<Iterable<Comment>> findByContentContaining(@PathVariable String content) {
+        Iterable<Comment> comments;
+        if (content == null) {
+            comments = commentService.findAll();
+        } else {
+            comments = commentService.findAllByContentContaining(content);
+        }
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
 
