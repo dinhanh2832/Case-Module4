@@ -2,7 +2,7 @@ package com.example.demo.model;
 
 import javax.persistence.*;
 import java.util.Date;
-@Entity
+@Entity(name = "order1")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

@@ -23,20 +23,13 @@ public class CommentRestController {
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
 
-    @GetMapping("/find/{id}")
-    public ResponseEntity<Optional<Comment>> findOne(@PathVariable Long id) {
+    @GetMapping("/{id}")
+    public ResponseEntity<Comment> findHouseById(@PathVariable Long id) {
         Optional<Comment> comment = commentService.findById(id);
-        return new ResponseEntity<>(comment, HttpStatus.OK);
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Comment> deleteComment(@PathVariable Long id) {
-        Optional<Comment> commentOptional = commentService.findById(id);
-        if (!commentOptional.isPresent()) {
+        if (!comment.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        commentService.remove(id);
-        return new ResponseEntity<>(commentOptional.get(), HttpStatus.OK);
+        return new ResponseEntity<>(comment.get(), HttpStatus.OK);
     }
 
     @PostMapping("")
@@ -47,10 +40,19 @@ public class CommentRestController {
         return new ResponseEntity<>(comment, HttpStatus.CREATED);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Comment> saveBlog(@PathVariable Long id,@RequestBody Comment comment) {
+    public ResponseEntity<Comment> edit(@PathVariable Long id,@RequestBody Comment comment) {
         Optional<Comment> commentOptional = commentService.findById(id);
         comment.setId(commentOptional.get().getId());
         commentService.save(comment);
         return new ResponseEntity<>(comment, HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Comment> deleteComment(@PathVariable Long id) {
+        Optional<Comment> commentOptional = commentService.findById(id);
+        if (!commentOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        commentService.remove(id);
+        return new ResponseEntity<>(commentOptional.get(), HttpStatus.OK);
     }
 }
