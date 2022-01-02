@@ -3,6 +3,7 @@ package com.example.demo.model;
 import javax.persistence.*;
 import java.util.Date;
 @Entity
+@Table(name = "tableOrder")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
