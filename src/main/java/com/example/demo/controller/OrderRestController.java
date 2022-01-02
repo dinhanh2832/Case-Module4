@@ -3,14 +3,17 @@ package com.example.demo.controller;
 import com.example.demo.model.Order;
 import com.example.demo.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@RestController
+@Controller
 @CrossOrigin("*")
+@PropertySource("classpath:application.properties")
 @RequestMapping("/api/orders")
 public class OrderRestController {
     @Autowired

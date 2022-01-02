@@ -3,16 +3,19 @@ package com.example.demo.controller;
 import com.example.demo.model.Comment;
 import com.example.demo.service.CommentServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@RestController
+@Controller
 @CrossOrigin("*")
+@PropertySource("classpath:application.properties")
 @RequestMapping("/api/comments")
 public class CommentRestController {
     @Autowired

@@ -6,7 +6,8 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.util.Date;
 
-@Entity(name = "order1")
+@Entity
+@Table(name = "tableOrder")
 @Data
 @NoArgsConstructor
 public class Order {
