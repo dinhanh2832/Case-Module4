@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.Optional;
 
 @RestController
@@ -36,6 +38,8 @@ public class OrderRestController {
 
     @PostMapping("")
     public ResponseEntity<Order> saveOrder(@RequestBody Order order) {
+        Date date = new Date(Calendar.getInstance().getTime().getTime());
+        order.setBookingDate(date);
         orderService.save(order);
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }

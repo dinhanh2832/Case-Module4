@@ -58,18 +58,7 @@ public class HomeRestController {
         return new ResponseEntity<>(home, HttpStatus.OK);
     }
 
-    @PutMapping("/change/{id}")
-    public ResponseEntity<Home> change(@PathVariable Long id) {
-        Optional<Home> homeOptional = homeService.findById(id);
-        if (!homeOptional.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        StatusHome statusHome = statusHomeService.findByName("a");
-        homeOptional.get().setStatusHome(statusHome);
-        return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
-    }
-
-    @PutMapping("/change2/{id}")
+    @DeleteMapping("/change2/{id}")
     public ResponseEntity<Home> change2(@PathVariable Long id) {
         Optional<Home> homeOptional = homeService.findById(id);
         if (!homeOptional.isPresent()) {
@@ -77,6 +66,7 @@ public class HomeRestController {
         }
         Optional<StatusHome> statusHome = statusHomeService.findById(1L);
         homeOptional.get().setStatusHome(statusHome.get());
+        homeService.save(homeOptional.get());
         return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
     }
 }
