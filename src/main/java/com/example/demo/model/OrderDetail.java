@@ -1,8 +1,13 @@
 package com.example.demo.model;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class OrderDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -10,28 +15,4 @@ public class OrderDetail {
     @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
-
-    public OrderDetail(Long id, Order order) {
-        this.id = id;
-        this.order = order;
-    }
-
-    public OrderDetail() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }
