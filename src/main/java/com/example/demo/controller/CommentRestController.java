@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@Controller
+@RestController
 @CrossOrigin("*")
 @PropertySource("classpath:application.properties")
 @RequestMapping("/api/comments")
@@ -38,7 +38,7 @@ public class CommentRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Comment> findHouseById(@PathVariable Long id) {
+    public ResponseEntity<Comment> findCommentById(@PathVariable Long id) {
         Optional<Comment> comment = commentService.findById(id);
         if (!comment.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

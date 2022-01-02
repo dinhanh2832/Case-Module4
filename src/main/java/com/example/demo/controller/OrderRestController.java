@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@Controller
+@RestController
 @CrossOrigin("*")
 @PropertySource("classpath:application.properties")
 @RequestMapping("/api/orders")
