@@ -23,7 +23,7 @@ public class OrderRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Order> findHouseById(@PathVariable Long id) {
+    public ResponseEntity<Order> findOrderById(@PathVariable Long id) {
         Optional<Order> order = orderService.findById(id);
         if (!order.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
