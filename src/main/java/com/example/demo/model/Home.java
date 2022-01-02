@@ -11,7 +11,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Home {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String address;
@@ -22,7 +22,7 @@ public class Home {
     private int showerRoom;
     private String description;
     private double price;
-    private String status;
+    private int status;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

@@ -54,7 +54,7 @@ public class HomeRestController {
         if (!homeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        homeService.remove(id);
+        homeOptional.get().setStatus(2);
         return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
     }
 }

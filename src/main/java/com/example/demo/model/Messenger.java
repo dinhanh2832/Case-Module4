@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class Messenger {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "userN_id")
