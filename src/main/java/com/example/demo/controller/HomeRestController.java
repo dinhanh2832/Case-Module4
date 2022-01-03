@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.Optional;
 
-@RestController
+@Controller
 @CrossOrigin("*")
 @PropertySource("classpath:application.properties")
 @RequestMapping("/api/homes")
