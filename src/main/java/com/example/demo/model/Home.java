@@ -22,7 +22,9 @@ public class Home {
     private int showerRoom;
     private String description;
     private double price;
-    private int status;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private StatusHome statusHome;
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;

@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Home;
+import com.example.demo.model.StatusHome;
 import com.example.demo.service.HomeServiceImpl;
+import com.example.demo.service.StatusHomeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -9,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -18,11 +21,19 @@ import java.util.Optional;
 public class HomeRestController {
     @Autowired
     private HomeServiceImpl homeService;
+    @Autowired
+    private StatusHomeServiceImpl statusHomeService;
 
     @GetMapping("")
     public ResponseEntity<Iterable<Home>> findAllHome() {
         Iterable<Home> homes = homeService.findAll();
         return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
+    @GetMapping("/findAllStatus")
+    public ResponseEntity<Iterable<StatusHome>> findAllStatus() {
+        Iterable<StatusHome> statusHomes = statusHomeService.findAll();
+        return new ResponseEntity<>(statusHomes, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
@@ -35,7 +46,7 @@ public class HomeRestController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Home> saveOrder(@RequestBody Home home) {
+    public ResponseEntity<Home> saveHome(@RequestBody Home home) {
         homeService.save(home);
         return new ResponseEntity<>(home, HttpStatus.CREATED);
     }
@@ -48,13 +59,37 @@ public class HomeRestController {
         return new ResponseEntity<>(home, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Home> delete(@PathVariable Long id) {
+    @DeleteMapping("/change2/{id}")
+    public ResponseEntity<Home> change2(@PathVariable Long id) {
         Optional<Home> homeOptional = homeService.findById(id);
         if (!homeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        homeOptional.get().setStatus(2);
+        Optional<StatusHome> statusHome = statusHomeService.findById(1L);
+        homeOptional.get().setStatusHome(statusHome.get());
+        homeService.save(homeOptional.get());
         return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
+    }
+    @DeleteMapping("/change1/{id}")
+    public ResponseEntity<Home> change1(@PathVariable Long id) {
+        Optional<Home> homeOptional = homeService.findById(id);
+        if (!homeOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Optional<StatusHome> statusHome = statusHomeService.findById(2L);
+        homeOptional.get().setStatusHome(statusHome.get());
+        homeService.save(homeOptional.get());
+        return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/search/{name}")
+    public ResponseEntity<Iterable<Home>> findByNameContaining(@PathVariable String name) {
+        Iterable<Home> homes;
+        if (name == null) {
+            homes = homeService.findAll();
+        } else {
+            homes = homeService.findAllByNameContaining(name);
+        }
+        return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 }
