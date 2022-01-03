@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
@@ -68,5 +69,27 @@ public class HomeRestController {
         homeOptional.get().setStatusHome(statusHome.get());
         homeService.save(homeOptional.get());
         return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
+    }
+    @DeleteMapping("/change1/{id}")
+    public ResponseEntity<Home> change1(@PathVariable Long id) {
+        Optional<Home> homeOptional = homeService.findById(id);
+        if (!homeOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        Optional<StatusHome> statusHome = statusHomeService.findById(2L);
+        homeOptional.get().setStatusHome(statusHome.get());
+        homeService.save(homeOptional.get());
+        return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/search/{name}")
+    public ResponseEntity<Iterable<Home>> findByNameContaining(@PathVariable String name) {
+        Iterable<Home> homes;
+        if (name == null) {
+            homes = homeService.findAll();
+        } else {
+            homes = homeService.findAllByNameContaining(name);
+        }
+        return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 }
