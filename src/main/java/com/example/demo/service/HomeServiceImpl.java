@@ -5,6 +5,7 @@ import com.example.demo.repository.HomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -30,5 +31,10 @@ public class HomeServiceImpl implements HomeService {
     @Override
     public void remove(Long id) {
         homeRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Home> findAllByNameContaining(String name) {
+        return homeRepository.findAllByNameContaining(name);
     }
 }
