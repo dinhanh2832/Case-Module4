@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Category;
-import com.example.demo.model.Home;
-import com.example.demo.model.StatusHome;
+import com.example.demo.model.*;
 import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -53,6 +51,12 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
+    @GetMapping("/findHomeStatusUser")
+    public ResponseEntity<Iterable<Home>> findHomeByStatusOfUser() {
+        Iterable<Home> homes = homeService.findAllHomeByStatusOfUser(2L);
+        return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
     @GetMapping("/findAllStatus")
     public ResponseEntity<Iterable<StatusHome>> findAllStatus() {
         Iterable<StatusHome> statusHomes = statusHomeService.findAll();
@@ -70,6 +74,10 @@ public class HomeRestController {
 
     @PostMapping("")
     public ResponseEntity<Home> saveHome(@RequestBody Home home) {
+        Optional<User> user = userService.findById(1L);
+        Optional<StatusHome> statusHome = statusHomeService.findById(2L);
+        home.setStatusHome(statusHome.get());
+        home.setUser(user.get());
         homeService.save(home);
         return new ResponseEntity<>(home, HttpStatus.CREATED);
     }
@@ -115,5 +123,14 @@ public class HomeRestController {
             homes = homeService.findAllByNameContaining(name);
         }
         return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Home> deleteHome(@PathVariable Long id) {
+        Optional<Home> homeOptional = homeService.findById(id);
+        if (!homeOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        homeService.delete(homeOptional.get());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

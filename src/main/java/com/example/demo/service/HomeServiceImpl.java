@@ -47,4 +47,14 @@ public class HomeServiceImpl implements HomeService {
     public Iterable<Home> findAllByStatusLike2() {
         return homeRepository.findAllByStatusLike2();
     }
+
+    @Override
+    public Iterable<Home> findAllHomeByStatusOfUser(Long id) {
+        return homeRepository.findAllHomeByStatusOfUser(id);
+    }
+
+    @Override
+    public void delete(Home entity) {
+        homeRepository.delete(entity);
+    }
 }

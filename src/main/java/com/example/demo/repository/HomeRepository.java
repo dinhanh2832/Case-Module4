@@ -19,5 +19,10 @@ public interface HomeRepository extends JpaRepository<Home, Long> {
     @Modifying
     @Query(value = "select * from home where home.status_id like 2", nativeQuery = true)
     Iterable<Home> findAllByStatusLike2();
+    @Modifying
+    @Query(value = "select * from home where status_id = 1 and user_id = :id", nativeQuery = true)
+    Iterable<Home> findAllHomeByStatusOfUser(Long id);
 
+    @Override
+    void delete(Home entity);
 }
