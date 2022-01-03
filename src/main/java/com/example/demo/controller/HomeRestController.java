@@ -1,11 +1,9 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Category;
 import com.example.demo.model.Home;
 import com.example.demo.model.StatusHome;
-import com.example.demo.service.CommentServiceImpl;
-import com.example.demo.service.HomeServiceImpl;
-import com.example.demo.service.StatusHomeServiceImpl;
-import com.example.demo.service.UserService;
+import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -28,11 +26,19 @@ public class HomeRestController {
     private CommentServiceImpl commentService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private CategoryServiceImpl categoryService;
 
     @GetMapping("")
     public ResponseEntity<Iterable<Home>> findAllHome() {
         Iterable<Home> homes = homeService.findAll();
         return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
+    @GetMapping("/findAllCategory")
+    public ResponseEntity<Iterable<Category>> findAllCategory() {
+        Iterable<Category> categories = categoryService.findAll();
+        return new ResponseEntity<>(categories, HttpStatus.OK);
     }
 
     @GetMapping("/findHomeStatus1")
