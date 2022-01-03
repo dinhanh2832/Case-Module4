@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Home;
+import com.example.demo.model.StatusHome;
 import com.example.demo.service.HomeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -8,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Optional;
 
@@ -54,7 +56,8 @@ public class HomeRestController {
         if (!homeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        homeOptional.get().setStatus(2);
+//        homeOptional.get().setStatusHome();
         return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
     }
+
 }

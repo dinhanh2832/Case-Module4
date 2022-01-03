@@ -32,9 +32,10 @@
 
     <!-- Modernizr JS -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 
-<body>
+<body onload="loadHomeContent()">
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->  
@@ -291,7 +292,7 @@
 
         <!-- Start page content -->
         <section id="page-content" class="page-wrapper">
-            
+
             <!-- FIND HOME AREA START -->
             <div class="find-home-area bg-blue call-to-bg plr-140 pt-60 pb-20">
                 <div class="container-fluid">
@@ -306,7 +307,7 @@
                             <div class="find-homes">
                                 <div class="row">
                                     <div class="col-sm-3 col-xs-12">
-                                        <div class="find-home-item custom-select">                  
+                                        <div class="find-home-item custom-select">
                                             <select class="selectpicker" title="Location" data-hide-disabled="true" data-live-search="true">
                                                 <optgroup disabled="disabled" label="disabled">
                                                     <option>Hidden</option>
@@ -325,7 +326,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-3 col-xs-12">
-                                        <div class="find-home-item custom-select">                  
+                                        <div class="find-home-item custom-select">
                                             <select class="selectpicker" title="Sub - Location" data-hide-disabled="true" data-live-search="true">
                                                 <optgroup disabled="disabled" label="disabled">
                                                     <option>Hidden</option>
@@ -341,7 +342,7 @@
                                                     <option>Newport</option>
                                                 </optgroup>
                                             </select>
-                                        </div> 
+                                        </div>
                                     </div>
                                     <div class="col-sm-3 col-xs-12">
                                         <div class="find-home-item">
@@ -354,7 +355,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-3 col-xs-12">
-                                        <div class="find-home-item  custom-select">                  
+                                        <div class="find-home-item  custom-select">
                                             <select class="selectpicker" title="No. of Beadrooms" data-hide-disabled="true">
                                                 <optgroup  label="1">
                                                     <option label="1">1 Beadrooms</option>
@@ -364,10 +365,10 @@
                                                     <option>5 Beadrooms</option>
                                                 </optgroup>
                                             </select>
-                                        </div> 
+                                        </div>
                                     </div>
                                     <div class="col-sm-3 col-xs-12">
-                                        <div class="find-home-item custom-select">                  
+                                        <div class="find-home-item custom-select">
                                             <select class="selectpicker" title="No. of Bathrooms" data-hide-disabled="true">
                                                 <optgroup label="2">
                                                     <option>1 Bathrooms</option>
@@ -387,8 +388,8 @@
                                                     <div class="shop-filter">
                                                         <div class="price_filter">
                                                             <div class="price_slider_amount">
-                                                                <input type="submit"  value="You range :"/> 
-                                                                <input type="text" id="amount" name="price"  placeholder="Add Your Price" /> 
+                                                                <input type="submit"  value="You range :"/>
+                                                                <input type="text" id="amount" name="price"  placeholder="Add Your Price" />
                                                             </div>
                                                             <div id="slider-range"></div>
                                                         </div>
@@ -409,7 +410,7 @@
                 </div>
             </div>
             <!-- FIND HOME AREA END -->
-            
+
             <!-- ABOUT SHELTEK AREA START -->
             <div class="about-sheltek-area ptb-115">
                 <div class="container">
@@ -434,7 +435,7 @@
                 </div>
             </div>
             <!-- ABOUT SHELTEK AREA END -->
-            
+
             <!-- SERVICES AREA START -->
             <div class="services-area pb-60">
                 <div class="container">
@@ -484,36 +485,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- service-item -->
-                            <div class="col-md-12">
-                                <div class="service-item">
-                                    <div class="service-item-image">
-                                        <a href="service-details.html"><img src="images/service/4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="service-item-info">
-                                        <h5><a href="service-details.html">Property Management</a></h5>
-                                        <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse tetur adiping eiusmo</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- service-item -->
-                            <div class="col-md-12">
-                                <div class="service-item">
-                                    <div class="service-item-image">
-                                        <a href="service-details.html"><img src="images/service/4.jpg" alt=""></a>
-                                    </div>
-                                    <div class="service-item-info">
-                                        <h5><a href="service-details.html">Sale Property</a></h5>
-                                        <p>Property sale best theme for litdo eiusmod tempor dolor sit amet, conse tetur adiping eiusmo</p>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                 </div>
             </div>
             <!-- SERVICES AREA END -->
-            
+
             <!-- BOOKING AREA START -->
             <div class="booking-area bg-1 call-to-bg plr-140 pt-75">
                 <div class="container-fluid">
@@ -539,7 +517,7 @@
                 </div>
             </div>
             <!-- BOOKING AREA END -->
-            
+
             <!-- FEATURED FLAT AREA START -->
             <div class="featured-flat-area pt-115 pb-80">
                 <div class="container">
@@ -851,7 +829,7 @@
                 </div>
             </div>
             <!-- FEATURED FLAT AREA END -->
-            
+
             <!-- FEATURES AREA START -->
             <div class="features-area fix">
                 <div class="container-fluid">
@@ -911,7 +889,7 @@
                 </div>
             </div>
             <!-- FEATURES AREA END -->
-            
+
             <!-- OUR AGENTS AREA START -->
             <div class="our-agents-area pt-115 pb-55">
                 <div class="container">
@@ -1267,7 +1245,7 @@
                 </div>
             </div>
             <!-- BRAND AREA END -->
-            
+
             <!-- SUBSCRIBE AREA START -->
             <div class="subscribe-area bg-blue call-to-bg plr-140 ptb-50">
                 <div class="container-fluid">
@@ -1419,7 +1397,7 @@
     <script src="js/plugins.js"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="js/main.js"></script>
-
+    <script src="script/index.js"></script>
 </body>
 
 </html>

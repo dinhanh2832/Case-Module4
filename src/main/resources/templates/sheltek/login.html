@@ -32,16 +32,16 @@
 
     <!-- Modernizr JS -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 
-<body>
+<body onload="loadHomeContent()" >
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->  
 
     <!-- Body main wrapper start -->
     <div class="wrapper">
-    
         <!-- HEADER AREA START -->
         <header class="header-area header-wrapper">
             <div class="header-top-bar bg-white">
@@ -277,16 +277,18 @@
         <!-- MOBILE MENU AREA END -->
 
         <!-- BREADCRUMBS AREA START -->
-        <div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12">
-                        <div class="breadcrumbs">
-                            <h2 class="breadcrumbs-title">Login</h2>
-                            <ul class="breadcrumbs-list">
-                                <li><a href="index.html">Home</a></li>
-                                <li>Login</li>
-                            </ul>
+        <div class="headerOne">
+            <div class="breadcrumbs-area bread-bg-1 bg-opacity-black-70">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="breadcrumbs">
+                                <h2 class="breadcrumbs-title">Login</h2>
+                                <ul class="breadcrumbs-list">
+                                    <li><a href="index.html">Home</a></li>
+                                    <li>Login</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -295,128 +297,15 @@
         <!-- BREADCRUMBS AREA END -->
 
         <!-- Start page content -->
-        <section id="page-content" class="page-wrapper">
+        <div class="row">
+            <div class="col-12" id="login1"></div>
+        </div>
+        <div class="row" onload="showBody()">
+            <div class="col-12" id="body1">
 
-            <!-- LOGIN SECTION START -->
-            <div class="login-section pt-115 pb-70">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 col-xs-12">
-                            <div class="registered-customers mb-50">
-                                <h5 class="mb-50">LOGIN</h5>
-                                <form action="#">
-                                    <div class="login-account p-30 box-shadow">
-                                        <p>If you have an account with us, Please log in.</p>
-                                        <input type="text" name="name" placeholder="Email Address">
-                                        <input type="password" name="password" placeholder="Password">
-                                        <p><small><a href="#">Forgot our password?</a></small></p>
-                                        <button class="submit-btn-1" type="submit">login</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <!-- new-customers -->
-                        <div class="col-md-6 col-xs-12">
-                            <div class="new-customers mb-50">
-                                <form action="#">
-                                    <h5 class="mb-50">REGISTER</h5>
-                                    <div class="login-account p-30 box-shadow">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <input type="text"  placeholder="First Name">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="text"  placeholder="last Name">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <select class="custom-select-2">
-                                                    <option value="defalt">country</option>
-                                                    <option value="c-1">Australia</option>
-                                                    <option value="c-2">Bangladesh</option>
-                                                    <option value="c-3">Unitd States</option>
-                                                    <option value="c-4">Unitd Kingdom</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <select class="custom-select-2">
-                                                    <option value="defalt">State</option>
-                                                    <option value="c-1">Melbourne</option>
-                                                    <option value="c-2">Dhaka</option>
-                                                    <option value="c-3">New York</option>
-                                                    <option value="c-4">London</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <select class="custom-select-2">
-                                                    <option value="defalt">Town/City</option>
-                                                    <option value="c-1">Victoria</option>
-                                                    <option value="c-2">Chittagong</option>
-                                                    <option value="c-3">Boston</option>
-                                                    <option value="c-4">Cambridge</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="text"  placeholder="Phone here...">
-                                            </div>
-                                        </div>
-                                        <input type="text"  placeholder="Company neme here...">
-                                        <input type="text"  placeholder="Email address here...">
-                                        <input type="password"  placeholder="Password">
-                                        <input type="password"  placeholder="Confirm Password">
-                                        <div class="checkbox">
-                                            <label class="mr-10"> 
-                                                <small>
-                                                    <input type="checkbox" name="signup">Sign up for our newsletter!
-                                                </small>
-                                            </label>
-                                            <label> 
-                                                <small>
-                                                    <input type="checkbox" name="signup">Receive special offers from our partners!
-                                                </small>
-                                            </label>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6 col-xs-12">
-                                                <button class="submit-btn-1 mt-20" type="submit" value="register">Register</button>
-                                            </div>
-                                            <div class="col-sm-6 col-xs-12">
-                                                <button class="submit-btn-1 mt-20 f-right" type="reset">Clear</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
-            <!-- LOGIN SECTION END -->
-            
-            <!-- SUBSCRIBE AREA START -->
-            <div class="subscribe-area bg-blue call-to-bg plr-140 ptb-50">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-md-3 col-sm-4 col-xs-12">
-                            <div class="section-title text-white">
-                                <h3>SUBSCRIBE</h3>
-                                <h2 class="h1">NEWSLETTER</h2>
-                            </div>
-                        </div>
-                        <div class="col-md-9 col-sm-8 col-xs-12">
-                            <div class="subscribe">
-                                <form action="#">
-                                    <input type="text" name="subscribe" placeholder="Enter yur email here...">
-                                    <button type="submit" value="send">Send</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- SUBSCRIBE AREA END -->
-        </section>
+        </div>
         <!-- End page content -->
-
         <!-- Start footer area -->
         <footer id="footer" class="footer-area bg-2 bg-opacity-black-90">
             <div class="footer-top pt-110 pb-80">
@@ -498,7 +387,7 @@
                                 <h6 class="footer-titel">QUICK CONTACT</h6>
                                 <div class="footer-contact">
                                     <p>Lorem ipsum dolor sit amet, consectetur acinglit sed do eiusmod tempor</p>
-                                    <form  id="contact-form-2" action="mail_footer.php" method="post">
+                                    <form id="contact-form-2" action="mail_footer.php" method="post">
                                         <input type="email" name="email2" placeholder="Type your E-mail address...">
                                         <textarea name="message2" placeholder="Write here..."></textarea>
                                         <button type="submit" value="send">Send</button>
@@ -543,7 +432,7 @@
     <script src="js/plugins.js"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="js/main.js"></script>
-
+    <script src="script/index.js"></script>
 </body>
 
 </html>
