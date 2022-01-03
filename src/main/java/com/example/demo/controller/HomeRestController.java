@@ -2,8 +2,10 @@ package com.example.demo.controller;
 
 import com.example.demo.model.Home;
 import com.example.demo.model.StatusHome;
+import com.example.demo.service.CommentServiceImpl;
 import com.example.demo.service.HomeServiceImpl;
 import com.example.demo.service.StatusHomeServiceImpl;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -11,7 +13,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -23,10 +24,26 @@ public class HomeRestController {
     private HomeServiceImpl homeService;
     @Autowired
     private StatusHomeServiceImpl statusHomeService;
+    @Autowired
+    private CommentServiceImpl commentService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("")
     public ResponseEntity<Iterable<Home>> findAllHome() {
         Iterable<Home> homes = homeService.findAll();
+        return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
+    @GetMapping("/findHomeStatus1")
+    public ResponseEntity<Iterable<Home>> findHomeByStatus1() {
+        Iterable<Home> homes = homeService.findAllByStatusLike1();
+        return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
+    @GetMapping("/findHomeStatus2")
+    public ResponseEntity<Iterable<Home>> findHomeByStatus2() {
+        Iterable<Home> homes = homeService.findAllByStatusLike2();
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 

@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface HomeService extends GeneralService<Home>{
     List<Home> findAllByNameContaining(String name);
+    Iterable<Home> findAllByStatusLike1();
+    Iterable<Home> findAllByStatusLike2();
 }
