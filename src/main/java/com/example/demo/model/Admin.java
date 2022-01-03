@@ -25,4 +25,5 @@ public class Admin {
             inverseJoinColumns = {@JoinColumn(name = "role_id")})
     private Set<Role> roles;
     private int status;
+
 }

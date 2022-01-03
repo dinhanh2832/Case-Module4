@@ -79,19 +79,29 @@ public class AdminRestController {
         return new ResponseEntity<>(admins, HttpStatus.OK);
     }
 
-    @GetMapping("/admin/{idAdmin}/user/{idUser}")
-    public ResponseEntity deleteUser(@PathVariable Long idAdmin, @PathVariable Long idUser) {
-        User user = userService.findById(idUser).get();
-        user.setStatus(0);
-        userService.save(user);
-        return new ResponseEntity(user, HttpStatus.OK);
+    @DeleteMapping("/admin/{idAdmin}/user/{idUser}")
+    public ResponseEntity deleteUser(@PathVariable Long idAdmin,@PathVariable Long idUser) {
+        Optional<Admin> adminOptional = adminService.findById(idAdmin);
+        boolean check = adminOptional.isPresent();
+        if (check == true) {
+            User user = userService.findById(idUser).get();
+            user.setStatus(0);
+            userService.save(user);
+            return new ResponseEntity(user, HttpStatus.OK);
+        }
+        return new ResponseEntity(adminOptional,HttpStatus.NOT_FOUND);
     }
 
-    @GetMapping("/admin/{idAdmin}/comment/{idComment}")
+    @DeleteMapping("/admin/{idAdmin}/comment/{idComment}")
     public ResponseEntity deleteComment(@PathVariable Long idAdmin, @PathVariable Long idComment) {
-        Comment comment = commentService.findById(idComment).get();
-        commentService.remove(idComment);
-        return new ResponseEntity(comment, HttpStatus.OK);
+        Optional<Admin> adminOptional = adminService.findById(idAdmin);
+        boolean check = adminOptional.isPresent();
+        if (check == true) {
+            Comment comment = commentService.findById(idComment).get();
+            commentService.remove(idComment);
+            return new ResponseEntity(comment, HttpStatus.OK);
+        }
+        return new ResponseEntity(adminOptional,HttpStatus.NOT_FOUND);
     }
-
 }
+
