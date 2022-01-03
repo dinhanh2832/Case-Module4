@@ -70,6 +70,7 @@ public class HomeRestController {
         homeService.save(homeOptional.get());
         return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
     }
+
     @DeleteMapping("/change1/{id}")
     public ResponseEntity<Home> change1(@PathVariable Long id) {
         Optional<Home> homeOptional = homeService.findById(id);
