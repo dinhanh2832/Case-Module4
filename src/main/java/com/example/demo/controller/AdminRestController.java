@@ -30,11 +30,12 @@ public class AdminRestController {
     @Autowired
     private OrderServiceImpl orderService;
 
-    @GetMapping("/findAllComment")
+    @GetMapping("/findComment")
     public ResponseEntity<Iterable<Comment>> findAllComment() {
         Iterable<Comment> comments = commentService.findAll();
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
+
     @GetMapping("findComment/{id}")
     public ResponseEntity<Comment> findCommentById(@PathVariable Long id) {
         Optional<Comment> comment = commentService.findById(id);
@@ -44,11 +45,12 @@ public class AdminRestController {
         return new ResponseEntity<>(comment.get(), HttpStatus.OK);
     }
 
-    @GetMapping("/findAllHome")
+    @GetMapping("/findHome")
     public ResponseEntity<Iterable<Home>> findAllHome() {
         Iterable<Home> homes = homeService.findAll();
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
+
     @GetMapping("/findHome/{id}")
     public ResponseEntity<Home> findHomeById(@PathVariable Long id) {
         Optional<Home> home = homeService.findById(id);
@@ -58,11 +60,27 @@ public class AdminRestController {
         return new ResponseEntity<>(home.get(), HttpStatus.OK);
     }
 
-    @GetMapping("/findAllOrder")
+    @GetMapping("/findUser")
+    public ResponseEntity<Iterable<User>> showAllUser() {
+        Iterable<User> users = userService.findAll();
+        return new ResponseEntity<>(users, HttpStatus.OK);
+    }
+
+    @GetMapping("/findUser/{id}")
+    public ResponseEntity<User> findUser(@PathVariable Long id) {
+        Optional<User> userOptional = userService.findById(id);
+        if (!userOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(userOptional.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/findOrder")
     public ResponseEntity<Iterable<Order>> findAllOrder() {
         Iterable<Order> orders = orderService.findAll();
         return new ResponseEntity<>(orders, HttpStatus.OK);
     }
+
     @GetMapping("/findOrder/{id}")
     public ResponseEntity<Order> findOrderById(@PathVariable Long id) {
         Optional<Order> order = orderService.findById(id);
