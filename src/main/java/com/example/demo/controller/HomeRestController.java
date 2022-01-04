@@ -93,7 +93,7 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
-    //    Search by address
+    //    Search by address and status = 1
     @GetMapping("/search/address")
     public ResponseEntity<Iterable<Home>> findByAddress(String address) {
         Iterable<Home> homes = homeService.findAllByAddressByStatus(address);
@@ -102,4 +102,6 @@ public class HomeRestController {
         }
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
+
+
 }
