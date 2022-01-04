@@ -12,4 +12,6 @@ public interface HomeService extends GeneralService<Home>{
     Iterable<Home> findAllHomeByStatusOfUser(Long id);
     void delete(Home entity);
     Iterable<Home> findAllHomeMostRated();
+
+    Iterable<Home> findAllByAddressContaining(String address);
 }

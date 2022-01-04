@@ -63,4 +63,9 @@ public class HomeServiceImpl implements HomeService {
         return homeRepository.findAllHomeMostRated();
     }
 
+
+    @Override
+    public Iterable<Home> findAllByAddressContaining(String address) {
+        return homeRepository.findAllByAddressContaining(address);
+    }
 }

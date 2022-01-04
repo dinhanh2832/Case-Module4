@@ -28,4 +28,5 @@ public interface HomeRepository extends JpaRepository<Home, Long> {
     Iterable<Home> findAllHomeMostRated();
     @Override
     void delete(Home entity);
+    Iterable<Home> findAllByAddressContaining(String address);
 }

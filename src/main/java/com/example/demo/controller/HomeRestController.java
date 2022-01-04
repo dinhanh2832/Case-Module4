@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -148,4 +149,17 @@ public class HomeRestController {
         homeService.delete(homeOptional.get());
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    //    Search by address and status = 1
+    @GetMapping("/search/address")
+    public ResponseEntity<Iterable<Home>> findByAddress(@RequestParam  String q) {
+        Iterable<Home> homes = homeService.findAllByAddressContaining(q);
+
+        if (homes == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
+
 }
