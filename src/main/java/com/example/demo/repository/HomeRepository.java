@@ -11,5 +11,5 @@ import java.util.List;
 @Repository
 public interface HomeRepository extends JpaRepository<Home, Long> {
     List<Home> findAllByNameContaining(String name);
-
+    Iterable<Home> findAllByAddressContaining(String address);
 }

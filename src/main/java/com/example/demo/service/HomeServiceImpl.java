@@ -37,4 +37,9 @@ public class HomeServiceImpl implements HomeService {
     public List<Home> findAllByNameContaining(String name) {
         return homeRepository.findAllByNameContaining(name);
     }
+
+    @Override
+    public Iterable<Home> findAllByAddressContaining(String address) {
+        return homeRepository.findAllByAddressContaining(address);
+    }
 }
