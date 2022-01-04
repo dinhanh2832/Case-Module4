@@ -35,6 +35,16 @@ public class AdminRestController {
         Iterable<Comment> comments = commentService.findAll();
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
+    @GetMapping("/showCommentDESC")
+    public ResponseEntity<Iterable<Comment>> showCommentDESC(String name) {
+        Iterable<Comment> comments;
+        if(name==null) {
+            comments = commentService.showCommentByNewTime();
+        } else {
+            comments = commentService.findAllByContentContaining(name);
+        }
+        return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
 
     @GetMapping("findComment/{id}")
     public ResponseEntity<Comment> findCommentById(@PathVariable Long id) {
@@ -58,6 +68,16 @@ public class AdminRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(home.get(), HttpStatus.OK);
+    }
+    @GetMapping("/searchHomeByName/{name}")
+    public ResponseEntity<Iterable<Home>> findByNameContaining(@PathVariable String name) {
+        Iterable<Home> homes;
+        if (name == null) {
+            homes = homeService.findAll();
+        } else {
+            homes = homeService.findAllByNameContaining(name);
+        }
+        return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
     @GetMapping("/findUser")

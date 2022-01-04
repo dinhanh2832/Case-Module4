@@ -31,6 +31,17 @@ public class CommentRestController {
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
 
+    @GetMapping("/sortDESC")
+    public ResponseEntity<Iterable<Comment>> showCommentDESC(String name) {
+        Iterable<Comment> comments;
+        if(name==null) {
+            comments = commentService.showCommentByNewTime();
+        } else {
+            comments = commentService.findAllByContentContaining(name);
+        }
+        return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
+
     @GetMapping("/search/{content}")
     public ResponseEntity<Iterable<Comment>> findByContentContaining(@PathVariable String content) {
         Iterable<Comment> comments;

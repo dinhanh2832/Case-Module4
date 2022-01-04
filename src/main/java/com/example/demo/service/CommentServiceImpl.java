@@ -37,4 +37,9 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> findAllByContentContaining(String content) {
         return commentRepository.findAllByContentContaining(content);
     }
+
+    @Override
+    public Iterable<Comment> showCommentByNewTime() {
+        return commentRepository.showCommentByNewTime();
+    }
 }

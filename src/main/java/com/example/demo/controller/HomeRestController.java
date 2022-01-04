@@ -150,16 +150,24 @@ public class HomeRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/orderByDESC")
+    public ResponseEntity<Iterable<Home>> showCommentDESC(String name) {
+        Iterable<Home> homes;
+        if (name == null) {
+            homes = homeService.showHomeOrderByDESC();
+        } else {
+            homes = homeService.findAllByNameContaining(name);
+        }
+        return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
     //    Search by address and status = 1
     @GetMapping("/search/address")
-    public ResponseEntity<Iterable<Home>> findByAddress(@RequestParam  String q) {
+    public ResponseEntity<Iterable<Home>> findByAddress(@RequestParam String q) {
         Iterable<Home> homes = homeService.findAllByAddressContaining(q);
-
         if (homes == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
-
-
 }
