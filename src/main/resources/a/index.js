@@ -171,3 +171,51 @@ function save() {
         }
     })
 }
+
+function showFormSearch() {
+    document.getElementById("div1").innerHTML =
+        '<input type="text" id="key">' +
+        '<button onclick="search()">Search</button>'
+}
+
+function search() {
+    let key = document.getElementById("key").value;
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/api/homes/search/" + key,
+
+        success: function (data) {
+            console.log(data)
+            let str = "<h2>Search</h2>" + "<table border='1px'  width='100%'><tr>" + "<th>Name</th>" + "<th>Age</th>"
+
+            for (let i = 0; i < data.length; i++) {
+                str += "<tr><td>" + data[i].name + "</td>" +
+                    '<td>' + data[i].address + "</td>" +
+                    '<td>' + data[i].bedroom + "</td>" +
+                    '<td>' + data[i].showerRoom + "</td>" +
+                    '<td>' + data[i].price + "</td></tr>"
+            }
+            document.getElementById("div1").innerHTML = str;
+        },
+        error: function (error) {
+            alert("Name is not in the list!")
+            showFormSearch()
+        }
+    })
+}
+
+function status1() {
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/api/homes/findHomeStatus1",
+        success: function (data) {
+            console.log(data)
+            displayHome(data)
+        },
+        error: function (error) {
+            alert("opps")
+        }
+    })
+}
+
+

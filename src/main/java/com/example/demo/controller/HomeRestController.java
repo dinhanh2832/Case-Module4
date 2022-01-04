@@ -46,14 +46,24 @@ public class HomeRestController {
     }
 
     @GetMapping("/findHomeStatus1")
-    public ResponseEntity<Iterable<Home>> findHomeByStatus1() {
-        Iterable<Home> homes = homeService.findAllByStatusLike1();
+    public ResponseEntity<Iterable<Home>> findHomeByStatus1(String name) {
+        Iterable<Home> homes;
+        if (name == null) {
+            homes = homeService.findAllByStatusLike1();
+        } else {
+            homes = homeService.findAllByNameContaining(name);
+        }
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
     @GetMapping("/findHomeStatus2")
-    public ResponseEntity<Iterable<Home>> findHomeByStatus2() {
-        Iterable<Home> homes = homeService.findAllByStatusLike2();
+    public ResponseEntity<Iterable<Home>> findHomeByStatus2(String name) {
+        Iterable<Home> homes;
+        if (name == null) {
+            homes = homeService.findAllByStatusLike2();
+        } else {
+            homes = homeService.findAllByNameContaining(name);
+        }
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
