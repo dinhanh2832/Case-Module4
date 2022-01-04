@@ -39,7 +39,7 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public Iterable<Home> findAllByAddressByStatus(String address) {
-        return homeRepository.findAllByAddressByStatus(address);
+    public Iterable<Home> findAllByAddressContaining(String address) {
+        return homeRepository.findAllByAddressContaining(address);
     }
 }

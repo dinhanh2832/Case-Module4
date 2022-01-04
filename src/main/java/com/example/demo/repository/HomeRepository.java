@@ -13,7 +13,6 @@ import java.util.List;
 public interface HomeRepository extends JpaRepository<Home, Long> {
     List<Home> findAllByNameContaining(String name);
 
-    @Modifying
-    @Query(value = "select * from home where status = 1 and address like '%address%'", nativeQuery = true)
-    Iterable<Home> findAllByAddressByStatus(@Param("address") String address);
+    Iterable<Home> findAllByAddressContaining(String address);
+    Iterable<Home> findAllByStatusHome(long id);
 }

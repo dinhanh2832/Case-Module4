@@ -95,8 +95,9 @@ public class HomeRestController {
 
     //    Search by address and status = 1
     @GetMapping("/search/address")
-    public ResponseEntity<Iterable<Home>> findByAddress(String address) {
-        Iterable<Home> homes = homeService.findAllByAddressByStatus(address);
+    public ResponseEntity<Iterable<Home>> findByAddress(@RequestParam  String q) {
+        Iterable<Home> homes = homeService.findAllByAddressContaining(q);
+
         if (homes == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
