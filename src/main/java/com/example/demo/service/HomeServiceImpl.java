@@ -59,11 +59,6 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public void totalMoneyInMonth() {
-        homeRepository.totalMoneyInMonth();
-    }
-
-    @Override
     public Iterable<Home> findAllHomeMostRated() {
         return homeRepository.findAllHomeMostRated();
     }

@@ -1,13 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Admin;
-import com.example.demo.model.Comment;
-import com.example.demo.model.Role;
-import com.example.demo.model.User;
-import com.example.demo.service.AdminServiceImpl;
-import com.example.demo.service.CommentServiceImpl;
-import com.example.demo.service.RoleService;
-import com.example.demo.service.UserService;
+import com.example.demo.model.*;
+import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -23,65 +17,64 @@ import java.util.Set;
 @PropertySource("classpath:application.properties")
 @RequestMapping("/api/admins")
 public class AdminRestController {
-    @Autowired
-    private AdminServiceImpl adminService;
 
     @Autowired
     private UserService userService;
 
     @Autowired
-    private RoleService roleService;
-
-    @Autowired
     private CommentServiceImpl commentService;
 
-    @GetMapping("")
-    public ResponseEntity<Iterable<Admin>> findAllAdmin() {
-        Iterable<Admin> admins = adminService.findAll();
-        return new ResponseEntity<>(admins, HttpStatus.OK);
-    }
+    @Autowired
+    private HomeServiceImpl homeService;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Admin> findAdminById(@PathVariable Long id) {
-        Optional<Admin> admin = adminService.findById(id);
-        if (!admin.isPresent()) {
+    @Autowired
+    private OrderServiceImpl orderService;
+
+    @GetMapping("/findAllComment")
+    public ResponseEntity<Iterable<Comment>> findAllComment() {
+        Iterable<Comment> comments = commentService.findAll();
+        return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
+    @GetMapping("findComment/{id}")
+    public ResponseEntity<Comment> findCommentById(@PathVariable Long id) {
+        Optional<Comment> comment = commentService.findById(id);
+        if (!comment.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(admin.get(), HttpStatus.OK);
+        return new ResponseEntity<>(comment.get(), HttpStatus.OK);
     }
 
-    @PostMapping("")
-    public ResponseEntity<Admin> save(@RequestBody Admin admin) {
-        Role role = roleService.findByName("ROLE_ADMIN");
-        Set<Role> roles = new HashSet<>();
-        roles.add(role);
-        admin.setRoles(roles);
-        adminService.save(admin);
-        return new ResponseEntity<>(admin, HttpStatus.CREATED);
+    @GetMapping("/findAllHome")
+    public ResponseEntity<Iterable<Home>> findAllHome() {
+        Iterable<Home> homes = homeService.findAll();
+        return new ResponseEntity<>(homes, HttpStatus.OK);
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Admin> edit(@PathVariable Long id, @RequestBody Admin admin) {
-        Optional<Admin> adminOptional = adminService.findById(id);
-        admin.setId(adminOptional.get().getId());
-        adminService.save(admin);
-        return new ResponseEntity<>(admin, HttpStatus.OK);
-    }
-
-    @GetMapping("/search/{name}")
-    public ResponseEntity<Iterable<Admin>> findByAdminContaining(@PathVariable String name) {
-        Iterable<Admin> admins;
-        if (name == null) {
-            admins = adminService.findAll();
-        } else {
-            admins = adminService.findAllByAccountContaining(name);
+    @GetMapping("/findHome/{id}")
+    public ResponseEntity<Home> findHomeById(@PathVariable Long id) {
+        Optional<Home> home = homeService.findById(id);
+        if (!home.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(admins, HttpStatus.OK);
+        return new ResponseEntity<>(home.get(), HttpStatus.OK);
+    }
+
+    @GetMapping("/findAllOrder")
+    public ResponseEntity<Iterable<Order>> findAllOrder() {
+        Iterable<Order> orders = orderService.findAll();
+        return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+    @GetMapping("/findOrder/{id}")
+    public ResponseEntity<Order> findOrderById(@PathVariable Long id) {
+        Optional<Order> order = orderService.findById(id);
+        if (!order.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(order.get(), HttpStatus.OK);
     }
 
     @DeleteMapping("/admin/{idAdmin}/user/{idUser}")
-    public ResponseEntity deleteUser(@PathVariable Long idAdmin,@PathVariable Long idUser) {
-        Optional<Admin> adminOptional = adminService.findById(idAdmin);
+    public ResponseEntity deleteUser(@PathVariable Long idAdmin, @PathVariable Long idUser) {
+        Optional<User> adminOptional = userService.findById(idAdmin);
         boolean check = adminOptional.isPresent();
         if (check == true) {
             User user = userService.findById(idUser).get();
@@ -89,19 +82,19 @@ public class AdminRestController {
             userService.save(user);
             return new ResponseEntity(user, HttpStatus.OK);
         }
-        return new ResponseEntity(adminOptional,HttpStatus.NOT_FOUND);
+        return new ResponseEntity(adminOptional, HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("/admin/{idAdmin}/comment/{idComment}")
     public ResponseEntity deleteComment(@PathVariable Long idAdmin, @PathVariable Long idComment) {
-        Optional<Admin> adminOptional = adminService.findById(idAdmin);
+        Optional<User> adminOptional = userService.findById(idAdmin);
         boolean check = adminOptional.isPresent();
         if (check == true) {
             Comment comment = commentService.findById(idComment).get();
             commentService.remove(idComment);
             return new ResponseEntity(comment, HttpStatus.OK);
         }
-        return new ResponseEntity(adminOptional,HttpStatus.NOT_FOUND);
+        return new ResponseEntity(adminOptional, HttpStatus.NOT_FOUND);
     }
 }
 
