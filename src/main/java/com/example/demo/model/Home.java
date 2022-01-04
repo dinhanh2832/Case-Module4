@@ -29,6 +29,7 @@ public class Home {
     @JoinColumn(name = "user_id")
     private User user;
     @OneToMany(targetEntity = Image.class)
+    @JoinColumn(name = "imgHome_id")
     private List<Image> imageList;
 
 }
