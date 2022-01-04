@@ -7,5 +7,5 @@ import java.util.List;
 public interface HomeService extends GeneralService<Home>{
     List<Home> findAllByNameContaining(String name);
 
-    Iterable<Home> findAllByAddressContaining(String address);
+    Iterable<Home> findAllByAddressByStatus(String address);
 }
