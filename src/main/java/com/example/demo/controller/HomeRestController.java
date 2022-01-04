@@ -68,8 +68,8 @@ public class HomeRestController {
     }
 
     @GetMapping("/findHomeStatusUser")
-    public ResponseEntity<Iterable<Home>> findHomeByStatusOfUser() {
-        Iterable<Home> homes = homeService.findAllHomeByStatusOfUser(2L);
+    public ResponseEntity<Iterable<Home>> findHomeByStatusOfUser(@RequestParam Long id) {
+        Iterable<Home> homes = homeService.findAllHomeByStatusOfUser(id);
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
