@@ -37,4 +37,30 @@ public class HomeServiceImpl implements HomeService {
     public List<Home> findAllByNameContaining(String name) {
         return homeRepository.findAllByNameContaining(name);
     }
+
+    @Override
+    public Iterable<Home> findAllByStatusLike1() {
+        return homeRepository.findAllByStatusLike1();
+    }
+
+    @Override
+    public Iterable<Home> findAllByStatusLike2() {
+        return homeRepository.findAllByStatusLike2();
+    }
+
+    @Override
+    public Iterable<Home> findAllHomeByStatusOfUser(Long id) {
+        return homeRepository.findAllHomeByStatusOfUser(id);
+    }
+
+    @Override
+    public void delete(Home entity) {
+        homeRepository.delete(entity);
+    }
+
+    @Override
+    public Iterable<Home> findAllHomeMostRated() {
+        return homeRepository.findAllHomeMostRated();
+    }
+
 }

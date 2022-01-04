@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Home;
-import com.example.demo.model.StatusHome;
-import com.example.demo.service.HomeServiceImpl;
-import com.example.demo.service.StatusHomeServiceImpl;
+import com.example.demo.model.*;
+import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -11,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.Optional;
 
 @Controller
@@ -23,10 +20,56 @@ public class HomeRestController {
     private HomeServiceImpl homeService;
     @Autowired
     private StatusHomeServiceImpl statusHomeService;
+    @Autowired
+    private CommentServiceImpl commentService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private CategoryServiceImpl categoryService;
 
     @GetMapping("")
     public ResponseEntity<Iterable<Home>> findAllHome() {
         Iterable<Home> homes = homeService.findAll();
+        return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
+    @GetMapping("/MostRate")
+    public ResponseEntity<Iterable<Home>> MostRate() {
+        Iterable<Home> homes = homeService.findAllHomeMostRated();
+        return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
+    @GetMapping("/findAllCategory")
+    public ResponseEntity<Iterable<Category>> findAllCategory() {
+        Iterable<Category> categories = categoryService.findAll();
+        return new ResponseEntity<>(categories, HttpStatus.OK);
+    }
+
+    @GetMapping("/findHomeStatus1")
+    public ResponseEntity<Iterable<Home>> findHomeByStatus1(String name) {
+        Iterable<Home> homes;
+        if (name == null) {
+            homes = homeService.findAllByStatusLike1();
+        } else {
+            homes = homeService.findAllByNameContaining(name);
+        }
+        return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
+    @GetMapping("/findHomeStatus2")
+    public ResponseEntity<Iterable<Home>> findHomeByStatus2(String name) {
+        Iterable<Home> homes;
+        if (name == null) {
+            homes = homeService.findAllByStatusLike2();
+        } else {
+            homes = homeService.findAllByNameContaining(name);
+        }
+        return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
+    @GetMapping("/findHomeStatusUser")
+    public ResponseEntity<Iterable<Home>> findHomeByStatusOfUser(@RequestParam Long id) {
+        Iterable<Home> homes = homeService.findAllHomeByStatusOfUser(id);
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
@@ -47,6 +90,8 @@ public class HomeRestController {
 
     @PostMapping("")
     public ResponseEntity<Home> saveHome(@RequestBody Home home) {
+        Optional<StatusHome> statusHome = statusHomeService.findById(2L);
+        home.setStatusHome(statusHome.get());
         homeService.save(home);
         return new ResponseEntity<>(home, HttpStatus.CREATED);
     }
@@ -70,6 +115,7 @@ public class HomeRestController {
         homeService.save(homeOptional.get());
         return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
     }
+
     @DeleteMapping("/change1/{id}")
     public ResponseEntity<Home> change1(@PathVariable Long id) {
         Optional<Home> homeOptional = homeService.findById(id);
@@ -91,5 +137,15 @@ public class HomeRestController {
             homes = homeService.findAllByNameContaining(name);
         }
         return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Home> deleteHome(@PathVariable Long id) {
+        Optional<Home> homeOptional = homeService.findById(id);
+        if (!homeOptional.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        homeService.delete(homeOptional.get());
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

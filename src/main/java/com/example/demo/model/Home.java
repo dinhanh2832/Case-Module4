@@ -31,5 +31,5 @@ public class Home {
     @OneToMany(targetEntity = Image.class)
     @JoinColumn(name = "imgHome_id")
     private List<Image> imageList;
-
+    private int numberOfTurns;
 }
