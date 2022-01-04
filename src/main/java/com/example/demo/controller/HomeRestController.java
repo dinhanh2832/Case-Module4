@@ -33,6 +33,12 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
+    @GetMapping("/MostRate")
+    public ResponseEntity<Iterable<Home>> MostRate() {
+        Iterable<Home> homes = homeService.findAllHomeMostRated();
+        return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
     @GetMapping("/findAllCategory")
     public ResponseEntity<Iterable<Category>> findAllCategory() {
         Iterable<Category> categories = categoryService.findAll();
@@ -74,10 +80,8 @@ public class HomeRestController {
 
     @PostMapping("")
     public ResponseEntity<Home> saveHome(@RequestBody Home home) {
-        Optional<User> user = userService.findById(1L);
         Optional<StatusHome> statusHome = statusHomeService.findById(2L);
         home.setStatusHome(statusHome.get());
-        home.setUser(user.get());
         homeService.save(home);
         return new ResponseEntity<>(home, HttpStatus.CREATED);
     }
@@ -124,6 +128,7 @@ public class HomeRestController {
         }
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Home> deleteHome(@PathVariable Long id) {
         Optional<Home> homeOptional = homeService.findById(id);

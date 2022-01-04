@@ -22,7 +22,9 @@ public interface HomeRepository extends JpaRepository<Home, Long> {
     @Modifying
     @Query(value = "select * from home where status_id = 1 and user_id = :id", nativeQuery = true)
     Iterable<Home> findAllHomeByStatusOfUser(Long id);
-
+    @Modifying
+    @Query(value = "select * from home order by number_of_turns desc limit 5;", nativeQuery = true)
+    Iterable<Home> findAllHomeMostRated();
     @Override
     void delete(Home entity);
 }

@@ -57,4 +57,15 @@ public class HomeServiceImpl implements HomeService {
     public void delete(Home entity) {
         homeRepository.delete(entity);
     }
+
+    @Override
+    public void totalMoneyInMonth() {
+        homeRepository.totalMoneyInMonth();
+    }
+
+    @Override
+    public Iterable<Home> findAllHomeMostRated() {
+        return homeRepository.findAllHomeMostRated();
+    }
+
 }

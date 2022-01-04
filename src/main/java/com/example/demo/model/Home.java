@@ -30,5 +30,5 @@ public class Home {
     private User user;
     @OneToMany(targetEntity = Image.class)
     private List<Image> imageList;
-
+    private int numberOfTurns;
 }
