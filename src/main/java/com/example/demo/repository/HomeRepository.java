@@ -34,6 +34,6 @@ public interface HomeRepository extends JpaRepository<Home, Long> {
     @Override
     void delete(Home entity);
 
-    @Query("select h from Home h where h.address like concat('%', :address, '%') and h.statusHome.id = 1")
-    Iterable<Home> findAllByAddressContainingAndStatusHome(@Param("address") String address);
+    @Query("select h from Home h where h.address like concat('%', :address, '%') or h.bedroom = :bedroom and h.statusHome.id = 1")
+    Iterable<Home> findAllByAddressContainingAndStatusHome(@Param("address") String address, @Param("bedroom") int bedroom);
 }

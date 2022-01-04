@@ -66,7 +66,7 @@ public class HomeServiceImpl implements HomeService {
 
 
     @Override
-    public Iterable<Home> findAllByAddressContainingAndStatusHome(String address) {
-        return homeRepository.findAllByAddressContainingAndStatusHome(address);
+    public Iterable<Home> findAllByAddressContainingAndStatusHome(String address, int bedroom) {
+        return homeRepository.findAllByAddressContainingAndStatusHome(address, bedroom);
     }
 }

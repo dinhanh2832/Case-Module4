@@ -19,5 +19,5 @@ public interface HomeService extends GeneralService<Home> {
 
     Iterable<Home> findAllHomeMostRated();
 
-    Iterable<Home> findAllByAddressContainingAndStatusHome(String address);
+    Iterable<Home> findAllByAddressContainingAndStatusHome(String address, int bedroom);
 }

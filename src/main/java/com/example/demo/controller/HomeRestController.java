@@ -152,9 +152,13 @@ public class HomeRestController {
     }
 
     //    Search by address and status = 1
-    @GetMapping("/search/address")
-    public ResponseEntity<Iterable<Home>> findByAddress(@RequestParam  String q) {
-        Iterable<Home> homes = homeService.findAllByAddressContainingAndStatusHome(q);
+    @PostMapping ("/search/address")
+    public ResponseEntity<Iterable<Home>> findByAddress(@RequestBody SearchObj searchObj) {
+        String address = searchObj.getAddress();
+        int bedroom = searchObj.getBedroom();
+        if (address == null) address = "";
+//        if (bedroom == null) bedroom = 0;
+        Iterable<Home> homes = homeService.findAllByAddressContainingAndStatusHome(address, bedroom);
         if (homes == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
