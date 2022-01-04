@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.model.*;
 import com.example.demo.service.*;
+import jdk.net.SocketFlow;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -153,13 +154,10 @@ public class HomeRestController {
     //    Search by address and status = 1
     @GetMapping("/search/address")
     public ResponseEntity<Iterable<Home>> findByAddress(@RequestParam  String q) {
-        Iterable<Home> homes = homeService.findAllByAddressContaining(q);
-
+        Iterable<Home> homes = homeService.findAllByAddressContainingAndStatusHome(q);
         if (homes == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
-
-
 }
