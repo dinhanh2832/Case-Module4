@@ -15,4 +15,8 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     @Modifying
     @Query(value = "select * from comment order by time desc;", nativeQuery = true)
     Iterable<Comment> showCommentByNewTime();
+
+    @Modifying
+    @Query(value = "select * from comment order by time asc;", nativeQuery = true)
+    Iterable<Comment> showCommentByOldTime();
 }
