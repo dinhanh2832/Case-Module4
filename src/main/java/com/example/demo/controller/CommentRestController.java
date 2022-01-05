@@ -1,14 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Comment;
-import com.example.demo.model.User;
-import com.example.demo.service.CommentServiceImpl;
-import com.example.demo.service.UserService;
+import com.example.demo.model.*;
+import com.example.demo.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -24,10 +21,34 @@ public class CommentRestController {
     private CommentServiceImpl commentService;
     @Autowired
     private UserService userService;
+    @Autowired
+    private HomeServiceImpl homeService;
 
     @GetMapping("")
     public ResponseEntity<Iterable<Comment>> findAllComment() {
         Iterable<Comment> comments = commentService.findAll();
+        return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
+
+    @GetMapping("/showCommentByNewTime")
+    public ResponseEntity<Iterable<Comment>> showCommentByNewTime(String name) {
+        Iterable<Comment> comments;
+        if (name == null) {
+            comments = commentService.showCommentByNewTime();
+        } else {
+            comments = commentService.findAllByContentContaining(name);
+        }
+        return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
+
+    @GetMapping("/showCommentByOldTime")
+    public ResponseEntity<Iterable<Comment>> showCommentByOldTime(String name) {
+        Iterable<Comment> comments;
+        if (name == null) {
+            comments = commentService.showCommentByOldTime();
+        } else {
+            comments = commentService.findAllByContentContaining(name);
+        }
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
 
@@ -52,19 +73,19 @@ public class CommentRestController {
     }
 
     @PostMapping("")
-    public ResponseEntity<Comment> saveComment(@PathVariable Long id, @RequestBody Comment comment) {
+    public ResponseEntity<Comment> saveComment(@RequestBody Comment comment) {
         LocalDateTime time = LocalDateTime.now();
         comment.setTime(time);
-        Optional<User> userOptional = userService.findById(id);
-        comment.setUser(userOptional.get());
         commentService.save(comment);
         return new ResponseEntity<>(comment, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Comment> edit(@PathVariable Long id, @RequestBody Comment comment) {
+    public ResponseEntity<Comment> editComment(@PathVariable Long id, @RequestBody Comment comment) {
         Optional<Comment> commentOptional = commentService.findById(id);
+        LocalDateTime time = LocalDateTime.now();
         comment.setId(commentOptional.get().getId());
+        comment.setTime(time);
         commentService.save(comment);
         return new ResponseEntity<>(comment, HttpStatus.OK);
     }

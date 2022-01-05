@@ -11,8 +11,8 @@ function getAllHome() {
 
 function displayHome(data) {
     let res = "<h2>List home</h2>" + "<table border='1px' width='100%'><tr>"
-        + "<th>name</th><th>address</th><th>Status</th>"
-
+        + "<th>name</th><th>address</th><th>Bedroom</th><th>Shower Room</th>"
+        + "<th>Description</th><th>Price</th><th>Category</th><th>Status</th>"
     for (let i = 0; i < data.length; i++) {
         res += "<tr><td>" + data[i].name + "</td>" +
             "<td>" + data[i].address + "</td>" +
@@ -43,6 +43,7 @@ function change(id) {
                         console.log(data1)
                         getAllHome(data);
                         findOne(data1)
+
                     },
                     error: function (error) {
                         console.log(error)
@@ -86,6 +87,7 @@ function getOne(id) {
         success: function (data) {
             console.log(data)
             findOne(data)
+            getOneByHome()
         },
         error: function (error) {
             console.log(error)

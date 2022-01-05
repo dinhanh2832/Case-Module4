@@ -34,9 +34,9 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
-    @GetMapping("/MostRate")
-    public ResponseEntity<Iterable<Home>> MostRate() {
-        Iterable<Home> homes = homeService.findAllHomeMostRated();
+    @GetMapping("/find5HomeMostRated")
+    public ResponseEntity<Iterable<Home>> find5HomeMostRated() {
+        Iterable<Home> homes = homeService.find5HomeMostRated();
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
@@ -68,8 +68,8 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
-    @GetMapping("/findHomeStatusUser")
-    public ResponseEntity<Iterable<Home>> findHomeByStatusOfUser(@RequestParam Long id) {
+    @GetMapping("/findHomeStatus1ByUserId")
+    public ResponseEntity<Iterable<Home>> findHomeStatus1ByUserId(@RequestParam Long id) {
         Iterable<Home> homes = homeService.findAllHomeByStatusOfUser(id);
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
@@ -129,8 +129,8 @@ public class HomeRestController {
         return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
     }
 
-    @GetMapping("/search/{name}")
-    public ResponseEntity<Iterable<Home>> findByNameContaining(@PathVariable String name) {
+    @GetMapping("/searchName")
+    public ResponseEntity<Iterable<Home>> findByNameContaining(@RequestParam String name) {
         Iterable<Home> homes;
         if (name == null) {
             homes = homeService.findAll();
@@ -150,16 +150,24 @@ public class HomeRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @GetMapping("/orderByDESC")
+    public ResponseEntity<Iterable<Home>> showCommentDESC(String name) {
+        Iterable<Home> homes;
+        if (name == null) {
+            homes = homeService.showHomeOrderByDESC();
+        } else {
+            homes = homeService.findAllByNameContaining(name);
+        }
+        return new ResponseEntity<>(homes, HttpStatus.OK);
+    }
+
     //    Search by address and status = 1
     @GetMapping("/search/address")
-    public ResponseEntity<Iterable<Home>> findByAddress(@RequestParam  String q) {
+    public ResponseEntity<Iterable<Home>> findByAddress(@RequestParam String q) {
         Iterable<Home> homes = homeService.findAllByAddressContaining(q);
-
         if (homes == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
-
-
 }
