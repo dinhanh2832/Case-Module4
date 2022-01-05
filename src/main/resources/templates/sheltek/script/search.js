@@ -3,14 +3,19 @@ function searchHome() {
     let address = document.getElementById("location").value;
     let bedroom = document.getElementById("bedroom").value;
     let showerRoom = document.getElementById("showerRoom").value;
-    // let date = document.getElementById("bedroom").value;
-    let minPrice = $( "#slider-range" ).slider( "values", 0 );
-    let maxPrice = $( "#slider-range" ).slider( "values", 1 );
+    let minPrice = $("#slider-range").slider("values", 0);
+    let maxPrice = $("#slider-range").slider("values", 1);
+
+    let startDate = new Date(document.getElementById("monthStart").value);
+    let endDate = new Date(document.getElementById("monthEnd").value);
     console.log(address);
     console.log(bedroom);
     console.log(showerRoom);
     console.log(minPrice);
     console.log(maxPrice);
+    console.log(startDate);
+    console.log(endDate);
+    if (endDate >= startDate) console.log("true");
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/api/homes",
