@@ -35,13 +35,36 @@ public class AdminRestController {
         Iterable<Comment> comments = commentService.findAll();
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
-    @GetMapping("/showCommentDESC")
-    public ResponseEntity<Iterable<Comment>> showCommentDESC(String name) {
+
+    @GetMapping("/showCommentByNewTime")
+    public ResponseEntity<Iterable<Comment>> showCommentByNewTime(String name) {
         Iterable<Comment> comments;
-        if(name==null) {
+        if (name == null) {
             comments = commentService.showCommentByNewTime();
         } else {
             comments = commentService.findAllByContentContaining(name);
+        }
+        return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
+
+    @GetMapping("/showCommentByOldTime")
+    public ResponseEntity<Iterable<Comment>> showCommentByOldTime(String name) {
+        Iterable<Comment> comments;
+        if (name == null) {
+            comments = commentService.showCommentByOldTime();
+        } else {
+            comments = commentService.findAllByContentContaining(name);
+        }
+        return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
+
+    @GetMapping("/search/{content}")
+    public ResponseEntity<Iterable<Comment>> findByContentContaining(@PathVariable String content) {
+        Iterable<Comment> comments;
+        if (content == null) {
+            comments = commentService.findAll();
+        } else {
+            comments = commentService.findAllByContentContaining(content);
         }
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
@@ -54,6 +77,7 @@ public class AdminRestController {
         }
         return new ResponseEntity<>(comment.get(), HttpStatus.OK);
     }
+
 
     @GetMapping("/findHome")
     public ResponseEntity<Iterable<Home>> findAllHome() {
@@ -69,6 +93,7 @@ public class AdminRestController {
         }
         return new ResponseEntity<>(home.get(), HttpStatus.OK);
     }
+
     @GetMapping("/searchHomeByName/{name}")
     public ResponseEntity<Iterable<Home>> findByNameContaining(@PathVariable String name) {
         Iterable<Home> homes;
