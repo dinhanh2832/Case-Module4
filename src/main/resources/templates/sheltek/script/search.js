@@ -4,17 +4,13 @@ function searchHome() {
     let bedroom = document.getElementById("bedroom").value;
     let showerRoom = document.getElementById("showerRoom").value;
     // let date = document.getElementById("bedroom").value;
-    // let price = document.getElementById("bedroom").value;
-    // let searchObj = {
-    //     address: address,
-    //     bedroom: bedroom
-    //     // showerRoom: showerRoom,
-    //     // date: date,
-    //     // price: price,
-    // }
+    let minPrice = $( "#slider-range" ).slider( "values", 0 );
+    let maxPrice = $( "#slider-range" ).slider( "values", 1 );
     console.log(address);
     console.log(bedroom);
     console.log(showerRoom);
+    console.log(minPrice);
+    console.log(maxPrice);
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/api/homes",
@@ -42,6 +38,15 @@ function searchHome() {
             if (showerRoom != "") {
                 for (let i = 0; i < data.length; i++) {
                     if (data[i].showerRoom == showerRoom) arr.push(data[i]);
+                }
+            } else {
+                arr = data;
+            }
+            data = arr;
+            arr = [];
+            if ((minPrice != "") && (maxPrice != "")) {
+                for (let i = 0; i < data.length; i++) {
+                    if ((minPrice <= data[i].price) && (data[i].price <= maxPrice)) arr.push(data[i]);
                 }
             } else {
                 arr = data;
