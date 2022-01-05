@@ -48,4 +48,9 @@ public class CommentServiceImpl implements CommentService {
         return commentRepository.showCommentByOldTime();
     }
 
+    @Override
+    public Iterable<Comment> findCommentByHomeId(Long id) {
+        return commentRepository.findCommentByHomeId(id);
+    }
+
 }

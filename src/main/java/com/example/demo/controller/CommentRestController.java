@@ -30,6 +30,17 @@ public class CommentRestController {
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
 
+    @GetMapping("/findByHomeId/{id}")
+    public ResponseEntity<Iterable<Comment>> findByHomeId(@PathVariable Long id, String name) {
+        Iterable<Comment> comments;
+        if (name == null) {
+            comments = commentService.findCommentByHomeId(id);
+        } else {
+            comments = commentService.findAllByContentContaining(name);
+        }
+        return new ResponseEntity<>(comments, HttpStatus.OK);
+    }
+
     @GetMapping("/showCommentByNewTime")
     public ResponseEntity<Iterable<Comment>> showCommentByNewTime(String name) {
         Iterable<Comment> comments;
