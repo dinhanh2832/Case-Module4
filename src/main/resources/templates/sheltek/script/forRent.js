@@ -61,7 +61,7 @@ function houseForRent() {
                                         <div class="row">
                                             <div class="col-sm-5 col-xs-12"></div>                                          
                                             <div class="col-sm-2 col-xs-12">
-                                                <button class="submit-btn-1 mt-20" type="submit" value="Đăng Cho Thuê" onclick="createHome()" ></button>
+                                                <button class="submit-btn-1 mt-20" type="submit" onclick="createHome()" >Đăng Cho Thuê</button>
                                             </div>           
                                             <div class="col-sm-5 col-xs-12"></div>
                                         </div>
