@@ -32,9 +32,10 @@
 
     <!-- Modernizr JS -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+
 </head>
 
-<body>
+<body onload="loadDataHome()">
     <!--[if lt IE 8]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->  
@@ -297,7 +298,7 @@
 
         <!-- Start page content -->
         <section id="page-content" class="page-wrapper">
-
+            <button onclick="back()">Back</button>
             <!-- PROPERTIES DETAILS AREA START -->
             <div class="properties-details-area pt-115 pb-60">
                 <div class="container">
@@ -308,13 +309,10 @@
                                 <div class="pro-details-big-image">
                                     <div class="tab-content">
                                         <div role="tabpanel" class="tab-pane fade in active" id="pro-1">
-                                            <a href="images/single-property/big/1.jpg" data-lightbox="image-1" data-title="Sheltek Properties - 1">
-                                                <img src="images/single-property/big/1.jpg" alt="">
-                                            </a>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="pro-2">
-                                            <a href="images/single-property/big/2.jpg" data-lightbox="image-1" data-title="Sheltek Properties - 2">
-                                                <img src="images/single-property/big/2.jpg" alt="">
+                                            <a href="images/avatar/small2.jpg" data-lightbox="image-1" data-title="Sheltek Properties - 2">
+                                                <img src="images/avatar/small2.jpg" alt="">
                                             </a>
                                         </div>
                                         <div role="tabpanel" class="tab-pane fade" id="pro-3">
@@ -335,30 +333,24 @@
                                     </div>
                                 </div>
                                 <div class="pro-details-carousel">
-                                    <div class="pro-details-item">
-                                        <a href="#pro-1" data-toggle="tab"><img src="images/single-property/small/1.jpg" alt=""></a>
+                                    <div class="pro-details-item" id="xx1">
                                     </div>
-                                    <div class="pro-details-item">
+                                    <div id="xx2" class="pro-details-item">
                                         <a href="#pro-2" data-toggle="tab">
-                                            <img src="images/single-property/small/2.jpg" alt="">                
+                                            <img src="images/single-property/small/2.jpg" alt="">
                                         </a>
                                     </div>
-                                    <div class="pro-details-item">
+                                    <div id="xx3" class="pro-details-item">
                                         <a href="#pro-3" data-toggle="tab">
-                                            <img src="images/single-property/small/3.jpg" alt="">                
+                                            <img src="images/single-property/small/3.jpg" alt="">
                                         </a>
                                     </div>
-                                    <div class="pro-details-item">
+                                    <div id="xx4" class="pro-details-item">
                                         <a href="#pro-4" data-toggle="tab">
-                                            <img src="images/single-property/small/4.jpg" alt="">                
+                                            <img src="images/single-property/small/4.jpg" alt="">
                                         </a>
                                     </div>
-                                    <div class="pro-details-item">
-                                        <a href="#pro-5" data-toggle="tab">
-                                            <img src="images/single-property/small/1.jpg" alt="">                
-                                        </a>
-                                    </div>
-                                </div>                           
+                                </div>
                             </div>
                             <!-- pro-details-short-info -->
                             <div class="pro-details-short-info mb-60">
@@ -412,7 +404,7 @@
                                 <!-- media -->
                                 <div class="media">
                                     <a class="media-left" href="#">
-                                        <img src="images/avatar/1.jpg" alt="">
+                                        <img src="images/avatar/2.jpg" alt="">
                                     </a>
                                     <div class="media-body">
                                         <h6 class="media-heading"><a href="#">David Backhum</a></h6>
@@ -492,109 +484,6 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <!-- widget-search-property -->
-                            <aside class="widget widget-search-property">
-                                <h5>Search For Property</h5>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-3 col-xs-12">
-                                        <div class="find-home-item custom-select">                  
-                                            <select class="selectpicker" title="Location" data-hide-disabled="true" data-live-search="true">
-                                                <optgroup disabled="disabled" label="disabled">
-                                                    <option>Hidden</option>
-                                                </optgroup>
-                                                <optgroup label="Australia">
-                                                    <option>Sydney</option>
-                                                    <option>Melbourne</option>
-                                                    <option>Cairns</option>
-                                                </optgroup>
-                                                <optgroup label="USA">
-                                                    <option>South Carolina</option>
-                                                    <option>Florida</option>
-                                                    <option>Rhode Island</option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-3 col-xs-12">
-                                        <div class="find-home-item custom-select">                  
-                                            <select class="selectpicker" title="Sub - Location" data-hide-disabled="true" data-live-search="true">
-                                                <optgroup disabled="disabled" label="disabled">
-                                                    <option>Hidden</option>
-                                                </optgroup>
-                                                <optgroup label="Australia">
-                                                    <option>southeastern coast</option>
-                                                    <option>southeastern tip</option>
-                                                    <option>northwest corner</option>
-                                                </optgroup>
-                                                <optgroup label="USA">
-                                                    <option>Charleston</option>
-                                                    <option>St. Petersburg</option>
-                                                    <option>Newport</option>
-                                                </optgroup>
-                                            </select>
-                                        </div> 
-                                    </div>
-                                    <div class="col-md-6 col-sm-3 col-xs-12">
-                                        <div class="find-home-item">
-                                            <input type="text" name="min-area" placeholder="Min area (sqft)">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-3 col-xs-12">
-                                        <div class="find-home-item">
-                                            <input type="text" name="max-area" placeholder="Max area (sqft)">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 col-sm-3 col-xs-12">
-                                        <div class="find-home-item  custom-select">                  
-                                            <select class="selectpicker" title="No. of Beadrooms" data-hide-disabled="true">
-                                                <optgroup  label="1">
-                                                    <option label="1">1 Beadrooms</option>
-                                                    <option>2 Beadrooms</option>
-                                                    <option>3 Beadrooms</option>
-                                                    <option>4 Beadrooms</option>
-                                                    <option>5 Beadrooms</option>
-                                                </optgroup>
-                                            </select>
-                                        </div> 
-                                    </div>
-                                    <div class="col-md-6 col-sm-3 col-xs-12">
-                                        <div class="find-home-item custom-select">                  
-                                            <select class="selectpicker" title="No. of Bathrooms" data-hide-disabled="true">
-                                                <optgroup label="2">
-                                                    <option>1 Bathrooms</option>
-                                                    <option>2 Bathrooms</option>
-                                                    <option>3 Bathrooms</option>
-                                                    <option>4 Bathrooms</option>
-                                                    <option>5 Bathrooms</option>
-                                                </optgroup>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-10 col-sm-6 col-xs-12">
-                                        <div class="row">
-                                            <div class="col-md-12 col-sm-7 col-xs-12">
-                                                <div class="find-home-item">
-                                                    <!-- shop-filter -->
-                                                    <div class="shop-filter">
-                                                        <div class="price_filter">
-                                                            <div class="price_slider_amount">
-                                                                <input type="submit"  value="You range :"/> 
-                                                                <input type="text" id="amount" name="price"  placeholder="Add Your Price" /> 
-                                                            </div>
-                                                            <div id="slider-range"></div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-12 col-sm-5 col-xs-12">
-                                                <div class="find-home-item">
-                                                    <a class="button-1 btn-block btn-hover-1" href="#">SEARCH</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </aside>
                             <!-- widget-featured-property -->
                             <aside class="widget widget-featured-property">
                                 <h5>Featured Property</h5>
@@ -867,7 +756,7 @@
     <script src="js/plugins.js"></script>
     <!-- Main js file that contents all jQuery plugins activation. -->
     <script src="js/main.js"></script>
-
+    <script src="script/showHome.js"></script>
 </body>
 
 </html>
