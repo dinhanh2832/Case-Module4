@@ -129,8 +129,8 @@ public class HomeRestController {
         return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
     }
 
-    @GetMapping("/search/{name}")
-    public ResponseEntity<Iterable<Home>> findByNameContaining(@PathVariable String name) {
+    @GetMapping("/searchName")
+    public ResponseEntity<Iterable<Home>> findByNameContaining(@RequestParam String name) {
         Iterable<Home> homes;
         if (name == null) {
             homes = homeService.findAll();

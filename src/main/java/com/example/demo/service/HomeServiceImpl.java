@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Comment;
 import com.example.demo.model.Home;
 import com.example.demo.repository.HomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
