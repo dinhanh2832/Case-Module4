@@ -12,7 +12,7 @@ function seeDetailsHome() {
             console.log(data)
             let arr1 = data.imageList;
             console.log(arr1)
-            document.getElementById("pro-1").innerHTML = `
+            document.getElementById("pro-0").innerHTML = `
             <a href="images/${data.imageList[0].links}" data-lightbox="image-1" data-title="Sheltek Properties - 1">
                                                 <img src="images/${data.imageList[0].links}" alt="">
                   </a>

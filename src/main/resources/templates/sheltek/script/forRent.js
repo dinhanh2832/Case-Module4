@@ -59,10 +59,9 @@ function houseForRent() {
                                             </label>
                                         </div>
                                         <div class="row">
-                                            <div class="col-sm-5 col-xs-12"></div>
-                                           
+                                            <div class="col-sm-5 col-xs-12"></div>                                          
                                             <div class="col-sm-2 col-xs-12">
-                                                <button class="submit-btn-1 mt-20" type="submit" value="register">Đăng Cho Thuê</button>
+                                                <button class="submit-btn-1 mt-20" type="submit" value="Đăng Cho Thuê" onclick="createHome()" ></button>
                                             </div>           
                                             <div class="col-sm-5 col-xs-12"></div>
                                         </div>
@@ -226,5 +225,9 @@ function houseForRent() {
             </div>
             <!-- BRAND AREA END -->`
     document.getElementById("body2").innerHTML = html;
+}
+function createHome(){
+    //ss
+    seeRentalHouses();
 }
 

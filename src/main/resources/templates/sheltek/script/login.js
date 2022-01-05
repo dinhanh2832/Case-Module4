@@ -411,7 +411,7 @@ function loadData() {
                                                 <div class="agent-info">
                                                     <div class="agent-name">
                                                         <h5><a href="agent-details.html">Nguyễn Quốc Khánh</a></h5>
-                                                        <p>Đà Nẵng</p>
+                                                        <p>Đà nẵng</p>
                                                     </div>
                                                 </div>
                                                 <div class="agent-info-hover">
@@ -440,7 +440,7 @@ function loadData() {
                                                 </div>
                                                 <div class="agent-info">
                                                     <div class="agent-name">Nguyễn Đình Ánh</a></h5>
-                                                        <p>Đại lý</p>
+                                                        <p>Hà Nội</p>
                                                     </div>
                                                 </div>
                                                 <div class="agent-info-hover">
@@ -470,7 +470,7 @@ function loadData() {
                                                 <div class="agent-info">
                                                     <div class="agent-name">
                                                         <h5><a href="agent-details.html">Lê Vũ Duy</a></h5>
-                                                        <p>Đại lý</p>
+                                                        <p>Thành Phố HCM</p>
                                                     </div>
                                                 </div>
                                                 <div class="agent-info-hover">
