@@ -34,9 +34,9 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
-    @GetMapping("/MostRate")
-    public ResponseEntity<Iterable<Home>> MostRate() {
-        Iterable<Home> homes = homeService.findAllHomeMostRated();
+    @GetMapping("/find5HomeMostRated")
+    public ResponseEntity<Iterable<Home>> find5HomeMostRated() {
+        Iterable<Home> homes = homeService.find5HomeMostRated();
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
@@ -68,8 +68,8 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
-    @GetMapping("/findHomeStatusUser")
-    public ResponseEntity<Iterable<Home>> findHomeByStatusOfUser(@RequestParam Long id) {
+    @GetMapping("/findHomeStatus1ByUserId")
+    public ResponseEntity<Iterable<Home>> findHomeStatus1ByUserId(@RequestParam Long id) {
         Iterable<Home> homes = homeService.findAllHomeByStatusOfUser(id);
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }

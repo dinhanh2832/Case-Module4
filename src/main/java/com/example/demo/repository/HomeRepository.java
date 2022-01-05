@@ -26,7 +26,7 @@ public interface HomeRepository extends JpaRepository<Home, Long> {
     Iterable<Home> findAllHomeByStatusOfUser(@Param("id") Long id);
     @Modifying
     @Query(value = "select * from home order by number_of_turns desc limit 5;", nativeQuery = true)
-    Iterable<Home> findAllHomeMostRated();
+    Iterable<Home> find5HomeMostRated();
     @Modifying
     @Query(value = "select * from home order by id desc;", nativeQuery = true)
     Iterable<Home> showHomeOrderByDESC();

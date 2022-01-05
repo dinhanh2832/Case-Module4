@@ -59,8 +59,8 @@ public class HomeServiceImpl implements HomeService {
     }
 
     @Override
-    public Iterable<Home> findAllHomeMostRated() {
-        return homeRepository.findAllHomeMostRated();
+    public Iterable<Home> find5HomeMostRated() {
+        return homeRepository.find5HomeMostRated();
     }
 
     @Override
