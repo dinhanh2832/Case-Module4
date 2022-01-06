@@ -1,6 +1,8 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.HomeTime;
 import com.example.demo.model.Order;
+import com.example.demo.service.HomeTimeServiceImpl;
 import com.example.demo.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -19,6 +21,9 @@ import java.util.Optional;
 public class OrderRestController {
     @Autowired
     private OrderServiceImpl orderService;
+    @Autowired
+    private HomeTimeServiceImpl homeTimeService;
+    private long oneDay = 86400000;
 
     @GetMapping("")
     public ResponseEntity<Iterable<Order>> findAllOrder() {
@@ -40,7 +45,15 @@ public class OrderRestController {
         Date date = new Date(Calendar.getInstance().getTime().getTime());
         order.setBookingDate(date);
         orderService.save(order);
+        long startDate = order.getStartDate().getTime();
+        long endDate = order.getEndDate().getTime();
+
+        for (long i = startDate; i <= endDate; i += oneDay) {
+            Date date1 = new Date(i);
+            homeTimeService.save(new HomeTime(date1, order.getHome(),"1"));
+        }
         return new ResponseEntity<>(order, HttpStatus.CREATED);
+
     }
 
     @PutMapping("/{id}")
