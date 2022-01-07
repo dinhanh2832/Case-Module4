@@ -36,16 +36,16 @@ public class AdminRestController {
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
 
-    @GetMapping("/showCommentByNewTime")
-    public ResponseEntity<Iterable<Comment>> showCommentByNewTime(String name) {
-        Iterable<Comment> comments;
-        if (name == null) {
-            comments = commentService.showCommentByNewTime();
-        } else {
-            comments = commentService.findAllByContentContaining(name);
-        }
-        return new ResponseEntity<>(comments, HttpStatus.OK);
-    }
+//    @GetMapping("/showCommentByNewTime")
+//    public ResponseEntity<Iterable<Comment>> showCommentByNewTime(String name) {
+//        Iterable<Comment> comments;
+//        if (name == null) {
+//            comments = commentService.showCommentByNewTime();
+//        } else {
+//            comments = commentService.findAllByContentContaining(name);
+//        }
+//        return new ResponseEntity<>(comments, HttpStatus.OK);
+//    }
 
     @GetMapping("/showCommentByOldTime")
     public ResponseEntity<Iterable<Comment>> showCommentByOldTime(String name) {

@@ -39,8 +39,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public Iterable<Comment> showCommentByNewTime() {
-        return commentRepository.showCommentByNewTime();
+    public Iterable<Comment> showCommentByNewTime(Long idH) {
+        return commentRepository.showCommentByNewTime(idH);
     }
 
     @Override

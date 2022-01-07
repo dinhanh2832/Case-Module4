@@ -25,22 +25,10 @@ public class CommentRestController {
     private HomeServiceImpl homeService;
 
     @GetMapping("")
-    public ResponseEntity<Iterable<Comment>> findAllComment() {
-        Iterable<Comment> comments = commentService.findAll();
+    public ResponseEntity<Iterable<Comment>> findAllComment(Long idH) {
+        Iterable<Comment> comments = commentService.showCommentByNewTime(idH);
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
-
-    @GetMapping("/showCommentByNewTime")
-    public ResponseEntity<Iterable<Comment>> showCommentByNewTime(String name) {
-        Iterable<Comment> comments;
-        if (name == null) {
-            comments = commentService.showCommentByNewTime();
-        } else {
-            comments = commentService.findAllByContentContaining(name);
-        }
-        return new ResponseEntity<>(comments, HttpStatus.OK);
-    }
-
     @GetMapping("/showCommentByOldTime")
     public ResponseEntity<Iterable<Comment>> showCommentByOldTime(String name) {
         Iterable<Comment> comments;
@@ -62,22 +50,12 @@ public class CommentRestController {
         }
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
-
-    @GetMapping("/{id}")
-    public ResponseEntity<Comment> findCommentById(@PathVariable Long id) {
-        Optional<Comment> comment = commentService.findById(id);
-        if (!comment.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(comment.get(), HttpStatus.OK);
-    }
-
     @PostMapping("")
     public ResponseEntity<Comment> saveComment(@RequestBody Comment comment) {
         LocalDateTime time = LocalDateTime.now();
-        comment.setTime(time);
-        commentService.save(comment);
-        return new ResponseEntity<>(comment, HttpStatus.CREATED);
+        Comment comment1 = new Comment(comment.getContent(),time,comment.getHome(),comment.getUser());
+        commentService.save(comment1);
+        return new ResponseEntity<>(comment1, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")

@@ -22,4 +22,10 @@ public class Comment {
     @JoinColumn(name = "user_id")
     private User user;
 
+    public Comment(String content, LocalDateTime time, Home home, User user) {
+        this.content = content;
+        this.time = time;
+        this.home = home;
+        this.user = user;
+    }
 }

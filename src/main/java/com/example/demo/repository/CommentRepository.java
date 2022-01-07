@@ -14,8 +14,8 @@ public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findAllByContentContaining(String content);
 
     @Modifying
-    @Query(value = "select * from comment order by time desc;", nativeQuery = true)
-    Iterable<Comment> showCommentByNewTime();
+    @Query(value = "select * from comment where home_id = :idH order by time desc;", nativeQuery = true)
+    Iterable<Comment> showCommentByNewTime(@Param("idH") Long idH);
 
     @Modifying
     @Query(value = "select * from comment order by time asc;", nativeQuery = true)
