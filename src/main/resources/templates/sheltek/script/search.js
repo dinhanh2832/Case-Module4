@@ -1,4 +1,4 @@
-// Tìm kiếm nhà theo địa chỉ, phòng ngủ, phòng tắm
+// Tìm kiếm nhà theo địa chỉ, phòng ngủ, phòng tắm, mức giá
 function searchHome() {
     let address = document.getElementById("location").value;
     let bedroom = document.getElementById("bedroom").value;
