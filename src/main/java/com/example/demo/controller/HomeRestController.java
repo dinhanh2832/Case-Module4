@@ -69,8 +69,8 @@ public class HomeRestController {
     }
 
     @GetMapping("/findHomeStatus1ByUserId")
-    public ResponseEntity<Iterable<Home>> findHomeStatus1ByUserId(@RequestParam Long id) {
-        Iterable<Home> homes = homeService.findAllHomeByStatusOfUser(id);
+    public ResponseEntity<Iterable<Home>> findHomeStatus1ByUserId(@RequestParam Long idU) {
+        Iterable<Home> homes = homeService.findAllHomeByStatusOfUser(idU);
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
@@ -105,8 +105,8 @@ public class HomeRestController {
         return new ResponseEntity<>(home, HttpStatus.OK);
     }
 
-    @DeleteMapping("/change2/{id}")
-    public ResponseEntity<Home> change2(@PathVariable Long id) {
+    @DeleteMapping("/change1/{id}")
+    public ResponseEntity<Home> change1(@PathVariable Long id) {
         Optional<Home> homeOptional = homeService.findById(id);
         if (!homeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -117,8 +117,8 @@ public class HomeRestController {
         return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/change1/{id}")
-    public ResponseEntity<Home> change1(@PathVariable Long id) {
+    @DeleteMapping("/change2/{id}")
+    public ResponseEntity<Home> change2(@PathVariable Long id) {
         Optional<Home> homeOptional = homeService.findById(id);
         if (!homeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -140,9 +140,9 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Home> deleteHome(@PathVariable Long id) {
-        Optional<Home> homeOptional = homeService.findById(id);
+    @DeleteMapping("")
+    public ResponseEntity<Home> deleteHome(Long idH) {
+        Optional<Home> homeOptional = homeService.findById(idH);
         if (!homeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

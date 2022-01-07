@@ -126,6 +126,9 @@ function loadHomeContent() {
             if(localStorage.getItem("seeRental") != null){
                 document.getElementById("slideLogin").style.display = 'none';
                 seeRentalHouses();
+            } else if(localStorage.getItem("manager") != null){
+                document.getElementById("slideLogin").style.display = 'none';
+                managerHouseUser();
             } else {
                 document.getElementById("div1").style.display = 'block';
                 document.getElementById("div2").style.display = 'block';
@@ -164,6 +167,7 @@ function login() {
                 localStorage.setItem("token", data.accessToken)
                 localStorage.setItem("nameUser", data.username)
                 localStorage.setItem("user", data.roles[0].authority)
+                localStorage.setItem("idUser", data.id)
                 document.getElementById("div1").style.display = 'block';
                 document.getElementById("div2").style.display = 'block';
                 document.getElementById("slideLogout").style.display = 'block';
@@ -240,7 +244,7 @@ function loadData() {
                                                 <a href="#"><img src="images/service/4.jpg" alt=""></a>
                                             </div>
                                             <div class="service-item-info">
-                                                <h5><a href="service-details.html">Quản lý</a></h5>
+                                                <h5><a href="#" onclick="managerHouseUser()" >Quản lý</a></h5>
                                                 <p>Kiểm soát tài sản của bạn một cách hợp lý và thuận tiện</p>
                                             </div>
                                         </div>
@@ -823,5 +827,6 @@ function goDetailsHome(id){
 }
 function backHome(){
     localStorage.removeItem("seeRental");
+    localStorage.removeItem("manager");
     location.reload();
 }
