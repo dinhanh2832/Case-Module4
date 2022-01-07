@@ -4,6 +4,7 @@ package com.example.demo.service;
 import com.example.demo.model.HomeTime;
 
 import java.util.Date;
+import java.util.List;
 
 public interface HomeTimeService {
     Iterable<HomeTime> findAll();
@@ -13,4 +14,6 @@ public interface HomeTimeService {
     void save(HomeTime homeTime);
 
     void remove(Date date);
+
+    List<HomeTime> findAllByHome_Id(long id);
 }

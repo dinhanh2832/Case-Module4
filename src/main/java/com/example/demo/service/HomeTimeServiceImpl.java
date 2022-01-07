@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class HomeTimeServiceImpl implements HomeTimeService {
@@ -30,5 +31,10 @@ public class HomeTimeServiceImpl implements HomeTimeService {
     @Override
     public void remove(Date date) {
         homeTimeRepository.deleteById(date);
+    }
+
+    @Override
+    public List<HomeTime> findAllByHome_Id(long id) {
+        return homeTimeRepository.findAllByHome_Id(id);
     }
 }

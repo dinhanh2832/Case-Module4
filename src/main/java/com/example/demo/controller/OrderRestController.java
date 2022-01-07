@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.model.Home;
 import com.example.demo.model.HomeTime;
 import com.example.demo.model.Order;
 import com.example.demo.service.HomeTimeServiceImpl;
@@ -47,18 +48,19 @@ public class OrderRestController {
         orderService.save(order);
         long startDate = order.getStartDate().getTime();
         long endDate = order.getEndDate().getTime();
-
         for (long i = startDate; i <= endDate; i += oneDay) {
             Date date1 = new Date(i);
-            homeTimeService.save(new HomeTime(date1, order.getHome(),"1"));
+            homeTimeService.save(new HomeTime(date1, order.getHome(), "1"));
         }
         return new ResponseEntity<>(order, HttpStatus.CREATED);
-
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<Order> edit(@PathVariable Long id, @RequestBody Order order) {
         Optional<Order> optionalOrder = orderService.findById(id);
+        if (optionalOrder == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
         order.setId(optionalOrder.get().getId());
         orderService.save(order);
         return new ResponseEntity<>(order, HttpStatus.OK);
