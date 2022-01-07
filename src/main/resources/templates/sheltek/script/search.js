@@ -1,8 +1,10 @@
-// Tìm kiếm nhà theo địa chỉ, phòng ngủ, phòng tắm, mức giá
+// Tìm kiếm nhà theo địa chỉ, phòng ngủ, phòng tắm, mức giá, diện tích
 function searchHome() {
-    let address = document.getElementById("location").value;
-    let bedroom = document.getElementById("bedroom").value;
-    let showerRoom = document.getElementById("showerRoom").value;
+    let address = $("#location").val();
+    let bedroom = $("#bedroom").val();
+    let showerRoom = $("#showerRoom").val();
+    let minArea = $("#min-area").val();
+    let maxArea = $("#max-area").val();
     let minPrice = $("#slider-range").slider("values", 0);
     let maxPrice = $("#slider-range").slider("values", 1);
 
@@ -48,6 +50,15 @@ function searchHome() {
             if ((minPrice != "") && (maxPrice != "")) {
                 for (let i = 0; i < data.length; i++) {
                     if ((minPrice <= data[i].price) && (data[i].price <= maxPrice)) arr.push(data[i]);
+                }
+            } else {
+                arr = data;
+            }
+            data = arr;
+            arr = [];
+            if ((minArea != "") && (maxArea != "")) {
+                for (let i = 0; i < data.length; i++) {
+                    if ((minArea <= data[i].area) && (data[i].area <= maxArea)) arr.push(data[i]);
                 }
             } else {
                 arr = data;

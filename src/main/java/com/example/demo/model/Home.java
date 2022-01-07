@@ -32,4 +32,5 @@ public class Home {
     @JoinColumn(name = "imgHome_id")
     private List<Image> imageList;
     private int numberOfTurns;
+    private int area;
 }
