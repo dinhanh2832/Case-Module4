@@ -117,6 +117,7 @@ function loadHomeContent() {
             </div>
         </section>
    `;
+        document.getElementById("logout").innerHTML = `<a href="#">Đăng nhập</a>`;
         document.getElementById("div1").style.display = 'none';
         document.getElementById("div2").style.display = 'none';
         document.getElementById("body1").style.display = 'none';
@@ -124,12 +125,15 @@ function loadHomeContent() {
     } else if (localStorage.getItem("user") != null){
         if(localStorage.getItem("user") === "ROLE_USER"){
             if(localStorage.getItem("seeRental") != null){
+                document.getElementById("logout").innerHTML = `<a href="#" onclick="logout()">Đăng Xuất</a>`;
                 document.getElementById("slideLogin").style.display = 'none';
                 seeRentalHouses();
             } else if(localStorage.getItem("manager") != null){
+                document.getElementById("logout").innerHTML = `<a href="#" onclick="logout()">Đăng Xuất</a>`;
                 document.getElementById("slideLogin").style.display = 'none';
                 managerHouseUser();
             } else {
+                document.getElementById("logout").innerHTML = `<a href="#" onclick="logout()">Đăng Xuất</a>`;
                 document.getElementById("div1").style.display = 'block';
                 document.getElementById("div2").style.display = 'block';
                 document.getElementById("slideLogin").style.display = 'none';
@@ -298,10 +302,10 @@ function loadData() {
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="flat-item">
                         <div class="flat-item-image">
-                            <span class="for-sale">Cho thuê</span>
+                            <span class="for-sale">${data[i].statusHome.name}</span>                          
                             <a href="properties-details.html"><img src="images/${data[i].imageList[0].links}" alt="" class="img-fluid"></a>
                             <div class="flat-link">
-                                <a href="properties-details.html">Xem chi tiết</a>
+                                <a onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
                             </div>
                             <ul class="flat-desc">
                                 <li>
@@ -534,7 +538,7 @@ function seeRentalHouses(){
                                         <a href="#"><img src="images/${data[i].imageList[0].links}" alt=""></a>
                                         <div class="flat-link">                                                                     
 <!--                                           <a href="properties-details.html">xem chi tiết</a>-->
-                                               <button onclick="goDetailsHome(${data[i].id})" >Xem chi tiết</button>
+                                               <a href="#" onclick="goDetailsHome(${data[i].id})" >Xem chi tiết</a>
                                         </div>
                                         <ul class="flat-desc">
                                             <li>
@@ -828,5 +832,9 @@ function goDetailsHome(id){
 function backHome(){
     localStorage.removeItem("seeRental");
     localStorage.removeItem("manager");
+    location.reload();
+}
+function logout(){
+    localStorage.clear();
     location.reload();
 }
