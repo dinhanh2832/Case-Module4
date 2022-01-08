@@ -7,12 +7,12 @@ function searchHome() {
     let maxArea = $("#max-area").val();
     let minPrice = $("#slider-range").slider("values", 0);
     let maxPrice = $("#slider-range").slider("values", 1);
-
-    console.log(address);
-    console.log(bedroom);
-    console.log(showerRoom);
-    console.log(minPrice);
-    console.log(maxPrice);
+    //
+    // console.log(address);
+    // console.log(bedroom);
+    // console.log(showerRoom);
+    // console.log(minPrice);
+    // console.log(maxPrice);
 
     $.ajax({
         type: "GET",
