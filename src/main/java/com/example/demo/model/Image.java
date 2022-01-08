@@ -15,4 +15,9 @@ public class Image {
     private Long id;
     private String links;
     private int Status;
+
+    public Image(String links, int status) {
+        this.links = links;
+        Status = status;
+    }
 }

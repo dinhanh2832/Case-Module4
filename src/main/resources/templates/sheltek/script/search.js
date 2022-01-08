@@ -4,6 +4,7 @@ function searchHome() {
     // let status = $("#status").val();
     let address = document.getElementById("location").value;
     console.log(address);
+    let idHome = localStorage.getItem("idHome");
     $.ajax({
         //     headers: {
         //         'Accept': 'application/json',

@@ -16,21 +16,12 @@
     <script src="home.js"></script>
     <script src="comment.js"></script>
 </head>
-<body onload="getAllHome()">
-<div class="container">
-
-    <button onclick="showFormAdd()">Add</button>
-    <button onclick="getAllHome()">Home</button>
-    <button onclick="showFormSearch()">Search</button>
-    <button onclick="status1()">status</button>
-    <div class="row" >
-        <div class="col-9" id="div1"></div>
-        <div class="col-3" id="div2"></div>
-    </div>
-    <div class="row">
-        <div class="col-7" id="div3"></div>
-        <div class="col-5" id="div4"></div>
-    </div>
-</div>
+<body >
+<form enctype="multipart/form-data" id="form">
+<!--    <input type="text" name="name">-->
+    <input type="file" name="file"/>
+    <button type="button" onclick="submitForm()">Upload</button>
+</form>
+<div id="main"></div>
 </body>
 </html>

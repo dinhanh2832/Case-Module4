@@ -1,33 +1,23 @@
-function getAllHome() {
-    $.ajax({
-        type: "GET",
-        url: "http://localhost:8080/api/homes/",
-        success: function (data) {
-            console.log(data)
-            displayHome(data)
-        }
-    })
-}
 
-function displayHome(data) {
-    let res = "<h2>List home</h2>" + "<table border='1px' width='100%'><tr>"
-        + "<th>name</th><th>address</th><th>Bedroom</th><th>Shower Room</th>"
-        + "<th>Description</th><th>Price</th><th>Category</th><th>Status</th>"
-    for (let i = 0; i < data.length; i++) {
-        res += "<tr><td>" + data[i].name + "</td>" +
-            "<td>" + data[i].address + "</td>" +
-            "<td>" + data[i].bedroom + "</td>" +
-            "<td>" + data[i].showerRoom + "</td>" +
-            "<td>" + data[i].description + "</td>" +
-            "<td>" + data[i].price + "</td>" +
-            "<td>" + data[i].category.name + "</td>" +
-            "<td>" + data[i].statusHome.name + "</td>" +
-            "<td align=\"center\"><button onclick='getOne(" + data[i].id + ")'>Thông tin nhà</button></td>" +
-            "<td align=\"center\"><button onclick='change(" + data[i].id + ")'>Thuê</button></td>" +
-            "<td align=\"center\"><button onclick='change2(" + data[i].id + ")'>Hủy</button></td>"
-    }
-    document.getElementById("div1").innerHTML = res;
-}
+// function displayHome(data) {
+//     let res = "<h2>List home</h2>" + "<table border='1px' width='100%'><tr>"
+//         + "<th>name</th><th>address</th><th>Bedroom</th><th>Shower Room</th>"
+//         + "<th>Description</th><th>Price</th><th>Category</th><th>Status</th>"
+//     for (let i = 0; i < data.length; i++) {
+//         res += "<tr><td>" + data[i].name + "</td>" +
+//             "<td>" + data[i].address + "</td>" +
+//             "<td>" + data[i].bedroom + "</td>" +
+//             "<td>" + data[i].showerRoom + "</td>" +
+//             "<td>" + data[i].description + "</td>" +
+//             "<td>" + data[i].price + "</td>" +
+//             "<td>" + data[i].category.name + "</td>" +
+//             "<td>" + data[i].statusHome.name + "</td>" +
+//             "<td align=\"center\"><button onclick='getOne(" + data[i].id + ")'>Thông tin nhà</button></td>" +
+//             "<td align=\"center\"><button onclick='change(" + data[i].id + ")'>Thuê</button></td>" +
+//             "<td align=\"center\"><button onclick='change2(" + data[i].id + ")'>Hủy</button></td>"
+//     }
+//     document.getElementById("div1").innerHTML = res;
+// }
 
 function change(id) {
     if (confirm("Really want??")) {
@@ -216,6 +206,24 @@ function status1() {
         },
         error: function (error) {
             alert("opps")
+        }
+    })
+}
+function submitForm() {
+    let form = document.getElementById("form");
+    let data = new FormData(form);
+    $.ajax({
+        type: "POST",
+        enctype: 'multipart/form-data',
+        url: "http://localhost:8080/api/homes/uploadFile",
+        data: data,
+        processData: false,
+        contentType: false,
+        cache: false,
+        timeout: 1000000,
+        success: function (data) {
+            console.log(data.links)
+            document.getElementById('main').innerHTML = `<img src="../templates/sheltek/images/${data.links}">`
         }
     })
 }

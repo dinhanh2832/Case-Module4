@@ -7,8 +7,12 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -22,7 +26,7 @@ public class HomeRestController {
     @Autowired
     private StatusHomeServiceImpl statusHomeService;
     @Autowired
-    private CommentServiceImpl commentService;
+    private ImageServiceImpl imageService;
     @Autowired
     private UserService userService;
     @Autowired
@@ -170,4 +174,37 @@ public class HomeRestController {
         }
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
+    @PostMapping("/uploadFile")
+    public ResponseEntity<Image> uploadFile(MultipartFile file) {
+        String fileName = file.getOriginalFilename();
+        String nameImage = "avatar/" + fileName;
+        try {
+            FileCopyUtils.copy(file.getBytes(),
+                    new File("C:\\Users\\anh\\IdeaProjects\\demo2\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
+            // đường dẫn ảo là /nhuanh/
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        Image image2 = new Image(nameImage,1);
+        imageService.save(image2);
+        return new ResponseEntity<>(image2, HttpStatus.OK);
+    }
+//    @PostMapping()
+//    public ResponseEntity saveHome(@RequestBody Home home, MultipartFile file) {
+//        String nameFile = file.getOriginalFilename();
+//        try {
+//            FileCopyUtils.copy(file.getBytes(),
+//                    new File("E:\\Case-Module4\\src\\main\\resources\\templates\\sheltek\\images\\avatar" + nameFile));
+//        } catch (IOException e) {
+//        }
+//        Optional<StatusHome> statusHome = statusHomeService.findById(2L);
+//        home.setStatusHome(statusHome.get());
+//        homeService.save(home);
+////        for (Image image : home.getImageList()) {
+////            image.setHome(home);
+////            imageService.save(image);
+////        }
+//        return new ResponseEntity(home, HttpStatus.CREATED);
+//    }
 }

@@ -31,7 +31,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-mail', version: '1.2.0.RELEASE'
-
+    implementation group: 'commons-fileupload', name: 'commons-fileupload', version: '1.4'
 }
 
 test {

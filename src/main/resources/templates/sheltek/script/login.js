@@ -5,93 +5,24 @@ function loadHomeContent() {
             <div class="login-section pt-115 pb-70">
                 <div class="container">
                     <div class="row">
-                        <div class="col-md-6 col-xs-12">
+                        <div class="col-md-3 col-xs-12"></div>
+                        <div class="col-md-6 col-xs-12" id="formLog">
                             <div class="registered-customers mb-50">
                             <div id="messenger"></div>
-                                <h5 class="mb-50">LOGIN</h5>
+                                <h5 class="mb-50 text-center">ĐĂNG NHẬP</h5>
                                 <div action="#">
                                     <div class="login-account p-30 box-shadow">
-                                        <p>If you have an account with us, Please log in.</p>                                    
+                                        <p>Nếu như bạn có tài khoản, Hãy đăng nhập.</p>                                    
                                         <input type="text" name="name" placeholder="Email Address" id="username">
                                         <input type="password" name="password" placeholder="Password" id="password">
                                         <p><small><a href="#">Forgot our password?</a></small></p>
-                                        <button class="submit-btn-1" onclick="login()">login</button>
+                                        <button class="submit-btn-1" onclick="login()" style="margin-right: 20px">Đăng nhập</button>
+                                        <button class="submit-btn-1" onclick="registration()" >Đăng ký</button>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- new-customers -->
-                        <div class="col-md-6 col-xs-12">
-                            <div class="new-customers mb-50">
-                                <form action="#">
-                                    <h5 class="mb-50">REGISTER</h5>
-                                    <div class="login-account p-30 box-shadow">
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <input type="text"  placeholder="First Name">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="text"  placeholder="last Name">
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <select class="custom-select-2">
-                                                    <option value="defalt">country</option>
-                                                    <option value="c-1">Australia</option>
-                                                    <option value="c-2">Bangladesh</option>
-                                                    <option value="c-3">Unitd States</option>
-                                                    <option value="c-4">Unitd Kingdom</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <select class="custom-select-2">
-                                                    <option value="defalt">State</option>
-                                                    <option value="c-1">Melbourne</option>
-                                                    <option value="c-2">Dhaka</option>
-                                                    <option value="c-3">New York</option>
-                                                    <option value="c-4">London</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <select class="custom-select-2">
-                                                    <option value="defalt">Town/City</option>
-                                                    <option value="c-1">Victoria</option>
-                                                    <option value="c-2">Chittagong</option>
-                                                    <option value="c-3">Boston</option>
-                                                    <option value="c-4">Cambridge</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-sm-6">
-                                                <input type="text"  placeholder="Phone here...">
-                                            </div>
-                                        </div>
-                                        <input type="text"  placeholder="Company neme here...">
-                                        <input type="text"  placeholder="Email address here...">
-                                        <input type="password"  placeholder="Password">
-                                        <input type="password"  placeholder="Confirm Password">
-                                        <div class="checkbox">
-                                            <label class="mr-10">
-                                                <small>
-                                                    <input type="checkbox" name="signup">Sign up for our newsletter!
-                                                </small>
-                                            </label>
-                                            <label>
-                                                <small>
-                                                    <input type="checkbox" name="signup">Receive special offers from our partners!
-                                                </small>
-                                            </label>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-6 col-xs-12">
-                                                <button class="submit-btn-1 mt-20" type="submit" value="register">Register</button>
-                                            </div>
-                                            <div class="col-sm-6 col-xs-12">
-                                                <button class="submit-btn-1 mt-20 f-right" type="reset">Clear</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                        </div>                 
+                        <div class="col-md-3 col-xs-12"></div>
                     </div>
                 </div>
             </div>
@@ -837,4 +768,73 @@ function backHome(){
 function logout(){
     localStorage.clear();
     location.reload();
+}
+function registration(){
+    document.getElementById("formLog").innerHTML = `<div class="new-customers mb-50">
+                                <form action="#">
+                                <div id="mess"></div>
+                                    <h5 class="mb-50 text-center">ĐĂNG KÝ</h5>
+                                    <div class="login-account p-30 box-shadow">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <input type="text"  placeholder="Tên Đệm" id="firstName">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text"  placeholder="Tên" id="lastName">
+                                            </div>                                                                                                                                                                                                                    
+                                        </div>                                     
+                                        <input type="text"  placeholder="Nhập tài khoản..." id="userName1">
+                                        <input type="password"  placeholder="Mật khẩu" id="password1">
+                                        <input type="password"  placeholder="Nhập lại mật khẩu" id="conPassword1">
+                                        <div class="checkbox">
+                                            <label class="mr-10"> 
+                                                <small>
+                                                    <input type="checkbox" name="signup">Sign up for our newsletter!
+                                                </small>
+                                            </label>
+                                            <label> 
+                                                <small>
+                                                    <input type="checkbox" name="signup">Receive special offers from our partners!
+                                                </small>
+                                            </label>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-6 col-xs-12">
+                                                <button class="submit-btn-1 mt-20" type="submit" value="register" onclick="register()">Đăng ký</button>
+                                            </div>
+                                            <div class="col-sm-6 col-xs-12">
+                                                <button class="submit-btn-1 mt-20 f-right" onclick="loadHomeContent()" >Quay lại</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>`
+}
+function register(){
+    let firstName = document.getElementById("firstName").value;
+    let lastName = document.getElementById("lastName").value;
+    let userName = document.getElementById("userName1").value;
+    let pass = document.getElementById("password1").value;
+    let conPass = document.getElementById("conPassword1").value;
+    let status = 1;
+    let user = {
+        username: userName,
+        password: pass,
+        confirmPassword: conPass,
+        status: status
+    }
+    console.log(user);
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: "POST",
+        url: "http://localhost:8080/register",
+        data: JSON.stringify(user),
+        success: function () {
+            registration();
+            document.getElementById("mess").innerHTML = `<p>Đăng ký thành công!Hãy đăng nhập !</p>`;
+        }
+    })
 }

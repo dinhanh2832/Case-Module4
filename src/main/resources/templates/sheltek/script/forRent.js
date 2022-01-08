@@ -2,22 +2,19 @@ function houseForRent() {
     let html = `
     <div class="new-customers mb-50">
                                 <div >
-                                    <h5 class="mb-50">REGISTER</h5>
+                                    <h5 class="mb-50">CHO THUÊ</h5>
                                     <div class="login-account p-30 box-shadow">
                                         <div class="row">
                                             <div class="col-sm-6">
-                                                <input type="text"  placeholder="First Name">
+                                                <input type="text"  placeholder="Name House">
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="text"  placeholder="last Name">
+                                                <input type="text"  placeholder="Địa chỉ">
                                             </div>
                                             <div class="col-sm-6">
                                                 <select class="custom-select-2">
                                                     <option value="defalt">country</option>
-                                                    <option value="c-1">Australia</option>
-                                                    <option value="c-2">Bangladesh</option>
-                                                    <option value="c-3">Unitd States</option>
-                                                    <option value="c-4">Unitd Kingdom</option>
+                                                   
                                                 </select>
                                             </div>
                                             <div class="col-sm-6">
