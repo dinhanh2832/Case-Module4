@@ -50,6 +50,15 @@ public class OrderRestController {
         return new ResponseEntity<>(order.get(), HttpStatus.OK);
     }
 
+    @GetMapping("/searchOrder/user")
+    public ResponseEntity<Iterable<Order>> findOrderByUserId(@RequestParam long q) {
+        Iterable<Order> orders = orderService.findAllByUser_Id(q);
+        if (orders == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+
     @PostMapping("")
     public ResponseEntity<Order> saveOrder(@RequestBody Order order) {
         Date date = new Date(Calendar.getInstance().getTime().getTime());
