@@ -63,7 +63,12 @@ function loadHomeContent() {
                 document.getElementById("logout").innerHTML = `<a href="#" onclick="logout()">Đăng Xuất</a>`;
                 document.getElementById("slideLogin").style.display = 'none';
                 managerHouseUser();
-            } else {
+            } else if(localStorage.getItem("houseForRent") != null){
+                document.getElementById("logout").innerHTML = `<a href="#" onclick="logout()">Đăng Xuất</a>`;
+                document.getElementById("slideLogin").style.display = 'none';
+                houseForRent();
+            }
+            else {
                 document.getElementById("logout").innerHTML = `<a href="#" onclick="logout()">Đăng Xuất</a>`;
                 document.getElementById("div1").style.display = 'block';
                 document.getElementById("div2").style.display = 'block';

@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -95,8 +96,10 @@ public class HomeRestController {
 
     @PostMapping("")
     public ResponseEntity<Home> saveHome(@RequestBody Home home) {
-        Optional<StatusHome> statusHome = statusHomeService.findById(2L);
-        home.setStatusHome(statusHome.get());
+        Iterable<Image> imageList = imageService.findAll();
+
+//        List<Image> list =
+        Home home1 = new Home();
         homeService.save(home);
         return new ResponseEntity<>(home, HttpStatus.CREATED);
     }
@@ -175,36 +178,31 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
     @PostMapping("/uploadFile")
-    public ResponseEntity<Image> uploadFile(MultipartFile file) {
-        String fileName = file.getOriginalFilename();
-        String nameImage = "avatar/" + fileName;
-        try {
-            FileCopyUtils.copy(file.getBytes(),
-                    new File("C:\\Users\\anh\\IdeaProjects\\demo2\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
-            // đường dẫn ảo là /nhuanh/
-        } catch (IOException ex) {
-            ex.printStackTrace();
+    public ResponseEntity<List<Image>> uploadFile(MultipartFile file,MultipartFile file1,MultipartFile file2,MultipartFile file3,MultipartFile file4) {
+        String fileName0 = file.getOriginalFilename();
+        String fileName1 = file1.getOriginalFilename();
+        String fileName2 = file2.getOriginalFilename();
+        String fileName3 = file3.getOriginalFilename();
+        String fileName4 = file4.getOriginalFilename();
+        List<Image> list = new ArrayList<>();
+        for (int i = 0;i<5;i++){
+            String nameImage = "avatar/" + "fileName" +i;
+            String fileName = "fileName" + i;
+            try {
+                FileCopyUtils.copy(file.getBytes(),
+                        new File("C:\\Users\\anh\\IdeaProjects\\demo2\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
+                // đường dẫn ảo là /nhuanh/
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            if(i == 0){
+                Image image2 = new Image(nameImage,1);
+                list.add(image2);
+            } else {
+                Image image2 = new Image(nameImage,2);
+                list.add(image2);
+            }
         }
-
-        Image image2 = new Image(nameImage,1);
-        imageService.save(image2);
-        return new ResponseEntity<>(image2, HttpStatus.OK);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
-//    @PostMapping()
-//    public ResponseEntity saveHome(@RequestBody Home home, MultipartFile file) {
-//        String nameFile = file.getOriginalFilename();
-//        try {
-//            FileCopyUtils.copy(file.getBytes(),
-//                    new File("E:\\Case-Module4\\src\\main\\resources\\templates\\sheltek\\images\\avatar" + nameFile));
-//        } catch (IOException e) {
-//        }
-//        Optional<StatusHome> statusHome = statusHomeService.findById(2L);
-//        home.setStatusHome(statusHome.get());
-//        homeService.save(home);
-////        for (Image image : home.getImageList()) {
-////            image.setHome(home);
-////            imageService.save(image);
-////        }
-//        return new ResponseEntity(home, HttpStatus.CREATED);
-//    }
 }
