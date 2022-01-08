@@ -41,6 +41,15 @@ public class OrderRestController {
         return new ResponseEntity<>(order.get(), HttpStatus.OK);
     }
 
+    @GetMapping("/searchOrder/home")
+    public ResponseEntity<Order> findOrderByHome(@RequestParam long q) {
+        Optional<Order> order = orderService.findByHome_Id(q);
+        if (!order.isPresent()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(order.get(), HttpStatus.OK);
+    }
+
     @PostMapping("")
     public ResponseEntity<Order> saveOrder(@RequestBody Order order) {
         Date date = new Date(Calendar.getInstance().getTime().getTime());

@@ -10,26 +10,32 @@ function orderHome() {
 
     if (endDate >= startDate) console.log("true");
     $.ajax({
-        type: "GET",
-        url: "http://localhost:8080/api/homeTimes/searchByHome/" + idH,
-        success: function (data) {
-            console.log(data)
-            if (data.length != 0) {
-                let flag = true;
-                for (let i = startDate.getTime(); i <= endDate.getTime(); i += oneDay) {
-                    let orderDate = new Date(i);
-                    console.log(orderDate);
-                    for (let j = 0; j < data.length; j++) {
-                        let bookingDate = (new Date(data[j].date));
-                        console.log(bookingDate)
-                        if ((orderDate.getDay() === bookingDate.getDay()) && (orderDate.getMonth() === bookingDate.getMonth()) && (orderDate.getFullYear() === bookingDate.getFullYear())) {
-                            flag = false;
-                            break;
+            type: "GET",
+            url: "http://localhost:8080/api/homeTimes/searchByHome/" + idH,
+            success: function (data) {
+                console.log(data)
+                if (data.length != 0) {
+                    let flag = true;
+                    for (let i = startDate.getTime(); i <= endDate.getTime(); i += oneDay) {
+                        let orderDate = new Date(i);
+                        console.log(orderDate);
+                        for (let j = 0; j < data.length; j++) {
+                            let bookingDate = (new Date(data[j].date));
+                            console.log(bookingDate)
+                            if ((orderDate.getDay() === bookingDate.getDay()) && (orderDate.getMonth() === bookingDate.getMonth()) && (orderDate.getFullYear() === bookingDate.getFullYear())) {
+                                flag = false;
+                                break;
+                            }
                         }
                     }
+                    if (!flag) alert("Nhà đang được cho thuê");
+                } else {
+                    alert("Thuê thoải mái đeee");
+                    // Tạo order
+
                 }
-                if (!flag) alert("Nhà đang được cho thuê");
-            } else alert("Thuê thoải mái đeee");
+            }
+
         }
-    })
+    )
 }
