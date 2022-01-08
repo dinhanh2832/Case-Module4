@@ -22,7 +22,8 @@ function searchHome() {
             let arr = [];
             if (address != "") {
                 for (let i = 0; i < data.length; i++) {
-                    if (data[i].address == address) arr.push(data[i]);
+                    let isCorrectAddress = data[i].address.toLowerCase().indexOf(address.toLowerCase()) != -1;
+                    if (isCorrectAddress) arr.push(data[i]);
                 }
             } else {
                 arr = data;
