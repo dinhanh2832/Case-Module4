@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import com.example.demo.model.Comment;
 import com.example.demo.model.Home;
+import com.example.demo.model.StatusHome;
 import com.example.demo.repository.HomeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -67,10 +68,5 @@ public class HomeServiceImpl implements HomeService {
     @Override
     public Iterable<Home> showHomeOrderByDESC() {
         return homeRepository.showHomeOrderByDESC();
-    }
-
-    @Override
-    public Iterable<Home> findAllByAddressContaining(String address) {
-        return homeRepository.findAllByAddressContaining(address);
     }
 }

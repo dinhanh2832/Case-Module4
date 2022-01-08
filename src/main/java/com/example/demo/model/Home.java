@@ -46,4 +46,5 @@ public class Home {
         this.imageList = imageList;
         this.numberOfTurns = numberOfTurns;
     }
+    private int area;
 }

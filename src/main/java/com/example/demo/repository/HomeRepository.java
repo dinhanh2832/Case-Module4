@@ -32,5 +32,4 @@ public interface HomeRepository extends JpaRepository<Home, Long> {
     Iterable<Home> showHomeOrderByDESC();
     @Override
     void delete(Home entity);
-    Iterable<Home> findAllByAddressContaining(String address);
 }

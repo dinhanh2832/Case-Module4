@@ -18,4 +18,10 @@ public class HomeTime {
     @JoinColumn(name = "home_id")
     private Home home;
     private String status;
+
+    public HomeTime(Date date, Home home, String status) {
+        this.date = date;
+        this.home = home;
+        this.status = status;
+    }
 }

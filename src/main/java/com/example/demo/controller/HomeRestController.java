@@ -167,16 +167,6 @@ public class HomeRestController {
         }
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
-
-    //    Search by address and status = 1
-    @GetMapping("/search/address")
-    public ResponseEntity<Iterable<Home>> findByAddress(@RequestParam String q) {
-        Iterable<Home> homes = homeService.findAllByAddressContaining(q);
-        if (homes == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(homes, HttpStatus.OK);
-    }
     @PostMapping("/uploadFile")
     public ResponseEntity<List<Image>> uploadFile(MultipartFile file,MultipartFile file1,MultipartFile file2,MultipartFile file3,MultipartFile file4) {
         String fileName0 = file.getOriginalFilename();
