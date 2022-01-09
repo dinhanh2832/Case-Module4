@@ -52,7 +52,7 @@ public class HomeTimeRestController {
             return new ResponseEntity<HomeTime>(HttpStatus.NOT_FOUND);
         }
         homeTime1.setHome(homeTime.getHome());
-        homeTime1.setStatus(homeTime.getStatus());
+        homeTime1.setStatusHome(homeTime.getStatusHome());
 
         homeTimeService.save(homeTime1);
         return new ResponseEntity<>(HttpStatus.OK);
