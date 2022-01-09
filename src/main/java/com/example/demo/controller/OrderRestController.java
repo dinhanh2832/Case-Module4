@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.model.Home;
 import com.example.demo.model.HomeTime;
 import com.example.demo.model.Order;
+import com.example.demo.model.StatusHome;
 import com.example.demo.service.HomeTimeServiceImpl;
 import com.example.demo.service.OrderServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,15 @@ public class OrderRestController {
         return new ResponseEntity<>(order.get(), HttpStatus.OK);
     }
 
+    @GetMapping("/searchOrder/user")
+    public ResponseEntity<Iterable<Order>> findOrderByUserId(@RequestParam long q) {
+        Iterable<Order> orders = orderService.findAllByUser_Id(q);
+        if (orders == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(orders, HttpStatus.OK);
+    }
+
     @PostMapping("")
     public ResponseEntity<Order> saveOrder(@RequestBody Order order) {
         Date date = new Date(Calendar.getInstance().getTime().getTime());
@@ -59,7 +69,10 @@ public class OrderRestController {
         long endDate = order.getEndDate().getTime();
         for (long i = startDate; i <= endDate; i += oneDay) {
             Date date1 = new Date(i);
-            homeTimeService.save(new HomeTime(date1, order.getHome(), "1"));
+            StatusHome statusHome = new StatusHome();
+            statusHome.setId(1L);
+            HomeTime homeTime = new HomeTime(date1,order.getHome(),statusHome);
+            homeTimeService.save(homeTime);
         }
         return new ResponseEntity<>(order, HttpStatus.CREATED);
     }

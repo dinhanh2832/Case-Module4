@@ -7,12 +7,12 @@ function searchHome() {
     let maxArea = $("#max-area").val();
     let minPrice = $("#slider-range").slider("values", 0);
     let maxPrice = $("#slider-range").slider("values", 1);
-
-    console.log(address);
-    console.log(bedroom);
-    console.log(showerRoom);
-    console.log(minPrice);
-    console.log(maxPrice);
+    //
+    // console.log(address);
+    // console.log(bedroom);
+    // console.log(showerRoom);
+    // console.log(minPrice);
+    // console.log(maxPrice);
 
     $.ajax({
         type: "GET",
@@ -22,7 +22,8 @@ function searchHome() {
             let arr = [];
             if (address != "") {
                 for (let i = 0; i < data.length; i++) {
-                    if (data[i].address == address) arr.push(data[i]);
+                    let isCorrectAddress = data[i].address.toLowerCase().indexOf(address.toLowerCase()) != -1;
+                    if (isCorrectAddress) arr.push(data[i]);
                 }
             } else {
                 arr = data;
