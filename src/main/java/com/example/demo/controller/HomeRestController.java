@@ -94,12 +94,8 @@ public class HomeRestController {
         return new ResponseEntity<>(home.get(), HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/createHome")
     public ResponseEntity<Home> saveHome(@RequestBody Home home) {
-        Iterable<Image> imageList = imageService.findAll();
-
-//        List<Image> list =
-        Home home1 = new Home();
         homeService.save(home);
         return new ResponseEntity<>(home, HttpStatus.CREATED);
     }
@@ -168,19 +164,14 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
     @PostMapping("/uploadFile")
-    public ResponseEntity<List<Image>> uploadFile(MultipartFile file,MultipartFile file1,MultipartFile file2,MultipartFile file3,MultipartFile file4) {
-        String fileName0 = file.getOriginalFilename();
-        String fileName1 = file1.getOriginalFilename();
-        String fileName2 = file2.getOriginalFilename();
-        String fileName3 = file3.getOriginalFilename();
-        String fileName4 = file4.getOriginalFilename();
+    public ResponseEntity<List<Image>> uploadFile(MultipartFile[] files) {
         List<Image> list = new ArrayList<>();
-        for (int i = 0;i<5;i++){
+        for(int i = 0;i<files.length;i++){
             String nameImage = "avatar/" + "fileName" +i;
-            String fileName = "fileName" + i;
+            String fileName1 = files[i].getOriginalFilename();
             try {
-                FileCopyUtils.copy(file.getBytes(),
-                        new File("C:\\Users\\anh\\IdeaProjects\\demo2\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
+                FileCopyUtils.copy(files[i].getBytes(),
+                        new File("C:\\Users\\anh\\IdeaProjects\\demo2\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName1)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
                 // đường dẫn ảo là /nhuanh/
             } catch (IOException ex) {
                 ex.printStackTrace();

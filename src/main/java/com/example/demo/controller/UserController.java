@@ -121,4 +121,10 @@ public class UserController {
         userService.save(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+    @DeleteMapping("/delete")
+    public ResponseEntity<User> delete(Long idU){
+        Optional<User> user = this.userService.findById(idU);
+        this.userService.delete(user.get());
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }

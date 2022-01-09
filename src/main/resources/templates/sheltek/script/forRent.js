@@ -29,23 +29,23 @@ function houseForRent() {
                                             <form enctype="multipart/form-data" id="form">
                                             <div class="col-sm-12">
                                             <p>Ảnh đại diện</p>
-                                            <input type="file" name="file"/>
+                                            <input type="file" name="files"/>
                                             </div>
                                             <div class="col-sm-12">
                                             <p>Phòng ngủ</p>
-                                            <input type="file" name="file1"/>
+                                            <input type="file" name="files"/>
                                             </div> 
                                             <div class="col-sm-12">
                                             <p>Phòng khách</p>
-                                            <input type="file" name="file2"/>
+                                            <input type="file" name="files"/>
                                             </div>                                           
                                             <div class="col-sm-12">
                                             <p>Phòng bếp</p>
-                                            <input type="file" name="file3"/>
+                                            <input type="file" name="files"/>
                                             </div>
                                             <div class="col-sm-12">
                                             <p>Phòng tắm</p>
-                                            <input type="file" name="file"/>
+                                            <input type="file" name="files"/>
                                             </div>                                            
                                             <button class="submit-btn-1 mt-20" type="submit" onclick="createHome()" >Đăng Cho Thuê</button>                                                                                 
                                             <button class="submit-btn-1 mt-20" type="submit"  >Quay Lại</button>                                                                                 
@@ -215,8 +215,8 @@ function houseForRent() {
     showCategory();
     document.getElementById("body2").innerHTML = html;
 }
-function createImgHome(){
-    let form = document.getElementById("form");
+function createHome(){
+    let form = $('#form')[0];
     let data = new FormData(form);
 
     $.ajax({
@@ -228,55 +228,48 @@ function createImgHome(){
         contentType: false,
         cache: false,
         timeout: 1000000,
-        success:function (){
-            alert("")
-        }
-    })
-
-}
-function createHome(){
-    // let statusHome = 1;
-    // let numberOfTurns = 0;
-    // let userId = localStorage.getItem("idUser");
-    // let nameHouse = document.getElementById("username").value;
-    // let address = document.getElementById("address").value;
-    // let category = document.getElementById("cate").value;
-    // let bedroom = document.getElementById("bedroom").value;
-    // let showerRoom = document.getElementById("showerRoom").value;
-    // let description = document.getElementById("description").value;
-    // let price = document.getElementById("price").value;
-    let form = document.getElementById("form");
-    let data1 = new FormData(form);
-    // let home = {
-    //     name: nameHouse,
-    //     address: address,
-    //     category:{
-    //         id: category
-    //     },
-    //     bedroom: bedroom,
-    //     showerRoom: showerRoom,
-    //     description: description,
-    //     price: price,
-    //     statusHome: {
-    //         id: statusHome
-    //     },
-    //     user: {
-    //         id: userId
-    //     },
-    //     numberOfTurns: numberOfTurns,
-    // }
-    $.ajax({
-        type: "POST",
-        enctype: 'multipart/form-data',
-        url: "http://localhost:8080/api/homes/uploadFile",
-        data: data1,
-        processData: false,
-        contentType: false,
-        cache: false,
-        timeout: 1000000,
         success:function (data){
             console.log(data)
-            houseForRent();
+            let statusHome = 1;
+            let numberOfTurns = 0;
+            let userId = localStorage.getItem("idUser");
+            let nameHouse = document.getElementById("username").value;
+            let address = document.getElementById("address").value;
+            let category = document.getElementById("cate").value;
+            let bedroom = document.getElementById("bedroom").value;
+            let showerRoom = document.getElementById("showerRoom").value;
+            let description = document.getElementById("description").value;
+            let price = document.getElementById("price").value;
+            let home = {
+                name: nameHouse,
+                address: address,
+                category:{
+                    id: category
+                },
+                bedroom: bedroom,
+                showerRoom: showerRoom,
+                description: description,
+                price: price,
+                statusHome: {
+                    id: statusHome
+                },
+                user: {
+                    id: userId
+                },
+                numberOfTurns: numberOfTurns,
+            }
+            $.ajax({
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                type: "POST",
+                url: "http://localhost:8080/api/homes/createHome",
+                data: JSON.stringify(home),
+                success: function () {
+                    backHome();
+                }
+            })
         }
     })
 }

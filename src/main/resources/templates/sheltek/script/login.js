@@ -82,6 +82,7 @@ function loadHomeContent() {
             localStorage.setItem("token", data.accessToken)
             document.getElementById("div1").style.display = 'block';
             document.getElementById("div2").style.display = 'block';
+           admin();
         }
     }
 
@@ -120,6 +121,7 @@ function login() {
                 localStorage.setItem("user", data.roles[0].authority)
                 document.getElementById("div1").style.display = 'block';
                 document.getElementById("div2").style.display = 'block';
+                admin();
             }
         },
         error: function (error) {
@@ -130,7 +132,67 @@ function login() {
         }
     });
 }
-
+function admin(){
+    document.getElementById("body2").innerHTML = `<div id="page-content" class="page-wrapper">
+            
+            <!-- ELEMENTS AREA START -->
+            <div class="elements-area ptb-115">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <h5 class="mb-50">Quản lý Khách Hàng</h5>
+                            <table class="table ">
+                                <thead>
+                                    <tr>
+                                        <th>Stt</th>
+                                        <th>Tên người dùng</th>
+                                        <th>Các nhà đang cho thuê</th>
+                                        <th>Sửa</th>
+                                        <th>Xóa</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="user">
+                                    <tr class="active" >
+                                        <th scope="row">1</th>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                        <td>Column content</td>
+                                    </tr>                                  
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- ELEMENTS AREA END -->
+            
+            <!-- SUBSCRIBE AREA START -->
+            <div class="subscribe-area bg-blue call-to-bg plr-140 ptb-50">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-4 col-xs-12">
+                            <div class="section-title text-white">
+                                <h3>SUBSCRIBE</h3>
+                                <h2 class="h1">NEWSLETTER</h2>
+                            </div>
+                        </div>
+                        <div class="col-md-9 col-sm-8 col-xs-12">
+                            <div class="subscribe">
+                                <form action="#">
+                                    <input type="text" name="subscribe" placeholder="Enter yur email here...">
+                                    <button type="submit" value="send">Send</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- SUBSCRIBE AREA END -->
+        </div>`;
+    loadDataAdmin();
+}
 function loadData() {
     $.ajax({
         type: "GET",

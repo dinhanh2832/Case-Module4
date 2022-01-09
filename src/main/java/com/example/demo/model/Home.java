@@ -28,12 +28,9 @@ public class Home {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
-    @OneToMany(targetEntity = Image.class)
-    @JoinColumn(name = "imgHome_id")
-    private List<Image> imageList;
     private int numberOfTurns;
 
-    public Home(String name, String address, Category category, int bedroom, int showerRoom, String description, double price, StatusHome statusHome, User user, List<Image> imageList, int numberOfTurns) {
+    public Home(String name, String address, Category category, int bedroom, int showerRoom, String description, double price, StatusHome statusHome, User user, int numberOfTurns) {
         this.name = name;
         this.address = address;
         this.category = category;
@@ -43,7 +40,6 @@ public class Home {
         this.price = price;
         this.statusHome = statusHome;
         this.user = user;
-        this.imageList = imageList;
         this.numberOfTurns = numberOfTurns;
     }
     private int area;

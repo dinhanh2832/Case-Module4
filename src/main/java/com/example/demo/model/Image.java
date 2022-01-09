@@ -15,7 +15,9 @@ public class Image {
     private Long id;
     private String links;
     private int Status;
-
+    @ManyToOne
+    @JoinColumn(name = "home_id")
+    private Home home;
     public Image(String links, int status) {
         this.links = links;
         Status = status;
