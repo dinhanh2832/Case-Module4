@@ -38,7 +38,16 @@ public class HomeRestController {
         Iterable<Home> homes = homeService.findAll();
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
-
+    @GetMapping("/listImg")
+    public ResponseEntity<Iterable<Image>> findImgByIdHome(Long idH){
+        Iterable<Image> image = imageService.findImgByIdHome(idH);
+        return new ResponseEntity<>(image, HttpStatus.OK);
+    }
+    @GetMapping("/findAllImg")
+    public ResponseEntity<Iterable<Image>> findAllImg(Long idH){
+        Iterable<Image> images = imageService.findAllImgByIdHome(idH);
+        return new ResponseEntity<>(images,HttpStatus.OK);
+    }
     @GetMapping("/find5HomeMostRated")
     public ResponseEntity<Iterable<Home>> find5HomeMostRated() {
         Iterable<Home> homes = homeService.find5HomeMostRated();

@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Home;
 import com.example.demo.model.Image;
 import com.example.demo.repository.ImageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class ImageServiceImpl implements ImageService{
 
     @Override
     public Iterable<Image> findAll() {
-        return null;
+        return imageRepository.findAll();
     }
 
     @Override
@@ -30,5 +31,15 @@ public class ImageServiceImpl implements ImageService{
     @Override
     public void remove(Long id) {
 
+    }
+
+    @Override
+    public Iterable<Image> findImgByIdHome(Long idH) {
+        return imageRepository.findImgByIdHome(idH);
+    }
+
+    @Override
+    public Iterable<Image> findAllImgByIdHome(Long idH) {
+        return imageRepository.findAllImgByIdHome(idH);
     }
 }

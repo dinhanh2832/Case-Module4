@@ -9,15 +9,16 @@ function seeDetailsHome() {
     let id = localStorage.getItem("idHome")
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/api/homes/" + id,
+        url: "http://localhost:8080/api/homes/findAllImg?idH=" + id,
         headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
         success: function (data) {
             console.log(data)
-            let arr1 = data.imageList;
+            let arr1 = data;
             console.log(arr1)
+
             document.getElementById("pro-0").innerHTML = `
-            <a href="images/${data.imageList[0].links}" data-lightbox="image-1" data-title="Sheltek Properties - 1">
-                                                <img src="images/${data.imageList[0].links}" alt="">
+            <a href="images/${data[0].links}" data-lightbox="image-1" data-title="Sheltek Properties - 1">
+                                                <img src="images/${data[0].links}" alt="">
                   </a>
             `;
             for(let i =1;i <= arr1.length;i++){
@@ -126,40 +127,50 @@ function show5Home(){
             console.log(data)
             let html = ``;
             for(let i = 0;i< data.length;i++) {
+                let imgHome = "imgHome" + i;
                 html += `
             <div class="col-md-12 col-sm-6 col-xs-12">
-                                        <div class="flat-item">
-                                            <div class="flat-item-image">
-                                                <span class="for-sale">${data[i].statusHome.name}</span>
-                                                <a href="#"><img src="images/${data[i].imageList[0].links}" alt=""></a>
-                                                <div class="flat-link">
-                                                    <a onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
-                                                </div>
-                                                <ul class="flat-desc">
-                                                    <li>
-                                                        <img src="images/icons/4.png" alt="">
-                                                        <span>${data[i].description}</span>
-                                                    </li>
-                                                    <li>
-                                                        <img src="images/icons/5.png" alt="">
-                                                        <span>${data[i].bedroom}</span>
-                                                    </li>
-                                                    <li>
-                                                        <img src="images/icons/6.png" alt="">
-                                                        <span>${data[i].showerRoom}</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="flat-item-info">
-                                                <div class="flat-title-price">
-                                                    <h5><a href="#">${data[i].name}</a></h5>
-                                                    <span class="price">${data[i].price}Đ</span>
-                                                </div>
-                                                <p><img src="images/icons/location.png" alt="">${data[i].address}</p>
-                                            </div>
-                                        </div>
+                   <div class="flat-item">
+                        <div class="flat-item-image">
+                            <span class="for-sale">${data[i].statusHome.name}</span>                          
+                            <a href="#" id="${imgHome}"></a>
+                            <div class="flat-link">
+                                <a onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
+                            </div>
+                            <ul class="flat-desc">
+                                <li>
+                                    <img src="images/icons/4.png" alt="">
+                                        <span>${data[i].description}</span>
+                                </li>
+                                <li>
+                                    <img src="images/icons/5.png" alt="">
+                                        <span>${data[i].bedroom}</span>
+                                </li>
+                                <li>
+                                    <img src="images/icons/6.png" alt="">
+                                        <span>${data[i].showerRoom}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flat-item-info">
+                            <div class="flat-title-price">
+                                <h5><a href="properties-details.html">${data[i].name}</a></h5>
+                                <span class="price">${data[i].price}Đ</span>
+                            </div>
+                            <p><img src="images/icons/location.png" alt="">${data[i].address}</p>
+                        </div>
+                   </div>
                                     </div>
             `;
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/api/homes/listImg?idH=" + data[i].id,
+                    headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+                    success: function (data1) {
+                        console.log(data1)
+                        document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
+                    }
+                })
             }
             document.getElementById("list5Home").innerHTML = html;
         }

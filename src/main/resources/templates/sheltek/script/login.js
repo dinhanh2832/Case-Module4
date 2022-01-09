@@ -80,6 +80,7 @@ function loadHomeContent() {
 
         } else if (localStorage.getItem("user") === "ROLE_ADMIN") {
             localStorage.setItem("token", data.accessToken)
+            document.getElementById("logout").innerHTML = `<a href="#" onclick="logout()">Đăng Xuất</a>`;
             document.getElementById("div1").style.display = 'block';
             document.getElementById("div2").style.display = 'block';
            admin();
@@ -201,7 +202,8 @@ function loadData() {
         success: function (data) {
             console.log(data);
             $("div#login1").remove();
-            let html = `
+
+                    let html = `
                     <!-- SERVICES AREA START -->
                     <section class="services-area pb-60">
                         <div class="container">
@@ -295,13 +297,14 @@ function loadData() {
                             <div class="featured-flat">
                                 <div class="row">`;
 
-            for (let i =0; i < data.length;i++){
-                html += `<!-- flat-item -->
+                    for (let i =0; i < data.length;i++){
+                        let imgHome = "imgHome" + i;
+                        html += `<!-- flat-item -->
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="flat-item">
                         <div class="flat-item-image">
                             <span class="for-sale">${data[i].statusHome.name}</span>                          
-                            <a href="properties-details.html"><img src="images/${data[i].imageList[0].links}" alt="" class="img-fluid"></a>
+                            <a href="#" id="${imgHome}"></a>
                             <div class="flat-link">
                                 <a onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
                             </div>
@@ -329,12 +332,22 @@ function loadData() {
                         </div>
                     </div>
                 </div>`;
-            }
-            html +=`            </div>
+                        $.ajax({
+                            type: "GET",
+                            url: "http://localhost:8080/api/homes/listImg?idH=" + data[i].id,
+                            headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+                            success: function (data1) {
+                                console.log(data1)
+                                document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
+                            }
+                        })
+
+                    }
+                    html +=`            </div>
                             </div>
                         </div>
                     </div>`;
-            html += `<!-- FEATURES AREA START -->
+                    html += `<!-- FEATURES AREA START -->
                     <div class="features-area fix">
                         <div class="container-fluid">
                             <div class="row">
@@ -503,7 +516,7 @@ function loadData() {
                         </div>
                     </div>
                     <!-- OUR AGENTS AREA END -->`;
-            document.getElementById("service").innerHTML = html;
+                    document.getElementById("service").innerHTML = html;
         }
     });
 }
@@ -529,40 +542,49 @@ function seeRentalHouses(){
                         <div class="row">
                             <!-- flat-item -->`
                 for(let i = 0;i< data.length;i++) {
+                    let imgHome = "imgHome" + i;
                     html1 += `
                     <div class="col-md-4 col-sm-6 col-xs-12">
-                                <div class="flat-item">
-                                    <div class="flat-item-image">
-                                        <a href="#"><img src="images/${data[i].imageList[0].links}" alt=""></a>
-                                        <div class="flat-link">                                                                     
-<!--                                           <a href="properties-details.html">xem chi tiết</a>-->
-                                               <a href="#" onclick="goDetailsHome(${data[i].id})" >Xem chi tiết</a>
-                                        </div>
-                                        <ul class="flat-desc">
-                                            <li>
-                                                <img src="images/icons/4.png" alt="">
-                                                <span>${data[i].description}</span>
-                                            </li>
-                                            <li>
-                                                <img src="images/icons/5.png" alt="">
-                                                <span>${data[i].bedroom}</span>
-                                            </li>
-                                            <li>
-                                                <img src="images/icons/6.png" alt="">
-                                                <span>${data[i].showerRoom}</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="flat-item-info">
-                                        <div class="flat-title-price">
-                                            <h5><a href="#">${data[i].name}</a></h5>
-                                            <span class="price">${data[i].price}Đ</span>
-                                        </div>
-                                        <p><img src="images/icons/location.png" alt="">${data[i].address}</p>
-                                    </div>
-                                </div>
+                    <div class="flat-item">
+                        <div class="flat-item-image">
+                            <span class="for-sale">${data[i].statusHome.name}</span>                          
+                            <a href="#" id="${imgHome}"></a>
+                            <div class="flat-link">
+                                <a onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
                             </div>
-                    `;
+                            <ul class="flat-desc">
+                                <li>
+                                    <img src="images/icons/4.png" alt="">
+                                        <span>${data[i].description}</span>
+                                </li>
+                                <li>
+                                    <img src="images/icons/5.png" alt="">
+                                        <span>${data[i].bedroom}</span>
+                                </li>
+                                <li>
+                                    <img src="images/icons/6.png" alt="">
+                                        <span>${data[i].showerRoom}</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flat-item-info">
+                            <div class="flat-title-price">
+                                <h5><a href="properties-details.html">${data[i].name}</a></h5>
+                                <span class="price">${data[i].price}Đ</span>
+                            </div>
+                            <p><img src="images/icons/location.png" alt="">${data[i].address}</p>
+                        </div>
+                    </div>
+                </div>`;
+                    $.ajax({
+                        type: "GET",
+                        url: "http://localhost:8080/api/homes/listImg?idH=" + data[i].id,
+                        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+                        success: function (data1) {
+                            console.log(data1)
+                            document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
+                        }
+                    })
                 }
                 html1 += `<div class="col-xs-12">
                                 <div class="pagination-area mb-60">
