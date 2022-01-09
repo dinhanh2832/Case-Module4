@@ -7,9 +7,14 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -22,7 +27,7 @@ public class HomeRestController {
     @Autowired
     private StatusHomeServiceImpl statusHomeService;
     @Autowired
-    private CommentServiceImpl commentService;
+    private ImageServiceImpl imageService;
     @Autowired
     private UserService userService;
     @Autowired
@@ -33,7 +38,16 @@ public class HomeRestController {
         Iterable<Home> homes = homeService.findAll();
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
-
+    @GetMapping("/listImg")
+    public ResponseEntity<Iterable<Image>> findImgByIdHome(Long idH){
+        Iterable<Image> image = imageService.findImgByIdHome(idH);
+        return new ResponseEntity<>(image, HttpStatus.OK);
+    }
+    @GetMapping("/findAllImg")
+    public ResponseEntity<Iterable<Image>> findAllImg(Long idH){
+        Iterable<Image> images = imageService.findAllImgByIdHome(idH);
+        return new ResponseEntity<>(images,HttpStatus.OK);
+    }
     @GetMapping("/find5HomeMostRated")
     public ResponseEntity<Iterable<Home>> find5HomeMostRated() {
         Iterable<Home> homes = homeService.find5HomeMostRated();
@@ -69,8 +83,8 @@ public class HomeRestController {
     }
 
     @GetMapping("/findHomeStatus1ByUserId")
-    public ResponseEntity<Iterable<Home>> findHomeStatus1ByUserId(@RequestParam Long id) {
-        Iterable<Home> homes = homeService.findAllHomeByStatusOfUser(id);
+    public ResponseEntity<Iterable<Home>> findHomeStatus1ByUserId(@RequestParam Long idU) {
+        Iterable<Home> homes = homeService.findAllHomeByStatusOfUser(idU);
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
@@ -89,10 +103,8 @@ public class HomeRestController {
         return new ResponseEntity<>(home.get(), HttpStatus.OK);
     }
 
-    @PostMapping("")
+    @PostMapping("/createHome")
     public ResponseEntity<Home> saveHome(@RequestBody Home home) {
-        Optional<StatusHome> statusHome = statusHomeService.findById(2L);
-        home.setStatusHome(statusHome.get());
         homeService.save(home);
         return new ResponseEntity<>(home, HttpStatus.CREATED);
     }
@@ -105,8 +117,8 @@ public class HomeRestController {
         return new ResponseEntity<>(home, HttpStatus.OK);
     }
 
-    @DeleteMapping("/change2/{id}")
-    public ResponseEntity<Home> change2(@PathVariable Long id) {
+    @DeleteMapping("/change1/{id}")
+    public ResponseEntity<Home> change1(@PathVariable Long id) {
         Optional<Home> homeOptional = homeService.findById(id);
         if (!homeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -117,8 +129,8 @@ public class HomeRestController {
         return new ResponseEntity<>(homeOptional.get(), HttpStatus.OK);
     }
 
-    @DeleteMapping("/change1/{id}")
-    public ResponseEntity<Home> change1(@PathVariable Long id) {
+    @DeleteMapping("/change2/{id}")
+    public ResponseEntity<Home> change2(@PathVariable Long id) {
         Optional<Home> homeOptional = homeService.findById(id);
         if (!homeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -140,9 +152,9 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Home> deleteHome(@PathVariable Long id) {
-        Optional<Home> homeOptional = homeService.findById(id);
+    @DeleteMapping("")
+    public ResponseEntity<Home> deleteHome(Long idH) {
+        Optional<Home> homeOptional = homeService.findById(idH);
         if (!homeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -160,14 +172,27 @@ public class HomeRestController {
         }
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
-
-    //    Search by address and status = 1
-    @GetMapping("/search/address")
-    public ResponseEntity<Iterable<Home>> findByAddress(@RequestParam String q) {
-        Iterable<Home> homes = homeService.findAllByAddressContaining(q);
-        if (homes == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    @PostMapping("/uploadFile")
+    public ResponseEntity<List<Image>> uploadFile(MultipartFile[] files) {
+        List<Image> list = new ArrayList<>();
+        for(int i = 0;i<files.length;i++){
+            String nameImage = "avatar/" + "fileName" +i;
+            String fileName1 = files[i].getOriginalFilename();
+            try {
+                FileCopyUtils.copy(files[i].getBytes(),
+                        new File("C:\\Users\\anh\\IdeaProjects\\demo2\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName1)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
+                // đường dẫn ảo là /nhuanh/
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            if(i == 0){
+                Image image2 = new Image(nameImage,1);
+                list.add(image2);
+            } else {
+                Image image2 = new Image(nameImage,2);
+                list.add(image2);
+            }
         }
-        return new ResponseEntity<>(homes, HttpStatus.OK);
+        return new ResponseEntity<>(list,HttpStatus.OK);
     }
 }

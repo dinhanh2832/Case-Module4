@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import jdk.net.SocketFlow;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,5 +18,13 @@ public class HomeTime {
     @ManyToOne
     @JoinColumn(name = "home_id")
     private Home home;
-    private String status;
+    @ManyToOne
+    @JoinColumn(name = "status_id")
+    private StatusHome statusHome;
+
+    public HomeTime(Date date, Home home, StatusHome statusHome) {
+        this.date = date;
+        this.home = home;
+        this.statusHome = statusHome;
+    }
 }

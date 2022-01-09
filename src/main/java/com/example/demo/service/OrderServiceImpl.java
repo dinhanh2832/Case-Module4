@@ -31,4 +31,14 @@ public class OrderServiceImpl implements OrderService {
     public void remove(Long id) {
         orderRepository.deleteById(id);
     }
+
+    @Override
+    public Optional<Order> findByHome_Id(Long id) {
+        return orderRepository.findByHome_Id(id);
+    }
+
+    @Override
+    public Iterable<Order> findAllByUser_Id(long id) {
+        return orderRepository.findAllByUser_Id(id);
+    }
 }
