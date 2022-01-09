@@ -53,7 +53,14 @@
 /*----------------------------------------
   6. Custom-content all
 ----------------------------------------*/
-
+body {
+    font-family: 'Comforter', cursive;
+    font-family: 'Open Sans', sans-serif;
+}
+.f1 {
+    font-family: 'Comforter', cursive;
+    font-family: 'Open Sans', sans-serif;
+}
 .boxed-layout .wrapper {
     box-shadow: -3px 0 50px -2px rgba(0, 0, 0, 0.14);
     margin: auto;
