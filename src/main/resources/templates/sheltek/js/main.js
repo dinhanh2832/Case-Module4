@@ -81,7 +81,7 @@
     ******************************************** */
     $( "#slider-range" ).slider({
         range: true,
-        min: 20,
+        min: 0,
         max: 2500,
         values: [ 80, 2000 ],
         slide: function( event, ui ) {
