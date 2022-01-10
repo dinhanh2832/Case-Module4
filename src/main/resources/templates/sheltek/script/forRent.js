@@ -7,7 +7,7 @@ function houseForRent() {
                                         <div class="row">
                                         <div class="col-sm-3"></div>
                                         <div class="col-sm-6"><br>
-                                        <h5 class="mb-50 text-center f1">CHO THUÊ</h5>
+                                        <h5 class="mb-50 text-center f1 f5 f4">CHO THUÊ</h5>
                                          <div class="col-sm-6">
                                                 <input class="f1" type="text" style="font-family: 'Comforter', cursive;
                                                 font-family: 'Open Sans', sans-serif;"  placeholder="Tên nhà" id="username">
@@ -62,12 +62,12 @@ function houseForRent() {
                                 </div>
                             </div>`;
     html +=`<!-- OUR AGENTS AREA START -->
-                  <div class="our-agents-area pt-115 pb-55">
+               <hr>
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="section-title-2 text-center">
-                                        <h2 class="f1">Các đại lý của chúng tôi</h2>
+                                        <h2 class="f1 f5">Các đại lý của chúng tôi</h2>
                                         <p class="f1 f4">Sheltek có một hệ thống đại lý phong phú và phủ sóng khắp cả nước</p>
                                     </div>
                                 </div>
@@ -159,7 +159,7 @@ function houseForRent() {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                  
                     <!-- OUR AGENTS AREA END -->\`;
 <!-- BRAND AREA START -->
             <div class="brand-area pb-115">

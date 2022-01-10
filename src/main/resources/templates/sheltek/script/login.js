@@ -205,12 +205,12 @@ function loadData() {
 
                     let html = `
                     <!-- SERVICES AREA START -->
-                    <section class="services-area pb-60">
+                    <br><br><section class="services-area pb-60">
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="section-title-2 text-center">
-                                        <h2 class="f1">DỊCH VỤ CỦA CHÚNG TÔI</h2>
+                                        <h2 class="f1 f5">DỊCH VỤ CỦA CHÚNG TÔI</h2>
                                         <p class="f1" style="font-size: 20px">Tìm kiếm sự lựa chọn của bạn !</p>
                                     </div>
                                 </div>
@@ -224,7 +224,7 @@ function loadData() {
                                                 <a href="service-details.html"><img src="images/service/2.jpg" alt=""></a>
                                             </div>
                                             <div class="service-item-info">
-                                                <h5><a class="f1 f4" onclick="seeRentalHouses()" href="#">Thuê nhà</a></h5>
+                                                <h5><a class="f1 f4 f5" onclick="seeRentalHouses()" href="#">Thuê nhà</a></h5>
                                                 <p class="f1 f3">Nơi tập hợp những địa điểm thuê nhà lý tưởng bậc nhất Việt Nam</p>
                                             </div>
                                         </div>
@@ -236,7 +236,7 @@ function loadData() {
                                                 <a href="service-details.html"><img src="images/service/3.jpg" alt=""></a>
                                             </div>
                                             <div class="service-item-info">
-                                                <h5><a class="f1 f4" href="#" onclick="houseForRent()">Cho thuê nhà</a></h5>
+                                                <h5><a class="f1 f4 f5" href="#" onclick="houseForRent()">Cho thuê nhà</a></h5>
                                                 <p class="f1 f3">Cộng đồng người dùng đông đảo. Đặt uy tín lên hàng đầu</p>
                                             </div>
                                         </div>
@@ -248,7 +248,7 @@ function loadData() {
                                                 <a href="#"><img src="images/service/4.jpg" alt=""></a>
                                             </div>
                                             <div class="service-item-info">
-                                                <h5><a class="f1 f4" href="#" onclick="managerHouseUser()" >Quản lý</a></h5>
+                                                <h5><a class="f1 f4 f5" href="#" onclick="managerHouseUser()" >Quản lý</a></h5>
                                                 <p class="f1 f3">Kiểm soát tài sản của bạn một cách hợp lý và thuận tiện</p>
                                             </div>
                                         </div>
@@ -290,7 +290,7 @@ function loadData() {
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="section-title-2 text-center">
-                                        <h2 class="f1">Một số Địa điểm nổi trội</h2>
+                                        <h2 class="f1 f5">Một số Địa điểm nổi trội</h2>
                                     </div>
                                 </div>
                             </div>
@@ -354,8 +354,8 @@ function loadData() {
                                 <div class="col-md-7 col-md-offset-5">
                                     <div class="features-info bg-gray">
                                         <div class="section-title mb-30">
-                                            <h3 class="f1">Dưới đây</h3>
-                                            <h3 class="f1">Là một số tiện ích</h3>
+                                            <h3 class="f1 f5">Dưới đây</h3>
+                                            <h3 class="f1 f5">Là một số tiện ích</h3>
                                         </div>
                                         <div class="features-desc">
                                             <p class="f1 f3"><span data-placement="top" data-toggle="tooltip" data-original-title="The name you can trust" class="tooltip-content">Sheltek</span> là một thế giới lý tưởng cho các bạn muốn tìm một ngôi nhà vừa ý. Một mơi lưu trân khi đi du lịch để tận hưởng cuộc sống, hay 1 ngôi nhà đầy đủ tiện nghi</p>
@@ -413,7 +413,7 @@ function loadData() {
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="section-title-2 text-center">
-                                        <h2 class="f1">Các đại lý của chúng tôi</h2>
+                                        <h2 class="f1 f5">Các đại lý của chúng tôi</h2>
                                         <p class="f1 f4">Sheltek có một hệ thống đại lý phong phú và phủ sóng khắp cả nước</p>
                                     </div>
                                 </div>
@@ -525,7 +525,7 @@ function seeRentalHouses(){
                     <div class="row">
                         <div class="col-md-12">
                             <div class="section-title-2 text-center"><br>
-                                <h2 class="f1">Các Căn Có Thể Thuê</h2>
+                                <h2 class="f1 f5">Các Căn Có Thể Thuê</h2>
                             </div>
                         </div>
                     </div>
@@ -655,7 +655,7 @@ function seeRentalHouses(){
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="section-title-2 text-center">
-                                        <h2 class="f1">Các đại lý của chúng tôi</h2>
+                                        <h2 class="f1 f5">Các đại lý của chúng tôi</h2>
                                         <p class="f1 f4">Sheltek có một hệ thống đại lý phong phú và phủ sóng khắp cả nước</p>
                                     </div>
                                 </div>
