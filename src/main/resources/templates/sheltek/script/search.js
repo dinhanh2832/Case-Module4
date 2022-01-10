@@ -72,11 +72,12 @@ function searchHome() {
             let html1 = `
             <!-- FEATURED FLAT AREA START -->
             <div class="featured-flat-area pb-60">
+              <button class="f1 f4 submit-btn-1 " onclick="back()">Quay lại</button>
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="section-title-2 text-center">
-                                <h2>Các Căn Có Thể Thuê</h2>
+                            <div class="section-title-2 text-center"><br>
+                                <h2 class="f1 f5">Các Căn Có Thể Thuê</h2>
                             </div>
                         </div>
                     </div>
@@ -89,32 +90,32 @@ function searchHome() {
                     <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="flat-item">
                         <div class="flat-item-image">
-                            <span class="for-sale">${data[i].statusHome.name}</span>                          
+                            <span style="  font-family: 'Comforter', cursive;  font-family: 'Open Sans', sans-serif;" class="for-sale">${data[i].statusHome.name}</span>                          
                             <a href="#" id="${imgHome}"></a>
                             <div class="flat-link">
-                                <a onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
+                                <a class="f1" onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
                             </div>
                             <ul class="flat-desc">
                                 <li>
                                     <img src="images/icons/4.png" alt="">
-                                        <span>${data[i].description}</span>
+                                        <span class="f1">${data[i].description}</span>
                                 </li>
                                 <li>
                                     <img src="images/icons/5.png" alt="">
-                                        <span>${data[i].bedroom}</span>
+                                        <span class="f1">${data[i].bedroom}</span>
                                 </li>
                                 <li>
                                     <img src="images/icons/6.png" alt="">
-                                        <span>${data[i].showerRoom}</span>
+                                        <span class="f1">${data[i].showerRoom}</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="flat-item-info">
                             <div class="flat-title-price">
-                                <h5><a href="properties-details.html">${data[i].name}</a></h5>
-                                <span class="price">${data[i].price}Đ</span>
+                                <h5><a class="f1" href="properties-details.html">${data[i].name}</a></h5>
+                                <span class="f1 price">${data[i].price}VNĐ</span>
                             </div>
-                            <p><img src="images/icons/location.png" alt="">${data[i].address}</p>
+                            <p class="f1"><img src="images/icons/location.png" alt="">${data[i].address}</p>
                         </div>
                     </div>
                 </div>`;
@@ -133,7 +134,7 @@ function searchHome() {
                                     <ul class="pagination-list text-center">
                                         <li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
                                         <li><a href="#">1</a></li>
-                                        <li><a href="#">2</a></li>
+                                     
                                         <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
                                     </ul>
                                 </div>
@@ -150,8 +151,8 @@ function searchHome() {
                     <div class="row">
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <div class="section-title text-white">
-                                <h3>SOME</h3>
-                                <h2 class="h1">FUN FACTOR</h2>
+                                <h3 class="f1">Một vài</h3>
+                                <h2 class="h1 f1">Nhân tố vui vẻ</h2>
                             </div>
                         </div>
                         <div class="col-md-9 col-sm-8 col-xs-12">
@@ -161,33 +162,33 @@ function searchHome() {
                                     <div class="counter-item">
                                         <h2>
                                             <i class="fa fa-home" aria-hidden="true"></i>
-                                            <span class="counter">999</span>
+                                            <span class="counter f1">999</span>
                                         </h2>
-                                        <p>Complete Project</p>
+                                        <p class="f1">Hoàn thành dự án</p>
                                     </div>
                                     <!-- counter-item -->
                                     <div class="counter-item">
                                         <h2>
                                             <i class="fa fa-key" aria-hidden="true"></i>
-                                            <span class="counter">555</span>
+                                            <span class="counter f1">555</span>
                                         </h2>
-                                        <p>Property Sold</p>
+                                        <p class="f1">Bất động sản đã bán</p>
                                     </div>
                                     <!-- counter-item -->
                                     <div class="counter-item">
                                         <h2>
                                             <i class="fa fa-smile-o" aria-hidden="true"></i>
-                                            <span class="counter">350</span>
+                                            <span class="counter f1">350</span>
                                         </h2>
-                                        <p>Happy Clients</p>
+                                        <p class="f1">Khách hàng vui vẻ</p>
                                     </div>
                                     <!-- counter-item -->
                                     <div class="counter-item">
                                         <h2>
                                             <i class="fa fa-trophy" aria-hidden="true"></i>
-                                            <span class="counter">100</span>
+                                            <span class="counter f1">100</span>
                                         </h2>
-                                        <p>Awards Win</p>
+                                        <p class="f1">Giành giải thưởng</p>
                                     </div>
                                 </div>
                                 <div class="booking-imgae">
@@ -201,114 +202,104 @@ function searchHome() {
             <!-- BOOKING AREA END -->
             
             <!-- OUR AGENTS AREA START -->
-            <div class="our-agents-area pt-115 pb-60">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="section-title-2 text-center">
-                                <h2>OUR AGENTS</h2>
-                                <p>Sheltek is the best theme for  elit, sed do eiusmod tempor dolor sit amet, conse ctetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et lorna aliquatd minim veniam, quis nostrud</p>
+             <div class="our-agents-area pt-115 pb-55">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="section-title-2 text-center">
+                                        <h2 class="f1 f5">Các đại lý của chúng tôi</h2>
+                                        <p class="f1 f4">Sheltek có một hệ thống đại lý phong phú và phủ sóng khắp cả nước</p>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="our-agents">
-                        <div class="row">
-                            <div class="agents-carousel">
-                                <!-- single-agent -->
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <div class="single-agent">
-                                        <div class="agent-image">
-                                            <img src="images/agents/1.jpg" alt="">
-                                        </div>
-                                        <div class="agent-info">
-                                            <div class="agent-name">
-                                                <h5><a href="#">Shah M Nawaz</a></h5>
-                                                <p>Real Estate Agent</p>
+                            <div class="our-agents">
+                                <div class="row">
+                                    <div class="agents-carousel">
+                                        <!-- single-agent -->
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="single-agent">
+                                                <div class="agent-image">
+                                                     <img src="/templates/sheltek/images/admin/1.jpg" alt="">
+                                                </div>
+                                                <div class="agent-info">
+                                                    <div class="agent-name">
+                                                        <h5 class="f1 f5"><a href="agent-details.html">Nguyễn Quốc Khánh</a></h5>
+                                                        <p class="f1">Đà nẵng</p>
+                                                    </div>
+                                                </div>
+                                                <div class="agent-info-hover">
+                                                
+                                                    <ul class="agent-address">
+                                                        <li><img class="f1" src="images/icons/phone-2.png" alt="">+1245  785  659 </li>
+                                                        <li><img class="f1" src="images/icons/mail-close.png" alt="">khanh@gmail.com </li>
+                                                    </ul>
+                                                    <ul class="social-media">
+                                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div class="agent-info-hover">
-                                            <div class="agent-name">
-                                                <h5><a href="#">Shah M Nawaz</a></h5>
-                                                <p>Real Estate Agent</p>
+                                        <!-- single-agent -->
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="single-agent">
+                                                <div class="agent-image">
+                                                     <img src="/templates/sheltek/images/admin/2.jpg" alt="">
+                                                </div>
+                                                <div class="agent-info">
+                                                    <div class="agent-name"><h5 class="f1 f5"><a>Nguyễn Đình Ánh</a></h5>
+                                                        <p class="f1">Hà Nội</p>
+                                                    </div>
+                                                </div>
+                                                <div class="agent-info-hover">
+                                                
+                                                    <ul class="agent-address">
+                                                        <li><img class="f1" src="images/icons/phone-2.png" alt="">+1245  785  659 </li>
+                                                        <li><img class="f1" src="images/icons/mail-close.png" alt="">anh@gmail.com </li>
+                                                    </ul>
+                                                    <ul class="social-media">
+                                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                                    </ul>
+                                                </div>
                                             </div>
-                                            <ul class="agent-address">
-                                                <li><img src="images/icons/phone-2.png" alt="">+1245  785  659 </li>
-                                                <li><img src="images/icons/mail-close.png" alt="">eva@gmail.com </li>
-                                            </ul>
-                                            <ul class="social-media">
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                            </ul>
+                                        </div>
+                                        <!-- single-agent -->
+                                        <div class="col-md-4 col-sm-6 col-xs-12">
+                                            <div class="single-agent">
+                                                <div class="agent-image">
+                                                    <img src="/templates/sheltek/images/admin/3.jpg" alt="">
+                                                </div>
+                                                <div class="agent-info">
+                                                    <div class="agent-name">
+                                                        <h5 class="f1 f5"><a href="agent-details.html">Lê Vũ Duy</a></h5>
+                                                        <p class="f1">Thành Phố HCM</p>
+                                                    </div>
+                                                </div>
+                                                <div class="agent-info-hover">
+                                               
+                                                    <ul class="agent-address">
+                                                        <li><img class="f1" src="images/icons/phone-2.png" alt="">+1245  785  659 </li>
+                                                        <li><img class="f1" src="images/icons/mail-close.png" alt="">duy@gmail.com </li>
+                                                    </ul>
+                                                    <ul class="social-media">
+                                                        <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+                                                        <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                                <!-- single-agent -->
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <div class="single-agent">
-                                        <div class="agent-image">
-                                            <img src="images/agents/2.jpg" alt="">
-                                        </div>
-                                        <div class="agent-info">
-                                            <div class="agent-name">
-                                                <h5><a href="#">Eva Sharlin</a></h5>
-                                                <p>Real Estate Broker</p>
-                                            </div>
-                                        </div>
-                                        <div class="agent-info-hover">
-                                            <div class="agent-name">
-                                                <h5><a href="#">Eva Sharlin</a></h5>
-                                                <p>Real Estate Broker</p>
-                                            </div>
-                                            <ul class="agent-address">
-                                                <li><img src="images/icons/phone-2.png" alt="">+1245  785  659 </li>
-                                                <li><img src="images/icons/mail-close.png" alt="">eva@gmail.com </li>
-                                            </ul>
-                                            <ul class="social-media">
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- single-agent -->
-                                <div class="col-md-4 col-sm-4 col-xs-12">
-                                    <div class="single-agent">
-                                        <div class="agent-image">
-                                            <img src="images/agents/3.jpg" alt="">
-                                        </div>
-                                        <div class="agent-info">
-                                            <div class="agent-name">
-                                                <h5><a href="#">Momen Bhuyan</a></h5>
-                                                <p>Real Estate Broker</p>
-                                            </div>
-                                        </div>
-                                        <div class="agent-info-hover">
-                                            <div class="agent-name">
-                                                <h5><a href="#">Momen Bhuyan</a></h5>
-                                                <p>Real Estate Broker</p>
-                                            </div>
-                                            <ul class="agent-address">
-                                                <li><img src="images/icons/phone-2.png" alt="">+1245  785  659 </li>
-                                                <li><img src="images/icons/mail-close.png" alt="">eva@gmail.com </li>
-                                            </ul>
-                                            <ul class="social-media">
-                                                <li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>                                                            
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
             <!-- OUR AGENTS AREA END -->
 
             <!-- BRAND AREA START -->
@@ -360,23 +351,16 @@ function searchHome() {
             <!-- BRAND AREA END -->
             
             <!-- SUBSCRIBE AREA START -->
-            <div class="subscribe-area bg-blue call-to-bg plr-140 ptb-50">
+                <div class="subscribe-area bg-blue call-to-bg plr-140 ptb-50">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <div class="section-title text-white">
-                                <h3>SUBSCRIBE</h3>
-                                <h2 class="h1">NEWSLETTER</h2>
+
+                                <h2 class="h1">Bản tin</h2>
                             </div>
                         </div>
-                        <div class="col-md-9 col-sm-8 col-xs-12">
-                            <div class="subscribe">
-                                <form action="#">
-                                    <input type="text" name="subscribe" placeholder="Enter yur email here...">
-                                    <button type="submit" value="send">Send</button>
-                                </form>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>
