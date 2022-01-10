@@ -309,7 +309,7 @@ function loadData() {
                             <span class="for-sale f1">${data[i].statusHome.name}</span>                          
                             <a href="#" id="${imgHome}"></a>
                             <div class="flat-link">
-                                <a class="f1" onclick="goDetailsHome(${data[i].id})" href="#" >gm chi tiết</a>
+                                <a class="f1" onclick="goDetailsHome(${data[i].id})" href="#" >xem chi tiết</a>
                             </div>
                             <ul class="flat-desc">
                                 <li>
