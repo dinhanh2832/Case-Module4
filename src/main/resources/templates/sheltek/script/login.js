@@ -83,7 +83,7 @@ function loadHomeContent() {
             document.getElementById("logout").innerHTML = `<a class="f1" href="#" onclick="logout()">Đăng Xuất</a>`;
             document.getElementById("div1").style.display = 'block';
             document.getElementById("div2").style.display = 'block';
-           admin();
+            admin();
         }
     }
 
@@ -832,6 +832,7 @@ function goDetailsHome(id){
 function backHome(){
     localStorage.removeItem("seeRental");
     localStorage.removeItem("manager");
+    localStorage.removeItem("houseForRent");
     location.reload();
 }
 function logout(){

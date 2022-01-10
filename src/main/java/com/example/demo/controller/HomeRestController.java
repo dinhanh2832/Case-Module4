@@ -109,9 +109,9 @@ public class HomeRestController {
         return new ResponseEntity<>(home, HttpStatus.CREATED);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Home> edit(@PathVariable Long id, @RequestBody Home home) {
-        Optional<Home> homeOptional = homeService.findById(id);
+    @PutMapping("")
+    public ResponseEntity<Home> edit(Long idH, @RequestBody Home home) {
+        Optional<Home> homeOptional = homeService.findById(idH);
         home.setId(homeOptional.get().getId());
         homeService.save(home);
         return new ResponseEntity<>(home, HttpStatus.OK);
@@ -174,10 +174,12 @@ public class HomeRestController {
     }
     @PostMapping("/uploadFile")
     public ResponseEntity<List<Image>> uploadFile(MultipartFile[] files) {
+        List<Home> homes = (List<Home>) homeService.showHomeOrderByDESC();
+        Home home1 = homes.get(0);
         List<Image> list = new ArrayList<>();
         for(int i = 0;i<files.length;i++){
-            String nameImage = "avatar/" + "fileName" +i;
             String fileName1 = files[i].getOriginalFilename();
+            String nameImage = "avatar/" + fileName1;
             try {
                 FileCopyUtils.copy(files[i].getBytes(),
                         new File("C:\\Users\\anh\\IdeaProjects\\demo2\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName1)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
@@ -186,13 +188,44 @@ public class HomeRestController {
                 ex.printStackTrace();
             }
             if(i == 0){
-                Image image2 = new Image(nameImage,1);
+                Image image2 = new Image(nameImage,1,home1);
                 list.add(image2);
+                imageService.save(image2);
             } else {
-                Image image2 = new Image(nameImage,2);
+                Image image2 = new Image(nameImage,2,home1);
                 list.add(image2);
+                imageService.save(image2);
             }
         }
         return new ResponseEntity<>(list,HttpStatus.OK);
+    }
+    @PutMapping("/saveImg")
+    public ResponseEntity<List<Image>> saveImg(MultipartFile[] files,Long idH) {
+        List<Image> images = (List<Image>) imageService.findAllImgByIdHome(idH);
+        for(int i = 0;i<files.length;i++){
+            String fileName1 = files[i].getOriginalFilename();
+            String nameImage = "avatar/" + fileName1;
+            try {
+                FileCopyUtils.copy(files[i].getBytes(),
+                        new File("C:\\Users\\anh\\IdeaProjects\\demo2\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName1)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
+                // đường dẫn ảo là /nhuanh/
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            if(i == 0){
+                if(fileName1 != null){
+                    Image image = images.get(i);
+                    image.setLinks(nameImage);
+                    imageService.save(image);
+                }
+            } else {
+                if(fileName1 != null){
+                    Image image = images.get(i);
+                    image.setLinks(nameImage);
+                    imageService.save(image);
+                }
+            }
+        }
+        return new ResponseEntity<>(images,HttpStatus.OK);
     }
 }

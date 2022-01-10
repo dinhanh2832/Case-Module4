@@ -49,12 +49,12 @@ function showDetail(){
         success: function (data) {
             let html = `
     <ul class="condition-list">
-                                                    <li><img src="images/icons/5.png" alt="">Area ${data.description}</li>
-                                                    <li><img src="images/icons/6.png" alt="">Bedroom ${data.bedroom}</li>
-                                                    <li><img src="images/icons/7.png" alt="">Bathroom ${data.showerRoom}</li>
-                                                    <li><img src="images/icons/13.png" alt="">Garage 2</li>
-                                                    <li><img src="images/icons/14.png" alt="">Kitchen 2</li>
-                                                    <li>$52,350</li>
+                                                    <li><img src="images/icons/5.png" alt="">Diện tích ${data.area}</li>
+                                                    <li><img src="images/icons/6.png" alt="">Số p.ngủ ${data.bedroom}</li>
+                                                    <li><img src="images/icons/7.png" alt="">Số p.tắm ${data.showerRoom}</li>
+                                                    <li><img src="images/icons/13.png" alt="">Nhà xe 2</li>
+                                                    <li><img src="images/icons/14.png" alt="">Phòng bếp 2</li>
+                                                    <li>${data.price}</li>
                                                 </ul>
                                                 <p><img src="images/icons/location.png" alt="">${data.address}</p>
     `;
