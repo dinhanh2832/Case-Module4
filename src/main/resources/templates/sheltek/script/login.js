@@ -1,5 +1,5 @@
 function loadHomeContent() {
-    if(localStorage.getItem("user") == null ) {
+    if (localStorage.getItem("user") == null) {
         document.getElementById("login1").innerHTML = `
        <section id="page-content" class="page-wrapper">
             <div class="login-section pt-115 pb-70">
@@ -53,22 +53,21 @@ function loadHomeContent() {
         document.getElementById("div2").style.display = 'none';
         document.getElementById("body1").style.display = 'none';
         document.getElementById("slideLogout").style.display = 'none';
-    } else if (localStorage.getItem("user") != null){
-        if(localStorage.getItem("user") === "ROLE_USER"){
-            if(localStorage.getItem("seeRental") != null){
+    } else if (localStorage.getItem("user") != null) {
+        if (localStorage.getItem("user") === "ROLE_USER") {
+            if (localStorage.getItem("seeRental") != null) {
                 document.getElementById("logout").innerHTML = `<a class="f1" href="#" onclick="logout()">Đăng Xuất</a>`;
                 document.getElementById("slideLogin").style.display = 'none';
                 seeRentalHouses();
-            } else if(localStorage.getItem("manager") != null){
+            } else if (localStorage.getItem("manager") != null) {
                 document.getElementById("logout").innerHTML = `<a class="f1" href="#" onclick="logout()">Đăng Xuất</a>`;
                 document.getElementById("slideLogin").style.display = 'none';
                 managerHouseUser();
-            } else if(localStorage.getItem("houseForRent") != null){
+            } else if (localStorage.getItem("houseForRent") != null) {
                 document.getElementById("logout").innerHTML = `<a class="f1" href="#" onclick="logout()">Đăng Xuất</a>`;
                 document.getElementById("slideLogin").style.display = 'none';
                 houseForRent();
-            }
-            else {
+            } else {
                 document.getElementById("logout").innerHTML = `<a class="f1" href="#" onclick="logout()">Đăng Xuất</a>`;
                 document.getElementById("div1").style.display = 'block';
                 document.getElementById("div2").style.display = 'block';
@@ -89,6 +88,7 @@ function loadHomeContent() {
 
     // login();
 }
+
 function login() {
     let user = {
         "username": document.getElementById("username").value,
@@ -105,7 +105,7 @@ function login() {
         success: function (data) {
             console.log(data)
             console.log(data.roles[0])
-            if(data.roles[0].authority === "ROLE_USER"){
+            if (data.roles[0].authority === "ROLE_USER") {
                 localStorage.setItem("token", data.accessToken)
                 localStorage.setItem("nameUser", data.username)
                 localStorage.setItem("user", data.roles[0].authority)
@@ -133,7 +133,8 @@ function login() {
         }
     });
 }
-function admin(){
+
+function admin() {
     document.getElementById("body2").innerHTML = `<div id="page-content" class="page-wrapper">
             
             <!-- ELEMENTS AREA START -->
@@ -194,6 +195,7 @@ function admin(){
         </div>`;
     loadDataAdmin();
 }
+
 function loadData() {
     $.ajax({
         type: "GET",
@@ -203,7 +205,7 @@ function loadData() {
             console.log(data);
             $("div#login1").remove();
 
-                    let html = `
+            let html = `
                     <!-- SERVICES AREA START -->
                     <br><br><section class="services-area pb-60">
                         <div class="container">
@@ -297,9 +299,9 @@ function loadData() {
                             <div class="featured-flat">
                                 <div class="row">`;
 
-                    for (let i =0; i < data.length;i++){
-                        let imgHome = "imgHome" + i;
-                        html += `<!-- flat-item -->
+            for (let i = 0; i < data.length; i++) {
+                let imgHome = "imgHome" + i;
+                html += `<!-- flat-item -->
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="flat-item">
                         <div class="flat-item-image">
@@ -332,22 +334,22 @@ function loadData() {
                         </div>
                     </div>
                 </div>`;
-                        $.ajax({
-                            type: "GET",
-                            url: "http://localhost:8080/api/homes/listImg?idH=" + data[i].id,
-                            headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
-                            success: function (data1) {
-                                console.log(data1)
-                                document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
-                            }
-                        })
-
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/api/homes/listImg?idH=" + data[i].id,
+                    headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+                    success: function (data1) {
+                        console.log(data1)
+                        document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
                     }
-                    html +=`            </div>
+                })
+
+            }
+            html += `            </div>
                             </div>
                         </div>
                     </div>`;
-                    html += `<!-- FEATURES AREA START -->
+            html += `<!-- FEATURES AREA START -->
                     <div class="features-area fix">
                         <div class="container-fluid">
                             <div class="row">
@@ -507,17 +509,18 @@ function loadData() {
                         </div>
                     </div>
                     <!-- OUR AGENTS AREA END -->`;
-                    document.getElementById("service").innerHTML = html;
+            document.getElementById("service").innerHTML = html;
         }
     });
 }
-function seeRentalHouses(){
+
+function seeRentalHouses() {
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/api/homes",
         headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
         success: function (data) {
-            localStorage.setItem("seeRental","seeRental")
+            localStorage.setItem("seeRental", "seeRental")
             let html1 = `
             <!-- FEATURED FLAT AREA START -->
             <div class="featured-flat-area pb-60">
@@ -532,13 +535,14 @@ function seeRentalHouses(){
                     <div class="featured-flat">
                         <div class="row">
                             <!-- flat-item -->`
-                for(let i = 0;i< data.length;i++) {
-                    let imgHome = "imgHome" + i;
-                    html1 += `
+            for (let i = 0; i < data.length; i++) {
+                let imgHome = "imgHome" + i;
+                html1 += `
                     <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="flat-item">
                         <div class="flat-item-image">
-                            <span class="for-sale">${data[i].statusHome.name}</span>                          
+                            <span style=" font-family: 'Comforter', cursive;
+                             font-family: 'Open Sans', sans-serif;" class="for-sale">${data[i].statusHome.name}</span>                          
                             <a href="#" id="${imgHome}"></a>
                             <div class="flat-link">
                                 <a class="f1" onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
@@ -567,17 +571,17 @@ function seeRentalHouses(){
                         </div>
                     </div>
                 </div>`;
-                    $.ajax({
-                        type: "GET",
-                        url: "http://localhost:8080/api/homes/listImg?idH=" + data[i].id,
-                        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
-                        success: function (data1) {
-                            console.log(data1)
-                            document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
-                        }
-                    })
-                }
-                html1 += `<div class="col-xs-12">
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/api/homes/listImg?idH=" + data[i].id,
+                    headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+                    success: function (data1) {
+                        console.log(data1)
+                        document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
+                    }
+                })
+            }
+            html1 += `<div class="col-xs-12">
                                 <div class="pagination-area mb-60">
                                     <ul class="pagination-list text-center">
                                         <li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
@@ -825,21 +829,25 @@ function seeRentalHouses(){
         }
     })
 }
-function goDetailsHome(id){
-    window.location="properties-details.html";
-    localStorage.setItem("idHome",id);
+
+function goDetailsHome(id) {
+    window.location = "properties-details.html";
+    localStorage.setItem("idHome", id);
 }
-function backHome(){
+
+function backHome() {
     localStorage.removeItem("seeRental");
     localStorage.removeItem("manager");
     localStorage.removeItem("houseForRent");
     location.reload();
 }
-function logout(){
+
+function logout() {
     localStorage.clear();
     location.reload();
 }
-function registration(){
+
+function registration() {
     document.getElementById("formLog").innerHTML = `<div class="new-customers mb-50">
                                 <form action="#">
                                 <div id="mess"></div>
@@ -880,7 +888,8 @@ function registration(){
                                 </form>
                             </div>`
 }
-function register(){
+
+function register() {
     let firstName = document.getElementById("firstName").value;
     let lastName = document.getElementById("lastName").value;
     let userName = document.getElementById("userName1").value;
