@@ -43,12 +43,13 @@ function seeHouseUser(id){
                         <div class="row">
                             <!-- flat-item -->`
             for(let i = 0;i< data.length;i++) {
+                let imgHome = "imgHome" + i;
                 html1 += `
                     <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="flat-item">
                                     <div class="flat-item-image">
-                                        <span class="for-sale f1">${data[i].statusHome.name}</span>
-                                        <a href="#"><img src="images/${data[i].imageList[0].links}" alt=""></a>
+                                        <span class="for-sale">${data[i].statusHome.name}</span>
+                                          <a href="#" id="${imgHome}"></a>
                                         <div class="flat-link">                                                                     
                                                <a onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
                                         </div>
@@ -74,13 +75,22 @@ function seeHouseUser(id){
                                         </div>
                                         <div class="flat-item-info">
                                         <p><img src="images/icons/location.png" alt="">${data[i].address}</p>
-                                        <button style="margin-left: 90px;width: 80px" class="btn-primary" onclick="editHomeByUser(${data[i].id})">Sửa</button>
-                                        <button class="btn-primary" style="width: 80px" onclick="deleteHomeByUser(${data[i].id})">Xóa</button>
+                                        <button style="margin-left: 90px;width: 80px; border-radius: 7%" class="btn-primary" onclick="showEditHomeByUser(${data[i].id})">Sửa</button>
+                                        <button class="btn-primary" style="width: 80px; border-radius: 7%" onclick="deleteHomeByUser(${data[i].id})">Xóa</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                     `;
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/api/homes/listImg?idH=" + data[i].id,
+                    headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+                    success: function (data1) {
+                        console.log(data1)
+                        document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
+                    }
+                })
             }
             html1 += `<div class="col-xs-12">
                                 <div class="pagination-area mb-60">

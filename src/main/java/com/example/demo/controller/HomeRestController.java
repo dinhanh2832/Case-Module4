@@ -15,6 +15,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -213,13 +214,13 @@ public class HomeRestController {
                 ex.printStackTrace();
             }
             if(i == 0){
-                if(fileName1 != null){
+                if(!Objects.equals(fileName1, "")){
                     Image image = images.get(i);
                     image.setLinks(nameImage);
                     imageService.save(image);
                 }
             } else {
-                if(fileName1 != null){
+                if(!Objects.equals(fileName1, "")){
                     Image image = images.get(i);
                     image.setLinks(nameImage);
                     imageService.save(image);
