@@ -33,6 +33,7 @@
     <!-- Modernizr JS -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
 
+
 </head>
 
 <body onload="loadDataHome()">
@@ -343,6 +344,38 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                                <div class="col-sm-3 col-xs-12">
+                                    <!--                                    <div class="find-home-item">-->
+                                    <!--                                        <input type="text" name="min-area" placeholder="Min area (sqft)">-->
+                                    <!--                                    </div>-->
+                                    <div class="row">
+                                        <p class="birth"><strong>Ngày nhận phòng: </strong></p>
+                                        <div style="width: 100% !important;" class="form-group col-sm-3 col-xs-6">
+                                            <label for="monthStart" class="sr-only"></label>
+                                            <input id="monthStart" class="form-control input-group-lg" name="dateOfBirth" type="date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3 col-xs-12">
+                                    <!--                                    <div class="find-home-item">-->
+                                    <!--                                        <input type="text" name="max-area" placeholder="Max area (sqft)">-->
+                                    <!--                                    </div>-->
+                                    <div class="row">
+                                        <p class="birth"><strong>Ngày trả phòng</strong></p>
+                                        <div style="width: 100% !important;" class="form-group col-sm-3 col-xs-6">
+                                            <label for="monthEnd" class="sr-only"></label>
+                                            <input id="monthEnd" class="form-control input-group-lg" name="dateOfBirth" type="date">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5 col-xs-12">
+                                    <div class="find-home-item mb-0-xs">
+                                        <button class="button-1 " onclick="orderHome()">Đặt thuê</button>
+                                    </div>
+                                </div>
+                            </div>
+
                             <!-- pro-details-short-info -->
                             <div class="pro-details-short-info mb-60">
                                 <div class="row">
@@ -607,6 +640,7 @@
     <script src="js/main.js"></script>
     <script src="script/showHome.js"></script>
     <script src="script/login.js"></script>
+    <script src="script/order-home.js"></script>
 </body>
 
 </html>
