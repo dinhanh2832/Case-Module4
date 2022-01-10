@@ -341,7 +341,7 @@ function loadData() {
                     headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
                     success: function (data1) {
                         console.log(data1)
-                        document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
+                        document.getElementById(imgHome).innerHTML = `<img width="368px" height="235px" src="images/${data1[0].links}" alt="" class="img-fluid">`;
                     }
                 })
 
@@ -525,8 +525,9 @@ function seeRentalHouses() {
             let html1 = `
             <!-- FEATURED FLAT AREA START -->
             <div class="featured-flat-area pb-60">
-             <button class="f1 f4 submit-btn-1 " onclick="back()">Quay lại</button>
+              
                 <div class="container">
+                  <button class="btn-primary" onclick="back()" style="width: 100px">Quay lại</button>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="section-title-2 text-center"><br>
@@ -579,7 +580,7 @@ function seeRentalHouses() {
                     headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
                     success: function (data1) {
                         console.log(data1)
-                        document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
+                        document.getElementById(imgHome).innerHTML = `<img width="368px" height="235px" src="images/${data1[0].links}" alt="" class="img-fluid">`;
                     }
                 })
             }

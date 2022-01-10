@@ -125,7 +125,7 @@ function searchHome() {
                     headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
                     success: function (data1) {
                         console.log(data1)
-                        document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
+                        document.getElementById(imgHome).innerHTML = `<img width="368px" height="235px" src="images/${data1[0].links}" alt="" class="img-fluid">`;
                     }
                 })
             }

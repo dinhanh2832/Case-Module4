@@ -18,7 +18,7 @@ function seeDetailsHome() {
 
             document.getElementById("pro-0").innerHTML = `
             <a href="images/${data[0].links}" data-lightbox="image-1" data-title="Sheltek Properties - 1">
-                                                <img src="images/${data[0].links}" alt="">
+                                                <img width="765px" height="389px" src="images/${data[0].links}" alt="">
                   </a>
             `;
             for(let i =1;i <= arr1.length;i++){
@@ -27,7 +27,7 @@ function seeDetailsHome() {
                     let pro = "#pro-" + i;
                     document.getElementById(idx).innerHTML =`
             <a href="${pro}" data-toggle="tab">
-                                            <img src="images/${arr1[i].links}" alt="">
+                                            <img width="188px" height="120px" src="images/${arr1[i].links}" alt="">
                                         </a>
             `
                 }
@@ -77,7 +77,7 @@ function showComment(){
                                 <!-- media -->
                                 <div class="media">
                                     <a class="media-left" href="#">
-                                        <img src="images/avatar/2.jpg" alt="">
+                                        <img width="81px" height="72px" src="https://thuthuatnhanh.com/wp-content/uploads/2020/09/hinh-avatar-trang-cho-nam-va-con-than-lan.jpg" alt="">
                                     </a>
                                     <div class="media-body">
                                         <p class="media-heading"><a class="f1 f5" href="#" style="font-size: 20px"> Tài khoản: ${data[i].user.username} </a></p>
