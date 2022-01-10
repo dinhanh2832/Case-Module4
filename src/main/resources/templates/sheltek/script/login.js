@@ -303,7 +303,7 @@ function loadData() {
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="flat-item">
                         <div class="flat-item-image">
-                            <span class="for-sale">${data[i].statusHome.name}</span>                          
+                            <span class="for-sale f1">${data[i].statusHome.name}</span>                          
                             <a href="#" id="${imgHome}"></a>
                             <div class="flat-link">
                                 <a class="f1" onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>

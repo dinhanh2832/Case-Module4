@@ -47,7 +47,7 @@ function seeHouseUser(id){
                     <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="flat-item">
                                     <div class="flat-item-image">
-                                        <span class="for-sale">${data[i].statusHome.name}</span>
+                                        <span class="for-sale f1">${data[i].statusHome.name}</span>
                                         <a href="#"><img src="images/${data[i].imageList[0].links}" alt=""></a>
                                         <div class="flat-link">                                                                     
                                                <a onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
