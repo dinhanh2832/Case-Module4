@@ -36,7 +36,7 @@ function seeDetailsHome() {
 
     })
 }
-function back(){
+function back1(){
     window.location="login.html";
     localStorage.removeItem("idHome");
 }
