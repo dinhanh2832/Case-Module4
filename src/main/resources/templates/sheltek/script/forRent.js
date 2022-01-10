@@ -212,60 +212,60 @@ function houseForRent() {
     document.getElementById("body2").innerHTML = html;
 }
 function createHome(){
-    let form = $('#form')[0];
-    let data = new FormData(form);
-
+    let statusHome = 1;
+    let numberOfTurns = 0;
+    let userId = localStorage.getItem("idUser");
+    let nameHouse = document.getElementById("username").value;
+    let address = document.getElementById("address").value;
+    let category = document.getElementById("cate").value;
+    let bedroom = document.getElementById("bedroom").value;
+    let showerRoom = document.getElementById("showerRoom").value;
+    let description = document.getElementById("description").value;
+    let price = document.getElementById("price").value;
+    let home = {
+        name: nameHouse,
+        address: address,
+        category:{
+            id: category
+        },
+        bedroom: bedroom,
+        showerRoom: showerRoom,
+        description: description,
+        price: price,
+        statusHome: {
+            id: statusHome
+        },
+        user: {
+            id: userId
+        },
+        numberOfTurns: numberOfTurns,
+    }
     $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
         type: "POST",
-        enctype: 'multipart/form-data',
-        url: "http://localhost:8080/api/homes/uploadFile",
-        data: data,
-        processData: false,
-        contentType: false,
-        cache: false,
-        timeout: 1000000,
-        success:function (data){
-            console.log(data)
-            let statusHome = 1;
-            let numberOfTurns = 0;
-            let userId = localStorage.getItem("idUser");
-            let nameHouse = document.getElementById("username").value;
-            let address = document.getElementById("address").value;
-            let category = document.getElementById("cate").value;
-            let bedroom = document.getElementById("bedroom").value;
-            let showerRoom = document.getElementById("showerRoom").value;
-            let description = document.getElementById("description").value;
-            let price = document.getElementById("price").value;
-            let home = {
-                name: nameHouse,
-                address: address,
-                category:{
-                    id: category
-                },
-                bedroom: bedroom,
-                showerRoom: showerRoom,
-                description: description,
-                price: price,
-                statusHome: {
-                    id: statusHome
-                },
-                user: {
-                    id: userId
-                },
-                numberOfTurns: numberOfTurns,
-            }
+        url: "http://localhost:8080/api/homes/createHome",
+        data: JSON.stringify(home),
+        success: function () {
+            let form = $('#form')[0];
+            let data = new FormData(form);
             $.ajax({
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
                 type: "POST",
-                url: "http://localhost:8080/api/homes/createHome",
-                data: JSON.stringify(home),
-                success: function () {
+                enctype: 'multipart/form-data',
+                url: "http://localhost:8080/api/homes/uploadFile",
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 1000000,
+                success:function (data){
+                    console.log(data)
                     backHome();
                 }
             })
+
         }
     })
 }
