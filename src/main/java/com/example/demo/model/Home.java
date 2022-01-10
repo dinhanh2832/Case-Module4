@@ -29,8 +29,9 @@ public class Home {
     @JoinColumn(name = "user_id")
     private User user;
     private int numberOfTurns;
+    private int area;
 
-    public Home(String name, String address, Category category, int bedroom, int showerRoom, String description, double price, StatusHome statusHome, User user, int numberOfTurns) {
+    public Home(String name, String address, Category category, int bedroom, int showerRoom, String description, double price, StatusHome statusHome, User user, int numberOfTurns,int area) {
         this.name = name;
         this.address = address;
         this.category = category;
@@ -41,6 +42,6 @@ public class Home {
         this.statusHome = statusHome;
         this.user = user;
         this.numberOfTurns = numberOfTurns;
+        this.area = area;
     }
-    private int area;
 }

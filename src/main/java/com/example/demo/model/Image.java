@@ -18,6 +18,13 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "home_id")
     private Home home;
+
+    public Image(String links, int status, Home home) {
+        this.links = links;
+        Status = status;
+        this.home = home;
+    }
+
     public Image(String links, int status) {
         this.links = links;
         Status = status;

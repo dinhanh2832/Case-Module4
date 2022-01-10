@@ -30,6 +30,7 @@ function houseForRent() {
                                                 <input class="f1" type="text" style="font-family: 'Comforter', cursive;
                                                 font-family: 'Open Sans', sans-serif;"  placeholder="Giá cho thuê" id="price">
                                             </div>
+                                            <input class="f1" type="text" placeholder="Diện tích" id="area">
                                             <input class="f1" type="text"  placeholder="Mô tả" id="description"> 
                                             <form enctype="multipart/form-data" id="form">
                                             <div class="col-sm-12">
@@ -53,7 +54,7 @@ function houseForRent() {
                                             <input type="file" name="files"/>
                                             </div>                                            
                                             <button class="submit-btn-1 mt-20 f1" type="submit" onclick="createHome()" >Đăng Cho Thuê</button>                                                                                 
-                                            <button class="submit-btn-1 mt-20 f1" type="submit"  >Quay Lại</button>                                                                                 
+                                            <button class="submit-btn-1 mt-20 f1" type="submit" onclick="back()" >Quay Lại</button>                                                                                 
                                             </form>                                        
                                          </div>
                                       <div class="col-sm-3"></div>                                  
@@ -211,6 +212,10 @@ function houseForRent() {
     showCategory();
     document.getElementById("body2").innerHTML = html;
 }
+function back(){
+    backHome();
+    location.reload();
+}
 function createHome(){
     let statusHome = 1;
     let numberOfTurns = 0;
@@ -222,6 +227,7 @@ function createHome(){
     let showerRoom = document.getElementById("showerRoom").value;
     let description = document.getElementById("description").value;
     let price = document.getElementById("price").value;
+    let area = document.getElementById("area").value;
     let home = {
         name: nameHouse,
         address: address,
@@ -239,6 +245,7 @@ function createHome(){
             id: userId
         },
         numberOfTurns: numberOfTurns,
+        area: area,
     }
     $.ajax({
         headers: {
@@ -262,6 +269,7 @@ function createHome(){
                 timeout: 1000000,
                 success:function (data){
                     console.log(data)
+                    // loadData();
                     backHome();
                 }
             })
