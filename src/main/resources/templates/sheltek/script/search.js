@@ -68,8 +68,8 @@ function searchHome() {
             data = arr;
             arr = [];
             console.log(data);
-                    localStorage.setItem("seeRental","seeRental")
-                    let html1 = `
+            localStorage.setItem("seeRental", "seeRental")
+            let html1 = `
             <!-- FEATURED FLAT AREA START -->
             <div class="featured-flat-area pb-60">
                 <div class="container">
@@ -83,9 +83,9 @@ function searchHome() {
                     <div class="featured-flat">
                         <div class="row">
                             <!-- flat-item -->`
-                    for(let i = 0;i< data.length;i++) {
-                        let imgHome = "imgHome" + i;
-                        html1 += `
+            for (let i = 0; i < data.length; i++) {
+                let imgHome = "imgHome" + i;
+                html1 += `
                     <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="flat-item">
                         <div class="flat-item-image">
@@ -118,17 +118,17 @@ function searchHome() {
                         </div>
                     </div>
                 </div>`;
-                        $.ajax({
-                            type: "GET",
-                            url: "http://localhost:8080/api/homes/listImg?idH=" + data[i].id,
-                            headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
-                            success: function (data1) {
-                                console.log(data1)
-                                document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
-                            }
-                        })
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/api/homes/listImg?idH=" + data[i].id,
+                    headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+                    success: function (data1) {
+                        console.log(data1)
+                        document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
                     }
-                    html1 += `<div class="col-xs-12">
+                })
+            }
+            html1 += `<div class="col-xs-12">
                                 <div class="pagination-area mb-60">
                                     <ul class="pagination-list text-center">
                                         <li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
@@ -383,7 +383,7 @@ function searchHome() {
             <!-- SUBSCRIBE AREA END -->
         </section>
         <!-- End page content -->`;
-                    document.getElementById("body2").innerHTML = html1;
-                }
-            })
+            document.getElementById("body2").innerHTML = html1;
+        }
+    })
 }
