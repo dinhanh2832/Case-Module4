@@ -249,6 +249,7 @@ function createHome(){
     }
     $.ajax({
         headers: {
+            "Authorization": 'Bearer ' + localStorage.getItem("token"),
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
@@ -262,6 +263,7 @@ function createHome(){
                 type: "POST",
                 enctype: 'multipart/form-data',
                 url: "http://localhost:8080/api/homes/uploadFile",
+                headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
                 data: data,
                 processData: false,
                 contentType: false,

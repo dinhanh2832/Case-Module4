@@ -325,7 +325,7 @@ console.log(id);
     $.ajax({
         type: "DELETE",
         url: "http://localhost:8080/api/homes?idH=" + id,
-        // headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
         success: managerHouseUser
     })
 }
