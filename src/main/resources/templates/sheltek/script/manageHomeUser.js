@@ -325,7 +325,7 @@ console.log(id);
     $.ajax({
         type: "DELETE",
         url: "http://localhost:8080/api/homes?idH=" + id,
-        // headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
         success: managerHouseUser
     })
 }
@@ -393,8 +393,8 @@ function showEditHomeByUser(id){
                                             <p class="f1 f4">Phòng tắm</p>
                                             <input type="file" name="files"/>
                                             </div>                                            
-                                            <button class="submit-btn-1 mt-20 f1" type="submit" onclick="saveHome(${id})">Lưu Lại</button>                                                                                 
-                                            <button class="submit-btn-1 mt-20 f1" type="submit" onclick="managerHouseUser()" >Quay Lại</button>                                                                                 
+                                            <button class="submit-btn-1 mt-20 f1"  onclick="saveHome(${id})">Lưu Lại</button>                                                                                 
+                                            <button class="submit-btn-1 mt-20 f1"  onclick="managerHouseUser()" >Quay Lại</button>                                                                                 
                                             </form>                                        
                                          </div>
                                       <div class="col-sm-3"></div>                                  
@@ -600,6 +600,7 @@ function saveHome(id){
     }
     $.ajax({
         headers: {
+             "Authorization": 'Bearer ' + localStorage.getItem("token"),
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
@@ -613,6 +614,7 @@ function saveHome(id){
                 type: "PUT",
                 enctype: 'multipart/form-data',
                 url: "http://localhost:8080/api/homes/saveImg?idH=" + id,
+                headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
                 data: data,
                 processData: false,
                 contentType: false,
