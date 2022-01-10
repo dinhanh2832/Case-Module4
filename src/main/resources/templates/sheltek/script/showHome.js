@@ -71,7 +71,7 @@ function showComment(){
         headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
         success: function (data) {
             console.log(data);
-            html += `<h5>${data.length} Feedback</h5>`;
+            html += `<h5 class="f1 f6">${data.length} Phản hồi</h5>`;
             for (let i = 0;i < data.length;i++){
                 html += `   
                                 <!-- media -->
@@ -80,8 +80,8 @@ function showComment(){
                                         <img src="images/avatar/2.jpg" alt="">
                                     </a>
                                     <div class="media-body">
-                                        <h6 class="media-heading"><a href="#"> Tài khoản: ${data[i].user.username} </a></h6>
-                                        <p><span>Lúc: ${data[i].time}</span>${data[i].content}</p>
+                                        <p class="media-heading"><a class="f1 f5" href="#" style="font-size: 20px"> Tài khoản: ${data[i].user.username} </a></p>
+                                        <p class="f1"><span class="f1 f4" style="font-size: 20px">Lúc: ${data[i].time}</span>${data[i].content}</p>
                                     </div>
                                 </div>`;
             }
@@ -132,32 +132,34 @@ function show5Home(){
             <div class="col-md-12 col-sm-6 col-xs-12">
                    <div class="flat-item">
                         <div class="flat-item-image">
-                            <span class="for-sale">${data[i].statusHome.name}</span>                          
+                            <span style="  font-family: 'Comforter', cursive;
+                             font-family: 'Open Sans', sans-serif;"
+                              class="for-sale">${data[i].statusHome.name}</span>                          
                             <a href="#" id="${imgHome}"></a>
                             <div class="flat-link">
-                                <a onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
+                                <a class="f1" onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
                             </div>
                             <ul class="flat-desc">
                                 <li>
                                     <img src="images/icons/4.png" alt="">
-                                        <span>${data[i].description}</span>
+                                        <span class="f1">${data[i].description}</span>
                                 </li>
                                 <li>
                                     <img src="images/icons/5.png" alt="">
-                                        <span>${data[i].bedroom}</span>
+                                        <span class="f1">${data[i].bedroom}</span>
                                 </li>
                                 <li>
                                     <img src="images/icons/6.png" alt="">
-                                        <span>${data[i].showerRoom}</span>
+                                        <span class="f1">${data[i].showerRoom}</span>
                                 </li>
                             </ul>
                         </div>
                         <div class="flat-item-info">
                             <div class="flat-title-price">
-                                <h5><a href="properties-details.html">${data[i].name}</a></h5>
-                                <span class="price">${data[i].price}Đ</span>
+                                <h5><a class="f1" href="properties-details.html">${data[i].name}</a></h5>
+                                <span class="f1 price">${data[i].price}VNĐ</span>
                             </div>
-                            <p><img src="images/icons/location.png" alt="">${data[i].address}</p>
+                            <p class="f1"><img src="images/icons/location.png" alt="">${data[i].address}</p>
                         </div>
                    </div>
                                     </div>
