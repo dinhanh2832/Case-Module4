@@ -33,6 +33,7 @@
     <!-- Modernizr JS -->
     <script src="js/vendor/modernizr-2.8.3.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
 </head>
 
 <body onload="loadHomeContent()" >
@@ -318,21 +319,22 @@
                                             <div class="row">
                                                 <div class="col-sm-3 col-xs-12">
                                                     <div class="find-home-item custom-select">
-                                                        <select class="selectpicker" title="Location" data-hide-disabled="true" data-live-search="true">
-                                                            <optgroup disabled="disabled" label="disabled">
-                                                                <option>Hidden</option>
-                                                            </optgroup>
-                                                            <optgroup label="Australia">
-                                                                <option>Sydney</option>
-                                                                <option>Melbourne</option>
-                                                                <option>Cairns</option>
-                                                            </optgroup>
-                                                            <optgroup label="USA">
-                                                                <option>South Carolina</option>
-                                                                <option>Florida</option>
-                                                                <option>Rhode Island</option>
-                                                            </optgroup>
-                                                        </select>
+<!--                                                        <select  class="selectpicker" title="Location" data-hide-disabled="true" data-live-search="true">-->
+<!--                                                            <optgroup disabled="disabled" label="disabled">-->
+<!--                                                                <option>alo</option>-->
+<!--                                                            </optgroup>-->
+<!--                                                            <optgroup label="Australia">-->
+<!--                                                                <option>Sydney</option>-->
+<!--                                                                <option>Melbourne</option>-->
+<!--                                                                <option>Cairns</option>-->
+<!--                                                            </optgroup>-->
+<!--                                                            <optgroup label="USA">-->
+<!--                                                                <option>South Carolina</option>-->
+<!--                                                                <option>Florida</option>-->
+<!--                                                                <option>Rhode Island</option>-->
+<!--                                                            </optgroup>-->
+<!--                                                        </select>-->
+                                                            <input id="location" type="text" name="location" placeholder="Location">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3 col-xs-12">
@@ -341,51 +343,51 @@
                                                             <optgroup disabled="disabled" label="disabled">
                                                                 <option>Hidden</option>
                                                             </optgroup>
-                                                            <optgroup label="Australia">
-                                                                <option>southeastern coast</option>
-                                                                <option>southeastern tip</option>
-                                                                <option>northwest corner</option>
-                                                            </optgroup>
-                                                            <optgroup label="USA">
-                                                                <option>Charleston</option>
-                                                                <option>St. Petersburg</option>
-                                                                <option>Newport</option>
-                                                            </optgroup>
+<!--                                                            <optgroup label="Australia">-->
+<!--                                                                <option>southeastern coast</option>-->
+<!--                                                                <option>southeastern tip</option>-->
+<!--                                                                <option>northwest corner</option>-->
+<!--                                                            </optgroup>-->
+<!--                                                            <optgroup label="USA">-->
+<!--                                                                <option>Charleston</option>-->
+<!--                                                                <option>St. Petersburg</option>-->
+<!--                                                                <option>Newport</option>-->
+<!--                                                            </optgroup>-->
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3 col-xs-12">
                                                     <div class="find-home-item">
-                                                        <input type="text" name="min-area" placeholder="Min area (sqft)">
+                                                        <input id="min-area" type="text" name="min-area" placeholder="Min area (sqft)">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3 col-xs-12">
                                                     <div class="find-home-item">
-                                                        <input type="text" name="max-area" placeholder="Max area (sqft)">
+                                                        <input id="max-area" type="text" name="max-area" placeholder="Max area (sqft)">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3 col-xs-12">
                                                     <div class="find-home-item  custom-select">
-                                                        <select class="selectpicker" title="No. of Beadrooms" data-hide-disabled="true">
+                                                        <select id="bedroom" class="selectpicker" title="No. of Beadrooms" data-hide-disabled="true">
                                                             <optgroup  label="1">
-                                                                <option label="1">1 Beadrooms</option>
-                                                                <option>2 Beadrooms</option>
-                                                                <option>3 Beadrooms</option>
-                                                                <option>4 Beadrooms</option>
-                                                                <option>5 Beadrooms</option>
+                                                                <option value="1" label="1">1 Bedrooms</option>
+                                                                <option value="2">2 Bedrooms</option>
+                                                                <option value="3">3 Bedrooms</option>
+                                                                <option value="4">4 Bedrooms</option>
+                                                                <option value="5">5 Bedrooms</option>
                                                             </optgroup>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-3 col-xs-12">
                                                     <div class="find-home-item custom-select">
-                                                        <select class="selectpicker" title="No. of Bathrooms" data-hide-disabled="true">
+                                                        <select id="showerRoom" class="selectpicker" title="No. of Bathrooms" data-hide-disabled="true">
                                                             <optgroup label="2">
-                                                                <option>1 Bathrooms</option>
-                                                                <option>2 Bathrooms</option>
-                                                                <option>3 Bathrooms</option>
-                                                                <option>4 Bathrooms</option>
-                                                                <option>5 Bathrooms</option>
+                                                                <option value="1">1 Bathrooms</option>
+                                                                <option value="2">2 Bathrooms</option>
+                                                                <option value="3">3 Bathrooms</option>
+                                                                <option value="4">4 Bathrooms</option>
+                                                                <option value="5">5 Bathrooms</option>
                                                             </optgroup>
                                                         </select>
                                                     </div>
@@ -408,7 +410,7 @@
                                                         </div>
                                                         <div class="col-sm-5 col-xs-12">
                                                             <div class="find-home-item mb-0-xs">
-                                                                <a class="button-1 btn-block btn-hover-1" href="#">SEARCH</a>
+                                                                <button class="button-1 btn-block btn-hover-1" onclick="searchHome()">SEARCH</button>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -656,6 +658,7 @@
     <script src="script/forRent.js"></script>
     <script src="script/manageHomeUser.js"></script>
     <script src="script/admin.js"></script>
+    <script src="script/search.js"></script>
 </body>
 
 </html>
