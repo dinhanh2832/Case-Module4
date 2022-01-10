@@ -22,12 +22,13 @@ function managerHouseUser(){
                         <div class="row">
                             <!-- flat-item -->`
             for(let i = 0;i< data.length;i++) {
+                let imgHome = "imgHome" + i;
                 html1 += `
                     <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="flat-item">
                                     <div class="flat-item-image">
                                         <span class="for-sale">${data[i].statusHome.name}</span>
-                                        <a href="#"><img src="images/${data[i].imageList[0].links}" alt=""></a>
+                                          <a href="#" id="${imgHome}"></a>
                                         <div class="flat-link">                                                                     
                                                <a onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
                                         </div>
@@ -53,13 +54,22 @@ function managerHouseUser(){
                                         </div>
                                         <div class="flat-item-info">
                                         <p><img src="images/icons/location.png" alt="">${data[i].address}</p>
-                                        <button style="margin-left: 90px;width: 80px" class="btn-primary" onclick="editHomeByUser(${data[i].id})">Sửa</button>
-                                        <button class="btn-primary" style="width: 80px" onclick="deleteHomeByUser(${data[i].id})">Xóa</button>
+                                        <button style="margin-left: 90px;width: 80px; border-radius: 7%" class="btn-primary" onclick="showEditHomeByUser(${data[i].id})">Sửa</button>
+                                        <button class="btn-primary" style="width: 80px; border-radius: 7%" onclick="deleteHomeByUser(${data[i].id})">Xóa</button>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                     `;
+                $.ajax({
+                    type: "GET",
+                    url: "http://localhost:8080/api/homes/listImg?idH=" + data[i].id,
+                    headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+                    success: function (data1) {
+                        console.log(data1)
+                        document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
+                    }
+                })
             }
             html1 += `<div class="col-xs-12">
                                 <div class="pagination-area mb-60">
@@ -329,77 +339,81 @@ console.log(id);
         success: managerHouseUser
     })
 }
-function editHomeByUser(){
-    let html = `
+function showEditHomeByUser(id){
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:8080/api/homes/" + id,
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+        success: function (data) {
+            $.ajax({
+                type: "GET",
+                url: "http://localhost:8080/api/homes/findAllImg?idH=" + id,
+                headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
+                success: function (data1) {
+                    let html = `
     <div class="new-customers mb-50">
-                                <div >
-                                    <h5 class="mb-50">REGISTER</h5>
+                                <div >                                  
                                     <div class="login-account p-30 box-shadow">
                                         <div class="row">
-                                            <div class="col-sm-6">
-                                                <input type="text"  placeholder="First Name">
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-6"><br>
+                                        <h5 class="mb-50 text-center f1">CHO THUÊ</h5>
+                                         <div class="col-sm-6">
+                                                <input class="f1" type="text" style="font-family: 'Comforter', cursive;
+                                                font-family: 'Open Sans', sans-serif;"  placeholder="Tên nhà" id="username" value="${data.name}">
                                             </div>
                                             <div class="col-sm-6">
-                                                <input type="text"  placeholder="last Name">
+                                                <input class="f1" style="font-family: 'Comforter', cursive;
+                                                font-family: 'Open Sans', sans-serif;" type="text"  placeholder="Địa chỉ" id="address" value="${data.address}">
                                             </div>
+                                            <div class="col-sm-6 f1"  id="category" >                                                                                                                                                                                                   
+                                            </div>                                    
                                             <div class="col-sm-6">
-                                                <select class="custom-select-2">
-                                                    <option value="defalt">country</option>
-                                                    <option value="c-1">Australia</option>
-                                                    <option value="c-2">Bangladesh</option>
-                                                    <option value="c-3">Unitd States</option>
-                                                    <option value="c-4">Unitd Kingdom</option>
-                                                </select>
-                                            </div>
+                                            <input class="f1" type="text" style="font-family: 'Comforter', cursive;
+                                                font-family: 'Open Sans', sans-serif;" placeholder="Số phòng ngủ" id="bedroom" value="${data.bedroom}">                                                                                                                        
+                                            </div>                                       
                                             <div class="col-sm-6">
-                                                <select class="custom-select-2">
-                                                    <option value="defalt">State</option>
-                                                    <option value="c-1">Melbourne</option>
-                                                    <option value="c-2">Dhaka</option>
-                                                    <option value="c-3">New York</option>
-                                                    <option value="c-4">London</option>
-                                                </select>
-                                            </div>
+                                            <input class="f1" type="text" style="font-family: 'Comforter', cursive;
+                                                font-family: 'Open Sans', sans-serif;" placeholder="Số phòng tắm" id="showerRoom" value="${data.showerRoom}"> 
+                                            </div>                                       
                                             <div class="col-sm-6">
-                                                <select class="custom-select-2">
-                                                    <option value="defalt">Town/City</option>
-                                                    <option value="c-1">Victoria</option>
-                                                    <option value="c-2">Chittagong</option>
-                                                    <option value="c-3">Boston</option>
-                                                    <option value="c-4">Cambridge</option>
-                                                </select>
+                                                <input class="f1" type="text" style="font-family: 'Comforter', cursive;
+                                                font-family: 'Open Sans', sans-serif;"  placeholder="Giá cho thuê" id="price" value="${data.price}">
                                             </div>
-                                            <div class="col-sm-6">
-                                                <input type="text"  placeholder="Phone here...">
+                                            <input class="f1" type="text"  placeholder="Diện tích" id="area" value="${data.area}"> 
+                                            <input class="f1" type="text"  placeholder="Mô tả" id="description" value="${data.description}" >                                            
+                                            <form enctype="multipart/form-data" id="form">
+                                            <div class="col-sm-12">
+                                            <p class="f1 f4">Ảnh đại diện</p>
+                                            <input type="file" name="files"  />                                          
                                             </div>
-                                        </div>
-                                        <input type="text"  placeholder="Company neme here...">
-                                        <input type="text"  placeholder="Email address here...">
-                                        <input type="password"  placeholder="Password">
-                                        <input type="password"  placeholder="Confirm Password">
-                                        <div class="checkbox">
-                                            <label class="mr-10">
-                                                <small>
-                                                    <input type="checkbox" name="signup">Sign up for our newsletter!
-                                                </small>
-                                            </label>
-                                            <label>
-                                                <small>
-                                                    <input type="checkbox" name="signup">Receive special offers from our partners!
-                                                </small>
-                                            </label>
-                                        </div>
-                                        <div class="row">
-                                            <div class="col-sm-5 col-xs-12"></div>                                          
-                                            <div class="col-sm-2 col-xs-12">
-                                                <button class="submit-btn-1 mt-20" type="submit"b onclick="createHome()" >Đăng Cho Thuê</button>
-                                            </div>           
-                                            <div class="col-sm-5 col-xs-12"></div>
-                                        </div>
+                                            <div class="col-sm-12">
+                                            <p class="f1 f4">Phòng ngủ</p>
+                                            <input type="file" name="files" />
+                                            </div> 
+                                            <div class="col-sm-12">
+                                            <p class="f1 f4">Phòng khách</p>
+                                            <input type="file" name="files" />
+                                            </div>                                           
+                                            <div class="col-sm-12">
+                                            <p class="f1 f4">Phòng bếp</p>
+                                            <input type="file" name="files"/>
+                                            </div>
+                                            <div class="col-sm-12">
+                                            <p class="f1 f4">Phòng tắm</p>
+                                            <input type="file" name="files"/>
+                                            </div>                                            
+                                            <button class="submit-btn-1 mt-20 f1" type="submit" onclick="saveHome(${id})">Lưu Lại</button>                                                                                 
+                                            <button class="submit-btn-1 mt-20 f1" type="submit" onclick="managerHouseUser()" >Quay Lại</button>                                                                                 
+                                            </form>                                        
+                                         </div>
+                                      <div class="col-sm-3"></div>                                  
+                                        </div>                                                                                                                                                                                                                                         
                                     </div>
                                 </div>
-                            </div>`;
-    html +=`<!-- OUR AGENTS AREA START -->
+                            </div>
+    `;
+                    html +=`<!-- OUR AGENTS AREA START -->
                     <div class="our-agents-area pt-115 pb-55">
                         <div class="container">
                             <div class="row">
@@ -555,5 +569,72 @@ function editHomeByUser(){
                 </div>
             </div>
             <!-- BRAND AREA END -->`
-    document.getElementById("body2").innerHTML = html;
+                    showCategory();
+                    document.getElementById("body2").innerHTML = html;
+                }
+            })
+
+        }
+    })
+}
+function saveHome(id){
+    let statusHome = 1;
+    let numberOfTurns = 0;
+    let userId = localStorage.getItem("idUser");
+    let nameHouse = document.getElementById("username").value;
+    let address = document.getElementById("address").value;
+    let category = document.getElementById("cate").value;
+    let bedroom = document.getElementById("bedroom").value;
+    let showerRoom = document.getElementById("showerRoom").value;
+    let description = document.getElementById("description").value;
+    let price = document.getElementById("price").value;
+    let area = document.getElementById("area").value;
+    let home = {
+        name: nameHouse,
+        address: address,
+        category:{
+            id: category
+        },
+        bedroom: bedroom,
+        showerRoom: showerRoom,
+        description: description,
+        price: price,
+        statusHome: {
+            id: statusHome
+        },
+        user: {
+            id: userId
+        },
+        numberOfTurns: numberOfTurns,
+        area: area,
+    }
+    $.ajax({
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        type: "PUT",
+        url: "http://localhost:8080/api/homes?idH=" + id,
+        data: JSON.stringify(home),
+        success: function () {
+            let form = $('#form')[0];
+            let data = new FormData(form);
+            $.ajax({
+                type: "PUT",
+                enctype: 'multipart/form-data',
+                url: "http://localhost:8080/api/homes/saveImg?idH=" + id,
+                data: data,
+                processData: false,
+                contentType: false,
+                cache: false,
+                timeout: 1000000,
+                success:function (data){
+                    console.log(data)
+                    // loadData();
+                    backHome();
+                }
+            })
+
+        }
+    })
 }
