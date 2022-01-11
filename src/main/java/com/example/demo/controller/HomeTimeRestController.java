@@ -13,7 +13,7 @@ import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/homeTimes")
+@RequestMapping("/api/hometimes")
 public class HomeTimeRestController {
 
     @Autowired
@@ -68,7 +68,7 @@ public class HomeTimeRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/searchByHome/{id}")
+    @GetMapping(value = "/home/{id}")
     public ResponseEntity<List<HomeTime>> findByHomeId(@PathVariable("id") long id) {
         List<HomeTime> homeTimes = homeTimeService.findAllByHome_Id(id);
         if (homeTimes == null) {

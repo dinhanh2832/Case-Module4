@@ -341,7 +341,7 @@ function loadData() {
                     headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
                     success: function (data1) {
                         console.log(data1)
-                        document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
+                        document.getElementById(imgHome).innerHTML = `<img width="368px" height="235px" src="images/${data1[0].links}" alt="" class="img-fluid">`;
                     }
                 })
 
@@ -525,7 +525,9 @@ function seeRentalHouses() {
             let html1 = `
             <!-- FEATURED FLAT AREA START -->
             <div class="featured-flat-area pb-60">
+              
                 <div class="container">
+                  <button class="btn-primary" onclick="back()" style="width: 100px">Quay lại</button>
                     <div class="row">
                         <div class="col-md-12">
                             <div class="section-title-2 text-center"><br>
@@ -578,7 +580,7 @@ function seeRentalHouses() {
                     headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
                     success: function (data1) {
                         console.log(data1)
-                        document.getElementById(imgHome).innerHTML = `<img src="images/${data1[0].links}" alt="" class="img-fluid">`;
+                        document.getElementById(imgHome).innerHTML = `<img width="368px" height="235px" src="images/${data1[0].links}" alt="" class="img-fluid">`;
                     }
                 })
             }
@@ -808,18 +810,11 @@ function seeRentalHouses() {
                     <div class="row">
                         <div class="col-md-3 col-sm-4 col-xs-12">
                             <div class="section-title text-white">
-                                <h3>Đặt mua</h3>
+
                                 <h2 class="h1">Bản tin</h2>
                             </div>
                         </div>
-                        <div class="col-md-9 col-sm-8 col-xs-12">
-                            <div class="subscribe">
-                                <form action="#">
-                                    <input type="text" name="subscribe" placeholder="Nhập địa chỉ email...">
-                                    <button type="submit" value="send">Gửi</button>
-                                </form>
-                            </div>
-                        </div>
+                       
                     </div>
                 </div>
             </div>

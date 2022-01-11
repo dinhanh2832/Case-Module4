@@ -18,16 +18,16 @@ function seeDetailsHome() {
 
             document.getElementById("pro-0").innerHTML = `
             <a href="images/${data[0].links}" data-lightbox="image-1" data-title="Sheltek Properties - 1">
-                                                <img src="images/${data[0].links}" alt="">
+                                                <img width="765px" height="389px" src="images/${data[0].links}" alt="">
                   </a>
             `;
-            for (let i = 1; i <= arr1.length; i++) {
-                if (arr1[i].status === 2) {
+            for(let i =1;i <= arr1.length;i++){
+                if(arr1[i].status === 2){
                     let idx = "xx" + i;
                     let pro = "#pro-" + i;
-                    document.getElementById(idx).innerHTML = `
+                    document.getElementById(idx).innerHTML =`
             <a href="${pro}" data-toggle="tab">
-                                            <img src="images/${arr1[i].links}" alt="">
+                                            <img width="188px" height="120px" src="images/${arr1[i].links}" alt="">
                                         </a>
             `
                 }
@@ -36,13 +36,11 @@ function seeDetailsHome() {
 
     })
 }
-
-function back() {
-    window.location = "login.html";
+function back1(){
+    window.location="login.html";
     localStorage.removeItem("idHome");
 }
-
-function showDetail() {
+function showDetail(){
     let id = localStorage.getItem("idHome")
     $.ajax({
         type: "GET",
@@ -64,8 +62,7 @@ function showDetail() {
         }
     })
 }
-
-function showComment() {
+function showComment(){
     let idHome = localStorage.getItem("idHome");
     let html = ``;
     $.ajax({
@@ -75,12 +72,12 @@ function showComment() {
         success: function (data) {
             console.log(data);
             html += `<h5 class="f1 f6">${data.length} Phản hồi</h5>`;
-            for (let i = 0; i < data.length; i++) {
+            for (let i = 0;i < data.length;i++){
                 html += `   
                                 <!-- media -->
                                 <div class="media">
                                     <a class="media-left" href="#">
-                                        <img src="images/avatar/2.jpg" alt="">
+                                        <img width="81px" height="72px" src="https://thuthuatnhanh.com/wp-content/uploads/2020/09/hinh-avatar-trang-cho-nam-va-con-than-lan.jpg" alt="">
                                     </a>
                                     <div class="media-body">
                                         <p class="media-heading"><a class="f1 f5" href="#" style="font-size: 20px"> Tài khoản: ${data[i].user.username} </a></p>
@@ -94,36 +91,34 @@ function showComment() {
     })
 }
 
-function comment() {
+function comment(){
     let content = document.getElementById("contentComment").value;
     let idUser = localStorage.getItem("idUser");
     let idHome = localStorage.getItem("idHome");
     let comment = {
         content: content,
-        home: {
-            id: idHome,
-        },
+        home:{
+            id:idHome,
+        } ,
         user: {
-            id: idUser,
+            id:idUser,
         },
     }
     console.log(comment)
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/api/comments",
+        url: "http://localhost:8080/api/comments" ,
         data: JSON.stringify(comment),
-        headers: {
-            "Authorization": 'Bearer ' + localStorage.getItem("token"),
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-        },
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token"),
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
         success: function () {
             showComment();
         }
     })
 }
-
-function show5Home() {
+function show5Home(){
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/api/homes/find5HomeMostRated",
@@ -131,7 +126,7 @@ function show5Home() {
         success: function (data) {
             console.log(data)
             let html = ``;
-            for (let i = 0; i < data.length; i++) {
+            for(let i = 0;i< data.length;i++) {
                 let imgHome = "imgHome" + i;
                 html += `
             <div class="col-md-12 col-sm-6 col-xs-12">
@@ -183,4 +178,3 @@ function show5Home() {
         }
     })
 }
-

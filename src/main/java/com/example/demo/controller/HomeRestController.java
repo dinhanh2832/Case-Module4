@@ -183,7 +183,7 @@ public class HomeRestController {
             String nameImage = "avatar/" + fileName1;
             try {
                 FileCopyUtils.copy(files[i].getBytes(),
-                        new File("C:\\Users\\anh\\IdeaProjects\\demo2\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName1)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
+                        new File("E:\\Case-Module4\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName1)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
                 // đường dẫn ảo là /nhuanh/
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -208,7 +208,7 @@ public class HomeRestController {
             String nameImage = "avatar/" + fileName1;
             try {
                 FileCopyUtils.copy(files[i].getBytes(),
-                        new File("C:\\Users\\anh\\IdeaProjects\\demo2\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName1)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
+                        new File("E:\\Case-Module4\\src\\main\\resources\\templates\\sheltek\\images\\avatar\\" + fileName1)); // coppy ảnh từ ảnh nhận được vào thư mục quy định,
                 // đường dẫn ảo là /nhuanh/
             } catch (IOException ex) {
                 ex.printStackTrace();

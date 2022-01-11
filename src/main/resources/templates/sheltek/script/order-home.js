@@ -1,7 +1,7 @@
 function orderHome() {
     let idU = localStorage.getItem("idUser");
     let idH = localStorage.getItem("idHome");
-
+    let username = localStorage.getItem("nameUser");
     let strStartDate = document.getElementById("monthStart").value; // kiểm tra giá trị nhập vào có rỗng hay không
     let strEndDate = document.getElementById("monthEnd").value;
     let startDate = new Date(strStartDate);
@@ -17,7 +17,7 @@ function orderHome() {
         // Kiểm tra nhà đã được cho thuê trong 1 khoảng thời gian
         $.ajax({
             type: "GET",
-            url: "http://localhost:8080/api/homeTimes/searchByHome/" + idH,
+            url: "http://localhost:8080/api/hometimes/home/" + idH,
             success: function (data) {
                 console.log(data)
                 if (data.length > 0) {
@@ -48,6 +48,7 @@ function orderHome() {
                     }else {
                         alert("Thuê thoải mái đeee");
                         // Tạo order
+                        showOrderInformation(strStartDate, strEndDate,username )
                         let order = {
                             startDate: startDate,
                             endDate: endDate,
@@ -106,4 +107,32 @@ function orderHome() {
             }
         })
     }
+}
+function showOrderInformation(startDate, endDate, username){
+    let html = ``;
+    html += ` <div className="row">
+                            <div className="col-sm-6 col-xs-12">
+                                <div className="section-title mb-30">
+                                    <h3>ĐẶT PHÒNG CỦA BẠN</h3>
+<!--                                    <h2>CỦA BẠN</h2>-->
+                                </div>
+                                <div className="about-sheltek-info">
+                                    <p><span data-placement="top" data-toggle="tooltip"
+                                             data-original-title="The name you can trust"
+                                             className="tooltip-content"> ` + username+ `</span> 
+                                    </p>
+                                    <div className="author-quote">
+                                        <p>Ngày nhận phòng: `+ startDate + `</p>
+                                        <p>Ngày trả phòng: `+ endDate + ` </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-sm-6 col-xs-12">
+                                <div className="about-image">
+                                    <img src="images/about/4.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                       `;
+    document.getElementById("orderInformation").innerHTML = html;
 }
