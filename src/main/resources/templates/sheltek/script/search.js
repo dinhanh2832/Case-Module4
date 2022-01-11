@@ -17,6 +17,7 @@ function searchHome() {
     $.ajax({
         type: "GET",
         url: "http://localhost:8080/api/homes",
+        headers: {"Authorization": 'Bearer ' + localStorage.getItem("token")},
         success: function (data) {
             console.log(data);
             let arr = [];
@@ -98,7 +99,7 @@ function searchHome() {
                             <ul class="flat-desc">
                                 <li>
                                     <img src="images/icons/4.png" alt="">
-                                        <span class="f1">${data[i].description}</span>
+                                        <span class="f1">${data[i].area}</span>
                                 </li>
                                 <li>
                                     <img src="images/icons/5.png" alt="">

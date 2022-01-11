@@ -29,7 +29,7 @@ public class HomeTimeRestController {
 
     }
 
-    @GetMapping(value = "/getHomeTimes/{id}")
+    @GetMapping("/getHomeTimes/{id}")
     public ResponseEntity<HomeTime> getHome(@PathVariable("id") Date id) {
         HomeTime homeTime = homeTimeService.findById(id);
         if (homeTime == null) {
@@ -44,12 +44,12 @@ public class HomeTimeRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping(value = "/{id}")
+    @PutMapping( "/{id}")
     public ResponseEntity<HomeTime> updateHomeTime(@PathVariable("id") Date id, @RequestBody HomeTime homeTime) {
         HomeTime homeTime1 = homeTimeService.findById(id);
 
         if (homeTime1 == null) {
-            return new ResponseEntity<HomeTime>(HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         homeTime1.setHome(homeTime.getHome());
         homeTime1.setStatusHome(homeTime.getStatusHome());
@@ -58,7 +58,7 @@ public class HomeTimeRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "/{id}")
+    @DeleteMapping( "/{id}")
     public ResponseEntity<HomeTime> deleteHouseDay(@PathVariable("id") Date id) {
         HomeTime homeTime = homeTimeService.findById(id);
         if (homeTime == null) {
@@ -68,7 +68,7 @@ public class HomeTimeRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping(value = "/searchByHome/{id}")
+    @GetMapping("/searchByHome/{id}")
     public ResponseEntity<List<HomeTime>> findByHomeId(@PathVariable("id") long id) {
         List<HomeTime> homeTimes = homeTimeService.findAllByHome_Id(id);
         if (homeTimes == null) {

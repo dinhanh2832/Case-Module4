@@ -306,15 +306,16 @@ function loadData() {
                 <div class="col-md-4 col-sm-6 col-xs-12">
                     <div class="flat-item">
                         <div class="flat-item-image">
-                            <span class="for-sale f1">${data[i].statusHome.name}</span>                          
+                            <span style="  font-family: 'Comforter', cursive;
+    font-family: 'Open Sans', sans-serif;" class="for-sale f1">${data[i].statusHome.name}</span>                          
                             <a href="#" id="${imgHome}"></a>
                             <div class="flat-link">
-                                <a class="f1" onclick="goDetailsHome(${data[i].id})" href="#" >gm chi tiết</a>
+                                <a class="f1" onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
                             </div>
                             <ul class="flat-desc">
                                 <li>
                                     <img src="images/icons/4.png" alt="">
-                                        <span class="f1">${data[i].description}</span>
+                                        <span class="f1">${data[i].area}</span>
                                 </li>
                                 <li>
                                     <img src="images/icons/5.png" alt="">
@@ -553,7 +554,7 @@ function seeRentalHouses() {
                             <ul class="flat-desc">
                                 <li>
                                     <img src="images/icons/4.png" alt="">
-                                        <span class="f1">${data[i].description}</span>
+                                        <span class="f1">${data[i].area}</span>
                                 </li>
                                 <li>
                                     <img src="images/icons/5.png" alt="">

@@ -14,6 +14,7 @@ function managerHouseUser(){
                     <div class="row">
                         <div class="col-md-12">
                             <div class="section-title-2 text-center">
+                            <br>
                                 <h2>Danh sách nhà cho thuê</h2>
                             </div>
                         </div>
@@ -30,12 +31,12 @@ function managerHouseUser(){
                                         <span class="for-sale">${data[i].statusHome.name}</span>
                                           <a href="#" id="${imgHome}"></a>
                                         <div class="flat-link">                                                                     
-                                               <a onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
+                                               <a class="f1" onclick="goDetailsHome(${data[i].id})" href="#" >Xem chi tiết</a>
                                         </div>
                                         <ul class="flat-desc">
                                             <li>
                                                 <img src="images/icons/4.png" alt="">
-                                                <span>${data[i].description}</span>
+                                                <span>${data[i].area}</span>
                                             </li>
                                             <li>
                                                 <img src="images/icons/5.png" alt="">
