@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,17 +17,14 @@ import java.util.Optional;
 @RequestMapping("/api/comments")
 public class CommentRestController {
     @Autowired
-    private CommentServiceImpl commentService;
-    @Autowired
-    private UserService userService;
-    @Autowired
-    private HomeServiceImpl homeService;
+    private CommentService commentService;
 
     @GetMapping("")
     public ResponseEntity<Iterable<Comment>> findAllComment(Long idH) {
         Iterable<Comment> comments = commentService.showCommentByNewTime(idH);
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
+
     @GetMapping("/showCommentByOldTime")
     public ResponseEntity<Iterable<Comment>> showCommentByOldTime(String name) {
         Iterable<Comment> comments;
@@ -50,10 +46,11 @@ public class CommentRestController {
         }
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
+
     @PostMapping("")
     public ResponseEntity<Comment> saveComment(@RequestBody Comment comment) {
         LocalDateTime time = LocalDateTime.now();
-        Comment comment1 = new Comment(comment.getContent(),time,comment.getHome(),comment.getUser());
+        Comment comment1 = new Comment(comment.getContent(), time, comment.getHome(), comment.getUser());
         commentService.save(comment1);
         return new ResponseEntity<>(comment1, HttpStatus.CREATED);
     }

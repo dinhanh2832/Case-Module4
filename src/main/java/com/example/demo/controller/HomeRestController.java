@@ -24,31 +24,32 @@ import java.util.Optional;
 @RequestMapping("/api/homes")
 public class HomeRestController {
     @Autowired
-    private HomeServiceImpl homeService;
+    private HomeService homeService;
     @Autowired
-    private StatusHomeServiceImpl statusHomeService;
+    private StatusHomeService statusHomeService;
     @Autowired
-    private ImageServiceImpl imageService;
+    private ImageService imageService;
     @Autowired
-    private UserService userService;
-    @Autowired
-    private CategoryServiceImpl categoryService;
+    private CategoryService categoryService;
 
     @GetMapping("")
     public ResponseEntity<Iterable<Home>> findAllHome() {
         Iterable<Home> homes = homeService.findAll();
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
+
     @GetMapping("/listImg")
-    public ResponseEntity<Iterable<Image>> findImgByIdHome(Long idH){
+    public ResponseEntity<Iterable<Image>> findImgByIdHome(Long idH) {
         Iterable<Image> image = imageService.findImgByIdHome(idH);
         return new ResponseEntity<>(image, HttpStatus.OK);
     }
+
     @GetMapping("/findAllImg")
-    public ResponseEntity<Iterable<Image>> findAllImg(Long idH){
+    public ResponseEntity<Iterable<Image>> findAllImg(Long idH) {
         Iterable<Image> images = imageService.findAllImgByIdHome(idH);
-        return new ResponseEntity<>(images,HttpStatus.OK);
+        return new ResponseEntity<>(images, HttpStatus.OK);
     }
+
     @GetMapping("/find5HomeMostRated")
     public ResponseEntity<Iterable<Home>> find5HomeMostRated() {
         Iterable<Home> homes = homeService.find5HomeMostRated();
@@ -104,8 +105,10 @@ public class HomeRestController {
         return new ResponseEntity<>(home.get(), HttpStatus.OK);
     }
 
-    @PostMapping("/createHome")
+    @PostMapping("")
     public ResponseEntity<Home> saveHome(@RequestBody Home home) {
+        Optional<StatusHome> statusHome = statusHomeService.findById(2L);
+        home.setStatusHome(statusHome.get());
         homeService.save(home);
         return new ResponseEntity<>(home, HttpStatus.CREATED);
     }
@@ -113,7 +116,9 @@ public class HomeRestController {
     @PutMapping("")
     public ResponseEntity<Home> edit(Long idH, @RequestBody Home home) {
         Optional<Home> homeOptional = homeService.findById(idH);
+        Optional<StatusHome> homeOptional1 = statusHomeService.findById(1L);
         home.setId(homeOptional.get().getId());
+        home.setStatusHome(homeOptional1.get());
         homeService.save(home);
         return new ResponseEntity<>(home, HttpStatus.OK);
     }
@@ -153,9 +158,9 @@ public class HomeRestController {
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
 
-    @DeleteMapping("")
-    public ResponseEntity<Home> deleteHome(Long idH) {
-        Optional<Home> homeOptional = homeService.findById(idH);
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Home> deleteHome(@PathVariable Long id) {
+        Optional<Home> homeOptional = homeService.findById(id);
         if (!homeOptional.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -173,12 +178,13 @@ public class HomeRestController {
         }
         return new ResponseEntity<>(homes, HttpStatus.OK);
     }
+
     @PostMapping("/uploadFile")
     public ResponseEntity<List<Image>> uploadFile(MultipartFile[] files) {
         List<Home> homes = (List<Home>) homeService.showHomeOrderByDESC();
         Home home1 = homes.get(0);
         List<Image> list = new ArrayList<>();
-        for(int i = 0;i<files.length;i++){
+        for (int i = 0; i < files.length; i++) {
             String fileName1 = files[i].getOriginalFilename();
             String nameImage = "avatar/" + fileName1;
             try {
@@ -188,22 +194,23 @@ public class HomeRestController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            if(i == 0){
-                Image image2 = new Image(nameImage,1,home1);
+            if (i == 0) {
+                Image image2 = new Image(nameImage, 1, home1);
                 list.add(image2);
                 imageService.save(image2);
             } else {
-                Image image2 = new Image(nameImage,2,home1);
+                Image image2 = new Image(nameImage, 2, home1);
                 list.add(image2);
                 imageService.save(image2);
             }
         }
-        return new ResponseEntity<>(list,HttpStatus.OK);
+        return new ResponseEntity<>(list, HttpStatus.OK);
     }
+
     @PutMapping("/saveImg")
-    public ResponseEntity<List<Image>> saveImg(MultipartFile[] files,Long idH) {
+    public ResponseEntity<List<Image>> saveImg(MultipartFile[] files, Long idH) {
         List<Image> images = (List<Image>) imageService.findAllImgByIdHome(idH);
-        for(int i = 0;i<files.length;i++){
+        for (int i = 0; i < files.length; i++) {
             String fileName1 = files[i].getOriginalFilename();
             String nameImage = "avatar/" + fileName1;
             try {
@@ -213,20 +220,20 @@ public class HomeRestController {
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            if(i == 0){
-                if(!Objects.equals(fileName1, "")){
+            if (i == 0) {
+                if (!Objects.equals(fileName1, "")) {
                     Image image = images.get(i);
                     image.setLinks(nameImage);
                     imageService.save(image);
                 }
             } else {
-                if(!Objects.equals(fileName1, "")){
+                if (!Objects.equals(fileName1, "")) {
                     Image image = images.get(i);
                     image.setLinks(nameImage);
                     imageService.save(image);
                 }
             }
         }
-        return new ResponseEntity<>(images,HttpStatus.OK);
+        return new ResponseEntity<>(images, HttpStatus.OK);
     }
 }

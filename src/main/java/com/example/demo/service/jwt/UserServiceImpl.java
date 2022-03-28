@@ -1,4 +1,4 @@
-package com.example.demo.service.impl;
+package com.example.demo.service.jwt;
 
 import com.example.demo.model.User;
 import com.example.demo.model.UserPrinciple;

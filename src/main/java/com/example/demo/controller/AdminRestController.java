@@ -8,9 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashSet;
 import java.util.Optional;
-import java.util.Set;
 
 @RestController
 @CrossOrigin("*")
@@ -22,30 +20,19 @@ public class AdminRestController {
     private UserService userService;
 
     @Autowired
-    private CommentServiceImpl commentService;
+    private CommentService commentService;
 
     @Autowired
-    private HomeServiceImpl homeService;
+    private HomeService homeService;
 
     @Autowired
-    private OrderServiceImpl orderService;
+    private OrderService orderService;
 
     @GetMapping("/findComment")
     public ResponseEntity<Iterable<Comment>> findAllComment() {
         Iterable<Comment> comments = commentService.findAll();
         return new ResponseEntity<>(comments, HttpStatus.OK);
     }
-
-//    @GetMapping("/showCommentByNewTime")
-//    public ResponseEntity<Iterable<Comment>> showCommentByNewTime(String name) {
-//        Iterable<Comment> comments;
-//        if (name == null) {
-//            comments = commentService.showCommentByNewTime();
-//        } else {
-//            comments = commentService.findAllByContentContaining(name);
-//        }
-//        return new ResponseEntity<>(comments, HttpStatus.OK);
-//    }
 
     @GetMapping("/showCommentByOldTime")
     public ResponseEntity<Iterable<Comment>> showCommentByOldTime(String name) {

@@ -4,7 +4,7 @@ import com.example.demo.security.jwt.CustomAccessDeniedHandler;
 import com.example.demo.security.jwt.JwtAuthenticationFilter;
 import com.example.demo.security.jwt.RestAuthenticationEntryPoint;
 import com.example.demo.service.UserService;
-import com.example.demo.service.impl.UserServiceImpl;
+import com.example.demo.service.jwt.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,7 +24,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true)
-public class SecurityConfig  extends WebSecurityConfigurerAdapter {
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserService userService() {
@@ -72,15 +72,12 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
         http.httpBasic().authenticationEntryPoint(restServicesEntryPoint());
         http.authorizeRequests()
                 .antMatchers("/**").permitAll()
-                .antMatchers("/api/homes/**","/api/comments/**","/api/homeTimes/**","/api/orders/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
+                .antMatchers("/api/homes/**", "/api/comments/**", "/api/homeTimes/**", "/api/orders/**").access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
                 .antMatchers("/api/admin/**").access("hasRole('ROLE_ADMIN')")
 //                .antMatchers(HttpMethod.GET
 //                        ).access("hasRole('ROLE_USER') or hasRole('ROLE_ADMIN')")
 //                .antMatchers(HttpMethod.DELETE, "/categories",
 //                        "/typeOfQuestions",
-//                        "/questions",
-//                        "/answers",
-//                        "/quizzes",
 //                        "/hello").access("hasRole('ROLE_ADMIN')")
 //                .antMatchers(HttpMethod.PUT, "/users")
 //                .access("hasRole('ROLE_USER')")

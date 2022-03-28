@@ -5,10 +5,9 @@ import com.example.demo.model.Role;
 import com.example.demo.model.User;
 import com.example.demo.service.RoleService;
 import com.example.demo.service.UserService;
-import com.example.demo.service.impl.JwtService;
+import com.example.demo.service.jwt.JwtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.core.env.Environment;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,7 +19,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -30,8 +28,6 @@ import java.util.Set;
 @PropertySource("classpath:application.properties")
 @CrossOrigin("*")
 public class UserController {
-    @Autowired
-    private Environment env;
 
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -121,8 +117,9 @@ public class UserController {
         userService.save(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
     @DeleteMapping("/delete")
-    public ResponseEntity<User> delete(Long idU){
+    public ResponseEntity<User> delete(Long idU) {
         Optional<User> user = this.userService.findById(idU);
         this.userService.delete(user.get());
         return new ResponseEntity<>(HttpStatus.OK);

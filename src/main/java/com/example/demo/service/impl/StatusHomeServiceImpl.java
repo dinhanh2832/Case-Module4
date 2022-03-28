@@ -1,7 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import com.example.demo.model.StatusHome;
 import com.example.demo.repository.StatusHomeRepository;
+import com.example.demo.service.StatusHomeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,16 +21,6 @@ public class StatusHomeServiceImpl implements StatusHomeService {
     @Override
     public Optional<StatusHome> findById(Long id) {
         return statusHomeRepository.findById(id);
-    }
-
-    @Override
-    public void save(StatusHome statusHome) {
-
-    }
-
-    @Override
-    public void remove(Long id) {
-
     }
 
     @Override

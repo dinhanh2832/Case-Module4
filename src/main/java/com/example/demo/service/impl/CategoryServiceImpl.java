@@ -1,7 +1,8 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
 import com.example.demo.model.Category;
 import com.example.demo.repository.CategoryRepository;
+import com.example.demo.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,13 +23,4 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepository.findById(id);
     }
 
-    @Override
-    public void save(Category category) {
-
-    }
-
-    @Override
-    public void remove(Long id) {
-
-    }
 }

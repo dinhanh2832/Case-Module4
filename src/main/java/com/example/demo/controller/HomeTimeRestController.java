@@ -1,8 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Home;
 import com.example.demo.model.HomeTime;
-import com.example.demo.service.HomeTimeServiceImpl;
+import com.example.demo.service.HomeTimeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +16,7 @@ import java.util.List;
 public class HomeTimeRestController {
 
     @Autowired
-    private HomeTimeServiceImpl homeTimeService;
+    private HomeTimeService homeTimeService;
 
     @GetMapping("")
     public ResponseEntity<Iterable<HomeTime>> listAllHomeTime() {
@@ -44,7 +43,7 @@ public class HomeTimeRestController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PutMapping( "/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<HomeTime> updateHomeTime(@PathVariable("id") Date id, @RequestBody HomeTime homeTime) {
         HomeTime homeTime1 = homeTimeService.findById(id);
 
@@ -58,7 +57,7 @@ public class HomeTimeRestController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @DeleteMapping( "/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<HomeTime> deleteHouseDay(@PathVariable("id") Date id) {
         HomeTime homeTime = homeTimeService.findById(id);
         if (homeTime == null) {

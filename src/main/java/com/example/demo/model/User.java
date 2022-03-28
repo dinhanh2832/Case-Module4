@@ -30,7 +30,7 @@ public class User implements Serializable {
     private Set<Role> roles;
     private int status;
 
-    public User(String username, String password, String confirmPassword, Set<Role> roles,int status) {
+    public User(String username, String password, String confirmPassword, Set<Role> roles, int status) {
         this.username = username;
         this.password = password;
         this.confirmPassword = confirmPassword;

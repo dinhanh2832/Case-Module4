@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Data
@@ -31,7 +30,7 @@ public class Home {
     private int numberOfTurns;
     private int area;
 
-    public Home(String name, String address, Category category, int bedroom, int showerRoom, String description, double price, StatusHome statusHome, User user, int numberOfTurns,int area) {
+    public Home(String name, String address, Category category, int bedroom, int showerRoom, String description, double price, StatusHome statusHome, User user, int numberOfTurns, int area) {
         this.name = name;
         this.address = address;
         this.category = category;

@@ -1,14 +1,15 @@
-package com.example.demo.service;
+package com.example.demo.service.impl;
 
-import com.example.demo.model.Home;
 import com.example.demo.model.Image;
 import com.example.demo.repository.ImageRepository;
+import com.example.demo.service.ImageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+
 @Service
-public class ImageServiceImpl implements ImageService{
+public class ImageServiceImpl implements ImageService {
     @Autowired
     private ImageRepository imageRepository;
 
@@ -26,11 +27,6 @@ public class ImageServiceImpl implements ImageService{
     @Override
     public void save(Image image) {
         imageRepository.save(image);
-    }
-
-    @Override
-    public void remove(Long id) {
-
     }
 
     @Override

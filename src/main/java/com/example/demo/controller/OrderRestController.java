@@ -1,11 +1,10 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Home;
 import com.example.demo.model.HomeTime;
 import com.example.demo.model.Order;
 import com.example.demo.model.StatusHome;
-import com.example.demo.service.HomeTimeServiceImpl;
-import com.example.demo.service.OrderServiceImpl;
+import com.example.demo.service.HomeTimeService;
+import com.example.demo.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -22,9 +21,9 @@ import java.util.Optional;
 @RequestMapping("/api/orders")
 public class OrderRestController {
     @Autowired
-    private OrderServiceImpl orderService;
+    private OrderService orderService;
     @Autowired
-    private HomeTimeServiceImpl homeTimeService;
+    private HomeTimeService homeTimeService;
     private long oneDay = 86400000;
 
     @GetMapping("")
@@ -71,7 +70,7 @@ public class OrderRestController {
             Date date1 = new Date(i);
             StatusHome statusHome = new StatusHome();
             statusHome.setId(1L);
-            HomeTime homeTime = new HomeTime(date1,order.getHome(),statusHome);
+            HomeTime homeTime = new HomeTime(date1, order.getHome(), statusHome);
             homeTimeService.save(homeTime);
         }
         return new ResponseEntity<>(order, HttpStatus.CREATED);
